@@ -2,6 +2,11 @@
   "name": "js-utils",
   "private": true,
   "packageManager": "pnpm@10.18.2",
+  "description": "A monorepo of modern JavaScript & TypeScript utility libraries for the @pixpilot ecosystem.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pixpilot/js-utils.git"
+  },
   "engines": {
     "node": ">=22.14.0",
     "pnpm": ">=9.6.0"
