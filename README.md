@@ -1,9 +1,6 @@
-# pnpm-turbo-monorepo-template
+# js-utils
 
-> ⚠️ **Opinionated Template:**
-> This monorepo template is designed for our internal standards and workflows. Feel free to use, adapt, and extend it for your own projects.
-
-A modern TypeScript monorepo template for npm packages, managed with pnpm and TurboRepo.
+A monorepo of modern JavaScript & TypeScript utility libraries for the @pixpilot ecosystem.
 
 ## ✨ Features
 
@@ -30,11 +27,7 @@ A modern TypeScript monorepo template for npm packages, managed with pnpm and Tu
 
 ## 📦 Packages
 
-- [packages/example-package](packages/example-package) – Example package included by default. You can remove this and run `pnpm run turbo:gen:init` to generate a new package for your monorepo.
-
-### 🏷️ Package Naming Convention
-
-In this template, we use `@pixpilot` as a placeholder for package names. As a user, you might want to replace it with your own organization or project name.
+This monorepo contains various utility libraries for the @pixpilot ecosystem. Each package is located in the `packages/` directory and is independently versioned and published.
 
 ## 🚢 Releases
 

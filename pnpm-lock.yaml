@@ -102,33 +102,6 @@ importers:
         specifier: catalog:dev
         version: 3.2.4(@types/debug@4.1.12)(@types/node@22.18.10)(@vitest/ui@3.2.4)(jiti@2.4.2)(terser@5.43.1)(tsx@4.20.6)(yaml@2.8.1)
 
-  packages/example-package:
-    devDependencies:
-      '@internal/eslint-config':
-        specifier: workspace:*
-        version: link:../../tooling/eslint
-      '@internal/prettier-config':
-        specifier: workspace:*
-        version: link:../../tooling/prettier
-      '@internal/rollup-config':
-        specifier: workspace:*
-        version: link:../../tooling/rollup
-      '@internal/tsconfig':
-        specifier: workspace:*
-        version: link:../../tooling/typescript
-      '@internal/vitest-config':
-        specifier: workspace:*
-        version: link:../../tooling/vitest
-      '@pixpilot/dev-config':
-        specifier: catalog:dev
-        version: 3.1.2(prettier@3.6.2)(typescript@5.9.3)
-      '@types/node':
-        specifier: catalog:dev
-        version: 22.18.10
-      rollup:
-        specifier: catalog:dev
-        version: 4.52.4
-
   tooling/eslint:
     dependencies:
       '@pixpilot/dev-config':
