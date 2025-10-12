@@ -1,12 +1,12 @@
 import { toCamelCase as toCamelCaseString } from '@pixpilot/string';
 
 // Type utilities for camelCase conversion
-type CamelCase<S extends string> = S extends `${infer P1}_${infer P2}${infer P3}`
-  ? `${P1}${Uppercase<P2>}${CamelCase<P3>}`
+export type ToCamelCase<S extends string> = S extends `${infer P1}_${infer P2}${infer P3}`
+  ? `${P1}${Uppercase<P2>}${ToCamelCase<P3>}`
   : S;
 
-type KeysToCamelCase<T> = {
-  [K in keyof T as CamelCase<string & K>]: T[K] extends Record<string, unknown>
+export type KeysToCamelCase<T> = {
+  [K in keyof T as ToCamelCase<string & K>]: T[K] extends Record<string, unknown>
     ? KeysToCamelCase<T[K]>
     : T[K] extends readonly (infer U)[]
       ? U extends Record<string, unknown>

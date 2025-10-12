@@ -1,11 +1,11 @@
 import { toSnakeCase as toSnakeCaseString } from '@pixpilot/string';
 
-type SnakeCase<S extends string> = S extends `${infer T}${infer U}`
-  ? `${T extends Uppercase<T> ? '_' : ''}${Lowercase<T>}${SnakeCase<U>}`
+export type ToSnakeCase<S extends string> = S extends `${infer T}${infer U}`
+  ? `${T extends Uppercase<T> ? '_' : ''}${Lowercase<T>}${ToSnakeCase<U>}`
   : S;
 
-type KeysToSnakeCase<T> = {
-  [K in keyof T as SnakeCase<string & K>]: T[K] extends Record<string, unknown>
+export type KeysToSnakeCase<T> = {
+  [K in keyof T as ToSnakeCase<string & K>]: T[K] extends Record<string, unknown>
     ? KeysToSnakeCase<T[K]>
     : T[K] extends readonly (infer U)[]
       ? U extends Record<string, unknown>
