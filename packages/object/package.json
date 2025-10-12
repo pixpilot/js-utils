@@ -41,13 +41,15 @@
     "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
+  "dependencies": {
+    "@pixpilot/string": "workspace:*"
+  },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",
     "@internal/prettier-config": "workspace:*",
     "@internal/rollup-config": "workspace:*",
     "@internal/tsconfig": "workspace:*",
     "@internal/vitest-config": "workspace:*",
-    "@pixpilot/string": "workspace:*",
     "@types/node": "catalog:dev",
     "eslint": "catalog:dev",
     "rollup": "catalog:dev",
