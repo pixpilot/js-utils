@@ -1,5 +1,11 @@
 # @pixpilot/number
 
+## 1.0.3
+
+### Patch Changes
+
+- b20f49b: fix release
+
 ## 1.0.2
 
 ### Patch Changes

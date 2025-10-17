@@ -1,5 +1,11 @@
 # @pixpilot/string
 
+## 2.0.3
+
+### Patch Changes
+
+- b20f49b: fix release
+
 ## 2.0.2
 
 ### Patch Changes
