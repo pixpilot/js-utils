@@ -1,5 +1,11 @@
 # @pixpilot/number
 
+## 1.0.6
+
+### Patch Changes
+
+- 8cf1dbb: test
+
 ## 1.0.5
 
 ### Patch Changes

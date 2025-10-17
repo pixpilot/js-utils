@@ -1,5 +1,11 @@
 # @pixpilot/string
 
+## 2.0.6
+
+### Patch Changes
+
+- 8cf1dbb: test
+
 ## 2.0.5
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @pixpilot/object
 
+## 1.1.6
+
+### Patch Changes
+
+- 8cf1dbb: test
+- Updated dependencies [8cf1dbb]
+  - @pixpilot/string@2.0.6
+
 ## 1.1.5
 
 ### Patch Changes
