@@ -1,5 +1,13 @@
 # @pixpilot/object
 
+## 1.1.2
+
+### Patch Changes
+
+- 02fef5e: fix release
+- Updated dependencies [02fef5e]
+  - @pixpilot/string@2.0.2
+
 ## 1.1.1
 
 ### Patch Changes
