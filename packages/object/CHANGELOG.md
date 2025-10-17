@@ -1,5 +1,14 @@
 # @pixpilot/object
 
+## 1.1.3
+
+### Patch Changes
+
+- create workspace aliases for source files
+- b20f49b: fix release
+- Updated dependencies [b20f49b]
+  - @pixpilot/string@2.0.3
+
 ## 1.1.2
 
 ### Patch Changes
