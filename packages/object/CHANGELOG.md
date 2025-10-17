@@ -1,5 +1,13 @@
 # @pixpilot/object
 
+## 1.1.1
+
+### Patch Changes
+
+- 7997347: fix release
+- Updated dependencies [7997347]
+  - @pixpilot/string@2.0.1
+
 ## 1.1.0
 
 ### Minor Changes

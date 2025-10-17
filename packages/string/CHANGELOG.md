@@ -1,5 +1,11 @@
 # @pixpilot/string
 
+## 2.0.1
+
+### Patch Changes
+
+- 7997347: fix release
+
 ## 2.0.0
 
 ### Major Changes
