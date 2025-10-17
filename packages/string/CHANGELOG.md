@@ -1,5 +1,11 @@
 # @pixpilot/string
 
+## 1.0.2
+
+### Patch Changes
+
+- update dependencies and configuration
+
 ## 1.0.1
 
 ### Patch Changes
