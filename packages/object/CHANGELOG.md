@@ -1,5 +1,13 @@
 # @pixpilot/object
 
+## 1.1.4
+
+### Patch Changes
+
+- d4a89ae: fix release
+- Updated dependencies [d4a89ae]
+  - @pixpilot/string@2.0.4
+
 ## 1.1.3
 
 ### Patch Changes
