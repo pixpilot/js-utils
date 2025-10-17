@@ -1,7 +1,7 @@
 {
   "name": "@pixpilot/number",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "packageManager": "pnpm@10.17.0",
   "author": "Pixpilot <m.doaie@hotmail.com>",
   "license": "MIT",
