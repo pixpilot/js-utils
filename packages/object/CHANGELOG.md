@@ -1,5 +1,14 @@
 # @pixpilot/object
 
+## 1.1.5
+
+### Patch Changes
+
+- update build option and add changeset for patch releases
+- 8e9bf7f: fix release
+- Updated dependencies [8e9bf7f]
+  - @pixpilot/string@2.0.5
+
 ## 1.1.4
 
 ### Patch Changes
