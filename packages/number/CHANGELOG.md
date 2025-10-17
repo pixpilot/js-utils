@@ -1,5 +1,11 @@
 # @pixpilot/number
 
+## 1.0.5
+
+### Patch Changes
+
+- 8e9bf7f: fix release
+
 ## 1.0.4
 
 ### Patch Changes
