@@ -1,5 +1,11 @@
 # @pixpilot/string
 
+## 2.0.0
+
+### Major Changes
+
+- 9840f71: new releases
+
 ## 1.1.0
 
 ### Minor Changes
