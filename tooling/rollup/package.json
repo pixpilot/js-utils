@@ -4,13 +4,19 @@
   "version": "0.1.0",
   "private": true,
   "exports": {
-    ".": "./index.js"
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    }
   },
   "scripts": {
     "clean:all": "git clean -xdf .cache .turbo node_modules",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
+  },
+  "dependencies": {
+    "@pixpilot/rollup-config": "^0.6.0"
   },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",
