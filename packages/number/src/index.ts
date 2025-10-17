@@ -1,4 +1,3 @@
-export * from './case';
+export * from './main';
 export * from './manipulation';
 export * from './type-guards';
-export * from './validation';

@@ -11,14 +11,27 @@ pnpm add @pixpilot/string
 ## Usage
 
 ```typescript
-import { toCamelCase, toKebabCase } from '@pixpilot/string';
+import { isString, toCamelCase, toKebabCase, truncate } from '@pixpilot/string';
 
-// Example: Convert strings to different cases
+// Case conversion
 const camel = toCamelCase('hello world'); // 'helloWorld'
 const kebab = toKebabCase('hello world'); // 'hello-world'
+
+// String manipulation
+const maxLength = 10;
+const short = truncate('This is a long string', maxLength); // 'This is a ...'
+
+// Type guards and validation
+if (isString(value)) {
+  // value is typed as string
+}
 ```
 
 ## API
+
+### Type Guards
+
+- `isString(value: unknown): value is string` - Type guard to check if a value is a string
 
 ### Case Conversion Functions
 
@@ -34,6 +47,27 @@ const kebab = toKebabCase('hello world'); // 'hello-world'
 - `toSentenceCase(str: string): string` - Convert a string to sentence case (`Sentence case`)
 - `toSnakeCase(str: string): string` - Convert a string to snake case (`snake_case`)
 - `toTrainCase(str: string): string` - Convert a string to train case (`Train-Case`)
+
+### Validation Functions
+
+- `isEmpty(str: string, trimWhitespace?: boolean): boolean` - Check if a string is empty
+- `isAlphanumeric(str: string): boolean` - Check if a string contains only alphanumeric characters
+- `isEmail(str: string): boolean` - Check if a string is a valid email address
+- `isUrl(str: string): boolean` - Check if a string is a valid URL
+
+### Manipulation Functions
+
+- `truncate(str: string, maxLength: number, ellipsis?: string): string` - Truncate a string
+- `capitalize(str: string): string` - Capitalize the first letter
+- `capitalizeFirst(str: string): string` - Capitalize first letter and lowercase rest
+- `reverse(str: string): string` - Reverse a string
+- `removeWhitespace(str: string): string` - Remove all whitespace
+- `normalizeSpaces(str: string): string` - Replace multiple spaces with single space
+- `padStart(str: string, targetLength: number, padString?: string): string` - Pad from the start
+- `padEnd(str: string, targetLength: number, padString?: string): string` - Pad from the end
+- `repeat(str: string, count: number): string` - Repeat a string
+- `countOccurrences(str: string, searchValue: string, caseSensitive?: boolean): number` - Count occurrences
+- `words(str: string): string[]` - Extract words from a string
 
 ## Contributing
 

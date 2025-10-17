@@ -1,14 +1,14 @@
 {
-  "name": "@pixpilot/object",
+  "name": "@pixpilot/date",
   "type": "module",
-  "version": "1.0.3",
+  "version": "0.0.0",
   "packageManager": "pnpm@10.17.0",
   "author": "Pixpilot <m.doaie@hotmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/pixpilot/js-utils.git",
-    "directory": "packages/object"
+    "directory": "packages/date"
   },
   "keywords": [],
   "exports": "./src/index.ts",
@@ -41,19 +41,12 @@
     "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
-  "dependencies": {
-    "@fastify/deepmerge": "^3.1.0",
-    "@pixpilot/string": "workspace:*"
-  },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",
     "@internal/prettier-config": "workspace:*",
     "@internal/rollup-config": "workspace:*",
     "@internal/tsconfig": "workspace:*",
     "@internal/vitest-config": "workspace:*",
-    "@manypkg/get-packages": "^3.1.0",
-    "@rollup/plugin-alias": "^5.1.1",
-    "@rollup/plugin-node-resolve": "^16.0.3",
     "@types/node": "catalog:dev",
     "eslint": "catalog:dev",
     "rollup": "catalog:dev",
