@@ -7,8 +7,8 @@ settings:
 catalogs:
   dev:
     '@pixpilot/dev-config':
-      specifier: ^3.14.0
-      version: 3.14.0
+      specifier: ^3.16.0
+      version: 3.16.0
     '@types/node':
       specifier: ^22.18.10
       version: 22.18.10
@@ -55,7 +55,7 @@ importers:
         version: link:tooling/prettier
       '@pixpilot/dev-config':
         specifier: catalog:dev
-        version: 3.14.0
+        version: 3.16.0
       '@pixpilot/workspace-package-generator':
         specifier: ^1.1.5
         version: 1.1.5
@@ -246,7 +246,7 @@ importers:
     dependencies:
       '@pixpilot/dev-config':
         specifier: catalog:dev
-        version: 3.14.0
+        version: 3.16.0
       '@pixpilot/eslint-config':
         specifier: ^2.8.0
         version: 2.8.0(@next/eslint-plugin-next@15.4.3)(eslint-plugin-jsx-a11y@6.10.2(eslint@9.37.0(jiti@2.4.2)))(eslint-plugin-react-hooks@5.2.0(eslint@9.37.0(jiti@2.4.2)))(eslint-plugin-react-refresh@0.4.20(eslint@9.37.0(jiti@2.4.2)))(eslint-plugin-turbo@2.5.6(eslint@9.37.0(jiti@2.4.2))(turbo@2.5.8))(eslint@9.37.0(jiti@2.4.2))(typescript@5.9.3)(vitest@3.2.4)
@@ -286,7 +286,7 @@ importers:
         version: link:../typescript
       '@pixpilot/dev-config':
         specifier: catalog:dev
-        version: 3.14.0
+        version: 3.16.0
       '@rollup/plugin-terser':
         specifier: ^0.4.4
         version: 0.4.4(rollup@4.52.4)
@@ -310,7 +310,7 @@ importers:
     devDependencies:
       '@pixpilot/dev-config':
         specifier: catalog:dev
-        version: 3.14.0
+        version: 3.16.0
       '@types/node':
         specifier: catalog:dev
         version: 22.18.10
@@ -914,8 +914,8 @@ packages:
       vue-eslint-parser:
         optional: true
 
-  '@pixpilot/dev-config@3.14.0':
-    resolution: {integrity: sha512-pTQfe6pQWRsnofhfRMLByRCLZZ3zXfJg6xqe9m9xcmCtJVi4E3F7IAKmGt0EKnQnC+LM1e8fx/iXzW/Czq/vrg==}
+  '@pixpilot/dev-config@3.16.0':
+    resolution: {integrity: sha512-o/YYPYpl3JmMp6SET/t+OtCDRSEzigTFBzHmqi+wGlJc9vUMCjOAUD2fpAuiHyhZ/qzqD1CaSy193Qi32j9pug==}
 
   '@pixpilot/eslint-config@2.8.0':
     resolution: {integrity: sha512-icHsEWfhGyGxLCeASEL6LaJYRAXQukETqxaY0BQ74KHXUVZiPR99nBuXaMlClfpWJHw0IghIEDDRcN2mUZU2aQ==}
@@ -4854,7 +4854,7 @@ snapshots:
       - typescript
       - vitest
 
-  '@pixpilot/dev-config@3.14.0': {}
+  '@pixpilot/dev-config@3.16.0': {}
 
   '@pixpilot/eslint-config@2.8.0(@next/eslint-plugin-next@15.4.3)(eslint-plugin-jsx-a11y@6.10.2(eslint@9.37.0(jiti@2.4.2)))(eslint-plugin-react-hooks@5.2.0(eslint@9.37.0(jiti@2.4.2)))(eslint-plugin-react-refresh@0.4.20(eslint@9.37.0(jiti@2.4.2)))(eslint-plugin-turbo@2.5.6(eslint@9.37.0(jiti@2.4.2))(turbo@2.5.8))(eslint@9.37.0(jiti@2.4.2))(typescript@5.9.3)(vitest@3.2.4)':
     dependencies:
