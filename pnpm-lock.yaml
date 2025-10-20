@@ -57,8 +57,8 @@ importers:
         specifier: catalog:dev
         version: 3.14.0
       '@pixpilot/workspace-package-generator':
-        specifier: ^1.1.5
-        version: 1.1.5
+        specifier: ^2.1.1
+        version: 2.1.1
       '@turbo/gen':
         specifier: ^2.5.8
         version: 2.5.8(@types/node@22.18.10)(typescript@5.9.3)
@@ -931,8 +931,8 @@ packages:
     peerDependencies:
       rollup: '>=4.46.2'
 
-  '@pixpilot/workspace-package-generator@1.1.5':
-    resolution: {integrity: sha512-tfwuMQ9BOtKUq/XT+GMyyVog8/JgBTRgxpQ7clnDIOI7qpmkv6lMo9YeS9xCZ1QfUWJ5SIXpeO1AY7kOP/DjKQ==}
+  '@pixpilot/workspace-package-generator@2.1.1':
+    resolution: {integrity: sha512-ym5ALZYDzIsRItz5h+ggVlYyZi6gXdpolDrHDbUzwLUE1Ha/qWy2PmfXbaM2EqyLg3gk6CQFdrU/taMdIrp4/w==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -1507,8 +1507,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  axe-core@4.10.3:
-    resolution: {integrity: sha512-Xm7bpRXnDSX2YE2YFfBk2FnF0ep6tmG7xPh8iHee8MIcrgq762Nkce856dYtJYLkuIoYZvGfTs/PbZhideTcEg==}
+  axe-core@4.11.0:
+    resolution: {integrity: sha512-ilYanEU8vxxBexpJd8cWM4ElSQq4QctCLKih0TSfjIfCQTeyH/6zVrmIJfLPrKTKJRbiG+cfnZbQIjAlJmF1jQ==}
     engines: {node: '>=4'}
 
   axobject-query@4.1.0:
@@ -2307,6 +2307,10 @@ packages:
   functions-have-names@1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
 
+  generator-function@2.0.1:
+    resolution: {integrity: sha512-SFdFmIJi+ybC0vjlHN0ZGVGHc3lgE0DxPAT0djjVg+kjOnSqclqmj0KQ7ykTOLP6YxoqOvuAODGdcHJn+43q3g==}
+    engines: {node: '>= 0.4'}
+
   get-caller-file@2.0.5:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
     engines: {node: 6.* || 8.* || >= 10.*}
@@ -2602,8 +2606,8 @@ packages:
     resolution: {integrity: sha512-OVa3u9kkBbw7b8Xw5F9P+D/T9X+Z4+JruYVNapTjPYZYUznQ5YfWeFkOj606XYYW8yugTfC8Pj0hYqvi4ryAhA==}
     engines: {node: '>=18'}
 
-  is-generator-function@1.1.0:
-    resolution: {integrity: sha512-nPUB5km40q9e8UfN/Zc24eLlzdSf9OfKByBw9CIdw4H1giPMeA0OIJvbchsCu4npfI2QcMVBsGEBHKZ7wLTWmQ==}
+  is-generator-function@1.1.2:
+    resolution: {integrity: sha512-upqt1SkGkODW9tsGNG5mtXTXtECizwtS2kA161M+gJPc1xdb/Ax629af6YrTwcOeQHbewrPNlE5Dx7kzvXTizA==}
     engines: {node: '>= 0.4'}
 
   is-glob@4.0.3:
@@ -4905,9 +4909,10 @@ snapshots:
       - tslib
       - typescript
 
-  '@pixpilot/workspace-package-generator@1.1.5':
+  '@pixpilot/workspace-package-generator@2.1.1':
     dependencies:
       '@manypkg/find-root': 3.1.0
+      '@manypkg/get-packages': 3.1.0
       change-case: 5.4.4
       yaml: 2.8.1
 
@@ -5574,7 +5579,7 @@ snapshots:
       possible-typed-array-names: 1.1.0
     optional: true
 
-  axe-core@4.10.3:
+  axe-core@4.11.0:
     optional: true
 
   axobject-query@4.1.0:
@@ -6205,7 +6210,7 @@ snapshots:
       array-includes: 3.1.9
       array.prototype.flatmap: 1.3.3
       ast-types-flow: 0.0.8
-      axe-core: 4.10.3
+      axe-core: 4.11.0
       axobject-query: 4.1.0
       damerau-levenshtein: 1.0.8
       emoji-regex: 9.2.2
@@ -6572,6 +6577,9 @@ snapshots:
   functions-have-names@1.2.3:
     optional: true
 
+  generator-function@2.0.1:
+    optional: true
+
   get-caller-file@2.0.5: {}
 
   get-east-asian-width@1.3.0: {}
@@ -6936,9 +6944,10 @@ snapshots:
     dependencies:
       get-east-asian-width: 1.3.0
 
-  is-generator-function@1.1.0:
+  is-generator-function@1.1.2:
     dependencies:
       call-bound: 1.0.4
+      generator-function: 2.0.1
       get-proto: 1.0.1
       has-tostringtag: 1.0.2
       safe-regex-test: 1.1.0
@@ -8842,7 +8851,7 @@ snapshots:
       is-async-function: 2.1.1
       is-date-object: 1.1.0
       is-finalizationregistry: 1.1.1
-      is-generator-function: 1.1.0
+      is-generator-function: 1.1.2
       is-regex: 1.2.1
       is-weakref: 1.1.1
       isarray: 2.0.5
