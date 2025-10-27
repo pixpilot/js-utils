@@ -1,5 +1,11 @@
 # @pixpilot/string
 
+## 2.1.0
+
+### Minor Changes
+
+- add script to generate packages section in README.md and update author info in config
+
 ## 2.0.6
 
 ### Patch Changes
