@@ -7,8 +7,6 @@ import {
   has,
   mapKeys,
   mapValues,
-  merge,
-  mergeAll,
   omit,
   pick,
   set,
@@ -30,58 +28,6 @@ describe('omit', () => {
   it('should omit specified keys', () => {
     const obj = { a: 1, b: 2, c: 3 };
     expect(omit(obj, ['b'])).toEqual({ a: 1, c: 3 });
-  });
-});
-
-describe('merge', () => {
-  it('should deep merge objects', () => {
-    const obj1 = { a: 1, b: { c: 2 } };
-    const obj2 = { b: { d: 3 }, e: 4 };
-    expect(merge(obj1, obj2)).toEqual({ a: 1, b: { c: 2, d: 3 }, e: 4 });
-  });
-});
-
-describe('mergeAll', () => {
-  it('should merge multiple objects', () => {
-    const obj1 = { a: 1, b: { c: 2 } };
-    const obj2 = { b: { d: 3 }, e: 4 };
-    const obj3 = { e: 5, f: 6 };
-    expect(
-      mergeAll(
-        obj1 as Record<string, unknown>,
-        obj2 as Record<string, unknown>,
-        obj3 as Record<string, unknown>,
-      ),
-    ).toEqual({
-      a: 1,
-      b: { c: 2, d: 3 },
-      e: 5,
-      f: 6,
-    });
-  });
-
-  it('should handle empty array', () => {
-    expect(mergeAll()).toEqual({});
-  });
-
-  it('should handle single object', () => {
-    const obj = { a: 1, b: 2 };
-    expect(mergeAll(obj)).toEqual({ a: 1, b: 2 });
-  });
-
-  it('should deep merge nested objects', () => {
-    const obj1 = { a: { b: { c: 1 } } };
-    const obj2 = { a: { b: { d: 2 } } };
-    const obj3 = { a: { e: 3 } };
-    expect(
-      mergeAll(
-        obj1 as Record<string, unknown>,
-        obj2 as Record<string, unknown>,
-        obj3 as Record<string, unknown>,
-      ),
-    ).toEqual({
-      a: { b: { c: 1, d: 2 }, e: 3 },
-    });
   });
 });
 

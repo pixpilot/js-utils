@@ -3,6 +3,7 @@
   "type": "module",
   "version": "1.0.6",
   "packageManager": "pnpm@10.17.0",
+  "description": "A collection of utility functions for date manipulation and parsing.",
   "author": "Pixpilot <m.doaie@hotmail.com>",
   "license": "MIT",
   "repository": {

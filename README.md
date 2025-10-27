@@ -1,30 +1,60 @@
 # js-utils
 
-A monorepo of modern JavaScript & TypeScript utility libraries for the @pixpilot ecosystem.
+> A modern TypeScript monorepo managed with pnpm and TurboRepo.
 
-## 📦 Packages
+## 🚀 Getting Started
 
-- **[@pixpilot/date](packages/date/README.md)** - Date utilities and type guards
-- **[@pixpilot/number](packages/number/README.md)** - Number manipulation and type guards
-- **[@pixpilot/object](packages/object/README.md)** - Object manipulation, case conversion, and type guards
-- **[@pixpilot/string](packages/string/README.md)** - String manipulation, case conversion, validation, and type guards
+### Development
 
-## � Quick Start
+Build all packages:
 
 ```sh
-# Install dependencies
-pnpm install
-
-# Build all packages
 pnpm build
+```
 
-# Run tests
+Run tests:
+
+```sh
 pnpm test
 ```
 
-## 🤝 Contributing
+Lint and format:
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+```sh
+pnpm lint
+pnpm format
+```
+
+### Create a New Package
+
+Generate a new package in the monorepo:
+
+```sh
+pnpm run turbo:gen:init
+```
+
+## 📦 Packages
+
+### [date](./packages/date/README.md)
+
+A collection of utility functions for date manipulation and parsing.
+
+### [number](./packages/number/README.md)
+
+A collection of utility functions for number manipulation and validation.
+
+### [object](./packages/object/README.md)
+
+A collection of utility functions for object manipulation and transformation.
+
+### [string](./packages/string/README.md)
+
+A collection of utility functions for string manipulation and validation.
+
+
+## 🚢 Releases
+
+This project uses [Changesets](https://github.com/changesets/changesets) for version management and publishing.
 
 ## 📄 License
 
