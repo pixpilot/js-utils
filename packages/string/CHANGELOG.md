@@ -1,5 +1,11 @@
 # @pixpilot/string
 
+## 2.2.0
+
+### Minor Changes
+
+- introduce tsdown configuration and related files
+
 ## 2.1.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @pixpilot/date
 
+## 1.1.0
+
+### Minor Changes
+
+- introduce tsdown configuration and related files
+
 ## 1.0.7
 
 ### Patch Changes
