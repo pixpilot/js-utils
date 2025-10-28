@@ -272,8 +272,8 @@ importers:
   tooling/tsdown:
     dependencies:
       '@pixpilot/tsdown-config':
-        specifier: ^0.2.0
-        version: 0.2.0(tsdown@0.15.11(typescript@5.9.3))
+        specifier: ^0.3.0
+        version: 0.3.0(tsdown@0.15.11(typescript@5.9.3))
       tsdown:
         specifier: catalog:dev
         version: 0.15.11(typescript@5.9.3)
@@ -959,8 +959,8 @@ packages:
   '@pixpilot/rollup-plugin-size-limit@0.1.3':
     resolution: {integrity: sha512-q68eAydzBfHKBkD6UD3s4316AXSiEgx7oGArye9jshbqLed8mKq++rvi9Xx3j62GYHEA5KzBdWHl8GtmANMGcw==}
 
-  '@pixpilot/tsdown-config@0.2.0':
-    resolution: {integrity: sha512-/JbMh76lLYozjvGNrRBKqNOWOCPLOtUb8BxMmwizq4St5bE7+9SxuWLwyCrufa2dD345eFE3lZ2v2ZjTLX2snw==}
+  '@pixpilot/tsdown-config@0.3.0':
+    resolution: {integrity: sha512-xG1H0CgvN5fqpho85z7zywEZ+QyCCMDtptjbz3brZmsjXaJkNmTpodrd8h+JLSHqZyqWDZsAjPA38L8oHtydeg==}
     peerDependencies:
       tsdown: '>=0.15.0'
 
@@ -5108,7 +5108,7 @@ snapshots:
     dependencies:
       bytes: 3.1.2
 
-  '@pixpilot/tsdown-config@0.2.0(tsdown@0.15.11(typescript@5.9.3))':
+  '@pixpilot/tsdown-config@0.3.0(tsdown@0.15.11(typescript@5.9.3))':
     dependencies:
       '@manypkg/get-packages': 3.1.0
       '@pixpilot/rollup-plugin-size-limit': 0.1.3
