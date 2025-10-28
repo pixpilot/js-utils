@@ -1,5 +1,11 @@
 # @pixpilot/date
 
+## 1.1.1
+
+### Patch Changes
+
+- 21298b3: date release
+
 ## 1.1.0
 
 ### Minor Changes
