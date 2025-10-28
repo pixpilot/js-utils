@@ -1,5 +1,11 @@
 # @pixpilot/date
 
+## 1.0.7
+
+### Patch Changes
+
+- d23fbfc: new release
+
 ## 1.0.6
 
 ### Patch Changes

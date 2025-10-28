@@ -1,5 +1,11 @@
 # @pixpilot/number
 
+## 1.1.1
+
+### Patch Changes
+
+- d23fbfc: new release
+
 ## 1.1.0
 
 ### Minor Changes

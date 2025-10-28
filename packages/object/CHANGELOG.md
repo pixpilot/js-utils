@@ -1,5 +1,13 @@
 # @pixpilot/object
 
+## 1.1.8
+
+### Patch Changes
+
+- d23fbfc: new release
+- Updated dependencies [d23fbfc]
+  - @pixpilot/string@2.1.1
+
 ## 1.1.7
 
 ### Patch Changes
