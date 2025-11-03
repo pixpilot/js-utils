@@ -60,7 +60,7 @@
     "lint-staged": "^16.2.4",
     "prettier": "catalog:dev",
     "rimraf": "^6.0.1",
-    "tsdown": "^0.15.11",
+    "tsdown": "^0.15.12",
     "tsx": "^4.20.6",
     "turbo": "^2.5.8",
     "typescript": "catalog:dev",
