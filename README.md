@@ -39,6 +39,10 @@ pnpm run turbo:gen:init
 
 A collection of utility functions for date manipulation and parsing.
 
+### [hash](./packages/hash/README.md)
+
+Hashing utilities
+
 ### [number](./packages/number/README.md)
 
 A collection of utility functions for number manipulation and validation.

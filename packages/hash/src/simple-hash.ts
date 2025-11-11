@@ -2,6 +2,9 @@ const DEFAULT_RADIX = 36;
 
 export { DEFAULT_RADIX };
 
+// ⚠️ WARNING: Not cryptographically secure. Use only for:
+// - Cache keys, bucketing, non-sensitive identifiers
+// For security: use crypto.subtle.digest() or bcrypt
 export function simpleHash(str: string, radix: number = DEFAULT_RADIX): string {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
