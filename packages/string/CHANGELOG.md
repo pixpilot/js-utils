@@ -1,5 +1,15 @@
 # @pixpilot/string
 
+## 2.3.0
+
+### Minor Changes
+
+- add initial implementation of hash package
+
+### Patch Changes
+
+- update dependency version for '@pixpilot/tsdown-config'
+
 ## 2.2.0
 
 ### Minor Changes
