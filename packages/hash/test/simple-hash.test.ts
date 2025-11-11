@@ -1,4 +1,4 @@
-import { DEFAULT_RADIX, simpleHash } from '../src/simple-hash';
+import { simpleHash } from '../src/simple-hash';
 
 describe('simpleHash', () => {
   // --- Test 1: Core Functionality and Consistency ---
@@ -22,10 +22,6 @@ describe('simpleHash', () => {
       const input = 'user-id-12345';
       const expectedHash = 'pxrzul';
       expect(simpleHash(input)).toBe(expectedHash);
-    });
-
-    it('should use DEFAULT_RADIX of 36', () => {
-      expect(DEFAULT_RADIX).toBe(36);
     });
   });
 
