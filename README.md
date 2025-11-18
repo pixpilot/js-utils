@@ -39,6 +39,10 @@ pnpm run turbo:gen:init
 
 A collection of utility functions for date manipulation and parsing.
 
+### [env](./packages/env/README.md)
+
+A collection of utility functions for environment detection.
+
 ### [hash](./packages/hash/README.md)
 
 Hashing utilities
