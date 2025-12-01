@@ -44,7 +44,7 @@
     "generate-packages-section": "node scripts/generate-packages-section.js"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.7",
+    "@changesets/cli": "^2.29.8",
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@internal/prettier-config": "workspace:*",
@@ -57,11 +57,11 @@
     "eslint": "catalog:dev",
     "glob": "catalog:dev",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.6",
+    "lint-staged": "^16.2.7",
     "prettier": "catalog:dev",
-    "rimraf": "^6.1.0",
+    "rimraf": "^6.1.2",
     "tsdown": "^0.16.5",
-    "tsx": "^4.20.6",
+    "tsx": "^4.21.0",
     "turbo": "^2.6.1",
     "typescript": "catalog:dev",
     "vitest": "catalog:dev"
