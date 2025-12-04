@@ -35,6 +35,10 @@ pnpm run turbo:gen:init
 
 ## 📦 Packages
 
+### [changeset](./packages/changeset/README.md)
+
+A utility for changesets
+
 ### [date](./packages/date/README.md)
 
 A collection of utility functions for date manipulation and parsing.

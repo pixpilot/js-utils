@@ -86,6 +86,7 @@ packages/**/.env
 packages/**/.env.*
 tooling/**/.env
 tooling/**/.env.*
+.npmrc.publish-*
 
 # -----------------------------
 # Parcel/Next/Nuxt/Gatsby/Vuepress

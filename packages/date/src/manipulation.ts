@@ -1,12 +1,22 @@
 // Constants for time calculations
-const MS_PER_MINUTE = 1000 * 60;
-const MS_PER_HOUR = MS_PER_MINUTE * 60;
-const MS_PER_DAY = MS_PER_HOUR * 24;
+const SECONDS_PER_MINUTE = 60;
+const MINUTES_PER_HOUR = 60;
+const HOURS_PER_DAY = 24;
+const MS_PER_SECOND = 1000;
+
+const MS_PER_MINUTE = MS_PER_SECOND * SECONDS_PER_MINUTE;
+const MS_PER_HOUR = MS_PER_MINUTE * MINUTES_PER_HOUR;
+const MS_PER_DAY = MS_PER_HOUR * HOURS_PER_DAY;
 
 const HOURS_PER_DAY_END = 23;
 const MINUTES_PER_HOUR_END = 59;
 const SECONDS_PER_MINUTE_END = 59;
 const MS_PER_SECOND_END = 999;
+
+// Constants for leap year calculation
+const LEAP_YEAR_DIVISOR = 4;
+const CENTURY_DIVISOR = 100;
+const FOUR_CENTURY_DIVISOR = 400;
 
 const PAD_LENGTH = 2;
 
@@ -400,5 +410,8 @@ export function getDaysInMonth(year: number, month: number): number {
  * ```
  */
 export function isLeapYear(year: number): boolean {
-  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+  return (
+    (year % LEAP_YEAR_DIVISOR === 0 && year % CENTURY_DIVISOR !== 0) ||
+    year % FOUR_CENTURY_DIVISOR === 0
+  );
 }

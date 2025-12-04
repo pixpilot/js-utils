@@ -2,8 +2,8 @@
  * Clamp a number between a minimum and maximum value.
  *
  * @param value - The number to clamp
- * @param min - The minimum value
- * @param max - The maximum value
+ * @param minValue - The minimum value
+ * @param maxValue - The maximum value
  * @returns The clamped number
  *
  * @example
@@ -40,8 +40,8 @@ export function round(value: number, decimals = 0): number {
 /**
  * Generate a random integer between min and max (inclusive).
  *
- * @param min - The minimum value
- * @param max - The maximum value
+ * @param minValue - The minimum value
+ * @param maxValue - The maximum value
  * @returns A random integer between min and max
  *
  * @example
@@ -59,8 +59,8 @@ export function randomInt(minValue: number, maxValue: number): number {
 /**
  * Generate a random number between min and max (inclusive).
  *
- * @param min - The minimum value
- * @param max - The maximum value
+ * @param minValue - The minimum value
+ * @param maxValue - The maximum value
  * @returns A random number between min and max
  *
  * @example
@@ -215,8 +215,8 @@ export function isNegative(value: number): boolean {
  * Check if a number is in a range (inclusive).
  *
  * @param value - The number to check
- * @param min - The minimum value
- * @param max - The maximum value
+ * @param minValue - The minimum value
+ * @param maxValue - The maximum value
  * @returns True if the number is in the range, false otherwise
  *
  * @example
