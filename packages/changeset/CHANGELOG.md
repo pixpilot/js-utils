@@ -1,5 +1,11 @@
 # @pixpilot/changeset
 
+## 0.1.2
+
+### Patch Changes
+
+- prevent build failures from import.meta warnings during publish
+
 ## 0.1.1
 
 ### Patch Changes
