@@ -1,5 +1,11 @@
 # @pixpilot/number
 
+## 1.2.0
+
+### Minor Changes
+
+- add changeset package and update existing packages
+
 ## 1.1.1
 
 ### Patch Changes
