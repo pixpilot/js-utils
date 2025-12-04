@@ -23,6 +23,7 @@
     "changeset-publish": "./bin/publish.js"
   },
   "files": [
+    "bin",
     "dist"
   ],
   "publishConfig": {

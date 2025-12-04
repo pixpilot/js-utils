@@ -12,6 +12,7 @@ export function defineConfig(options) {
     minify: true,
     bundleSize: LIMIT_KB,
     unbundle: true,
+    format: ['es', 'cjs'],
     // sourcemap: true,
     ...options,
   });
