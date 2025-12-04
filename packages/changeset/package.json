@@ -38,7 +38,6 @@
     "clean:all": "git clean -xdf .cache .turbo dist node_modules",
     "build": "tsdown",
     "build:watch": "tsdown --watch",
-    "publish": "changeset-publish",
     "test": "vitest --run --passWithNoTests",
     "test:watch": "vitest --watch",
     "test:ui": "vitest --ui",

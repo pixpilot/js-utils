@@ -10,4 +10,5 @@ export default defineConfig({
   minify: false,
   clean: true,
   unbundle: true,
+  failOnWarn: false,
 });
