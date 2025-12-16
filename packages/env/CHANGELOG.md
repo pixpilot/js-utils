@@ -1,5 +1,11 @@
 # @pixpilot/env
 
+## 0.2.3
+
+### Patch Changes
+
+- remove unnecessary dependencies from `test` and `test:coverage` tasks
+
 ## 0.2.2
 
 ### Patch Changes
