@@ -1,7 +1,7 @@
 {
   "name": "@pixpilot/env",
   "type": "module",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "packageManager": "pnpm@10.17.0",
   "description": "A collection of utility functions for environment detection.",
   "author": "m.doaie <m.doaie@hotmail.com>",
