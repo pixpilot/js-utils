@@ -1,5 +1,11 @@
 # @pixpilot/env
 
+## 0.2.2
+
+### Patch Changes
+
+- added export definitions for `./*` to ensure proper module resolution
+
 ## 0.2.1
 
 ### Patch Changes
