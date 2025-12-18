@@ -1,5 +1,11 @@
 # @pixpilot/env
 
+## 1.0.0
+
+### Major Changes
+
+- f9e4e3f: moved node api to /node path
+
 ## 0.2.3
 
 ### Patch Changes
