@@ -3,7 +3,7 @@ import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { loadEnvFiles } from '@pixpilot/env';
+import { loadEnvFiles } from '@pixpilot/env/node';
 import { describe, expect, it, vi } from 'vitest';
 
 import { publish } from '../src/publish';
@@ -13,7 +13,7 @@ vi.mock('node:child_process');
 vi.mock('node:fs');
 vi.mock('node:os');
 vi.mock('node:path');
-vi.mock('@pixpilot/env');
+vi.mock('@pixpilot/env/node');
 vi.mock('node:console', () => ({
   console: {
     log: vi.fn(),
