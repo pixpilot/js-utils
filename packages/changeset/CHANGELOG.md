@@ -1,5 +1,11 @@
 # @pixpilot/changeset
 
+## 0.1.3
+
+### Patch Changes
+
+- f9e4e3f: moved node api to /node path
+
 ## 0.1.2
 
 ### Patch Changes
