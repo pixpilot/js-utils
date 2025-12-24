@@ -9,7 +9,6 @@ import {
   stringifyPath,
   unflatten,
 } from 'dot-prop';
-import { setObjectValueByPath } from './set-object-value-by-path';
 
 /**
  * Pick specific keys from an object.
@@ -213,14 +212,15 @@ export function mapKeys<T extends Record<string, unknown>>(
   return result;
 }
 
-export const get = getProperty;
-
-export const set = setObjectValueByPath;
-
-export const has = hasProperty;
-
-export const del = deleteProperty;
-
 export const flatKeys = deepKeys;
 
-export { escapePath, parsePath, setProperty, stringifyPath, unflatten };
+export {
+  deleteProperty,
+  escapePath,
+  getProperty,
+  hasProperty,
+  parsePath,
+  setProperty,
+  stringifyPath,
+  unflatten,
+};

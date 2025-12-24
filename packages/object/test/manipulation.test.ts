@@ -3,13 +3,13 @@ import {
   deepClone,
   deepEqual,
   flatKeys,
-  get,
-  has,
+  getProperty,
+  hasProperty,
   mapKeys,
   mapValues,
   omit,
   pick,
-  set,
+  setProperty,
 } from '../src/manipulation';
 
 describe('pick', () => {
@@ -34,30 +34,30 @@ describe('omit', () => {
 describe('get', () => {
   it('should get nested values', () => {
     const obj = { a: { b: { c: 42 } } };
-    expect(get(obj, 'a.b.c')).toBe(42);
+    expect(getProperty(obj, 'a.b.c')).toBe(42);
   });
 
   it('should return default value for missing paths', () => {
     const obj = { a: { b: {} } };
-    expect(get(obj, 'a.b.x', 'default')).toBe('default');
+    expect(getProperty(obj, 'a.b.x', 'default')).toBe('default');
   });
 
   it('should return undefined', () => {
     const obj = { a: { b: {} } };
-    expect(get(obj, 'a.b.x')).toBeUndefined();
+    expect(getProperty(obj, 'a.b.x')).toBeUndefined();
   });
 });
 
 describe('set', () => {
   it('should set nested values', () => {
     const obj = { a: { b: {} } };
-    set(obj, 'a.b.c', 42);
+    setProperty(obj, 'a.b.c', 42);
     expect(obj).toEqual({ a: { b: { c: 42 } } });
   });
 
   it('should create missing paths', () => {
     const obj = {};
-    set(obj, 'a.b.c', 42);
+    setProperty(obj, 'a.b.c', 42);
     expect(obj).toEqual({ a: { b: { c: 42 } } });
   });
 });
@@ -65,8 +65,8 @@ describe('set', () => {
 describe('has', () => {
   it('should check if paths exist', () => {
     const obj = { a: { b: { c: 42 } } };
-    expect(has(obj, 'a.b.c')).toBe(true);
-    expect(has(obj, 'a.b.x')).toBe(false);
+    expect(hasProperty(obj, 'a.b.c')).toBe(true);
+    expect(hasProperty(obj, 'a.b.x')).toBe(false);
   });
 });
 
