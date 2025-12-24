@@ -1,5 +1,11 @@
 # @pixpilot/object
 
+## 2.0.0
+
+### Major Changes
+
+- update property accessors in manipulation functions
+
 ## 1.2.0
 
 ### Minor Changes
