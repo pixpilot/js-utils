@@ -45,7 +45,8 @@
   },
   "dependencies": {
     "@fastify/deepmerge": "^3.1.0",
-    "@pixpilot/string": "workspace:*"
+    "@pixpilot/string": "workspace:*",
+    "dot-prop": "^10.1.0"
   },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",

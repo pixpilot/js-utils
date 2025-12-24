@@ -1,4 +1,15 @@
-import { isObject } from './type-guards';
+import {
+  deepKeys,
+  deleteProperty,
+  escapePath,
+  getProperty,
+  hasProperty,
+  parsePath,
+  setProperty,
+  stringifyPath,
+  unflatten,
+} from 'dot-prop';
+import { setObjectValueByPath } from './set-object-value-by-path';
 
 /**
  * Pick specific keys from an object.
@@ -52,147 +63,6 @@ export function omit<T extends Record<string, unknown>, K extends keyof T>(
   }
 
   return result as Omit<T, K>;
-}
-
-/**
- * Get a nested value from an object using a path string.
- *
- * @param obj - The source object
- * @param path - The path to the value (e.g., 'a.b.c')
- * @param defaultValue - The default value to return if the path doesn't exist
- * @returns The value at the path or the default value
- *
- * @example
- * ```typescript
- * const obj = { a: { b: { c: 42 } } };
- * get(obj, 'a.b.c'); // 42
- * get(obj, 'a.b.x', 'default'); // 'default'
- * ```
- */
-export function get<T = unknown>(
-  obj: Record<string, unknown>,
-  path: string,
-  defaultValue?: T,
-): T | undefined {
-  const keys = path.split('.');
-  let result: unknown = obj;
-
-  for (const key of keys) {
-    if (
-      result !== null &&
-      result !== undefined &&
-      typeof result === 'object' &&
-      key in result
-    ) {
-      result = (result as Record<string, unknown>)[key];
-    } else {
-      return defaultValue;
-    }
-  }
-
-  return result as T;
-}
-
-/**
- * Set a nested value in an object using a path string.
- *
- * @param obj - The target object
- * @param path - The path to set the value at (e.g., 'a.b.c')
- * @param value - The value to set
- * @returns The modified object
- *
- * @example
- * ```typescript
- * const obj = { a: { b: {} } };
- * set(obj, 'a.b.c', 42); // { a: { b: { c: 42 } } }
- * ```
- */
-export function set<T extends Record<string, unknown>>(
-  obj: T,
-  path: string,
-  value: unknown,
-): T {
-  const keys = path.split('.');
-  const lastKey = keys.pop();
-
-  if (lastKey == null || lastKey.length === 0) {
-    return obj;
-  }
-
-  let current: Record<string, unknown> = obj;
-
-  for (const key of keys) {
-    if (!(key in current) || !isObject(current[key])) {
-      current[key] = {};
-    }
-    current = current[key] as Record<string, unknown>;
-  }
-
-  current[lastKey] = value;
-  return obj;
-}
-
-/**
- * Check if an object has a nested property using a path string.
- *
- * @param obj - The source object
- * @param path - The path to check (e.g., 'a.b.c')
- * @returns True if the path exists, false otherwise
- *
- * @example
- * ```typescript
- * const obj = { a: { b: { c: 42 } } };
- * has(obj, 'a.b.c'); // true
- * has(obj, 'a.b.x'); // false
- * ```
- */
-export function has(obj: Record<string, unknown>, path: string): boolean {
-  const keys = path.split('.');
-  let current: unknown = obj;
-
-  for (const key of keys) {
-    if (
-      current !== null &&
-      current !== undefined &&
-      typeof current === 'object' &&
-      key in current
-    ) {
-      current = (current as Record<string, unknown>)[key];
-    } else {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-/**
- * Get all keys of an object including nested keys.
- *
- * @param obj - The source object
- * @param prefix - The prefix to prepend to keys (used internally for recursion)
- * @returns An array of all keys including nested paths
- *
- * @example
- * ```typescript
- * const obj = { a: 1, b: { c: 2, d: { e: 3 } } };
- * flatKeys(obj); // ['a', 'b.c', 'b.d.e']
- * ```
- */
-export function flatKeys(obj: Record<string, unknown>, prefix = ''): string[] {
-  const keys: string[] = [];
-
-  for (const [key, value] of Object.entries(obj)) {
-    const fullKey = prefix ? `${prefix}.${key}` : key;
-
-    if (isObject(value)) {
-      keys.push(...flatKeys(value, fullKey));
-    } else {
-      keys.push(fullKey);
-    }
-  }
-
-  return keys;
 }
 
 /**
@@ -342,3 +212,15 @@ export function mapKeys<T extends Record<string, unknown>>(
 
   return result;
 }
+
+export const get = getProperty;
+
+export const set = setObjectValueByPath;
+
+export const has = hasProperty;
+
+export const del = deleteProperty;
+
+export const flatKeys = deepKeys;
+
+export { escapePath, parsePath, setProperty, stringifyPath, unflatten };
