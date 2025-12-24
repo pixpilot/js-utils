@@ -1,5 +1,15 @@
 # @pixpilot/object
 
+## 1.2.0
+
+### Minor Changes
+
+- add object manipulation utilities
+
+### Patch Changes
+
+- remove unnecessary dependencies from lint and typecheck tasks
+
 ## 1.1.10
 
 ### Patch Changes
