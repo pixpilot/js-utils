@@ -35,6 +35,10 @@ pnpm run turbo:gen:init
 
 ## 📦 Packages
 
+### [array](./packages/array/README.md)
+
+A collection of utility functions for array manipulation.
+
 ### [changeset](./packages/changeset/README.md)
 
 A utility for changesets
