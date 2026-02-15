@@ -1,30 +1,63 @@
 import { toCamelCase as toCamelCaseString } from '@pixpilot/string';
 
 // Type utilities for camelCase conversion
-export type ToCamelCase<S extends string> = S extends `${infer P1}_${infer P2}${infer P3}`
-  ? `${P1}${Uppercase<P2>}${ToCamelCase<P3>}`
-  : S;
+type CamelizeSegment<S extends string> = S extends '' ? '' : Capitalize<Lowercase<S>>;
 
-export type KeysToCamelCase<T> = {
-  [K in keyof T as ToCamelCase<string & K>]: T[K] extends Record<string, unknown>
-    ? KeysToCamelCase<T[K]>
-    : T[K] extends readonly (infer U)[]
-      ? U extends Record<string, unknown>
-        ? readonly KeysToCamelCase<U>[]
-        : T[K]
-      : T[K];
+/**
+ * Convert snake_case to camelCase at the type level.
+ *
+ * This intentionally matches the runtime behavior of `change-case`'s `camelCase`
+ * for underscores:
+ * - ignores leading/consecutive underscores
+ * - lowercases words
+ */
+export type ToCamelCase<
+  S extends string,
+  IsFirst extends boolean = true,
+> = S extends `${infer Head}_${infer Tail}`
+  ? Head extends ''
+    ? ToCamelCase<Tail, IsFirst>
+    : `${IsFirst extends true ? Lowercase<Head> : CamelizeSegment<Head>}${ToCamelCase<Tail, false>}`
+  : S extends ''
+    ? ''
+    : IsFirst extends true
+      ? Lowercase<S>
+      : CamelizeSegment<S>;
+
+type Builtin =
+  | Date
+  | RegExp
+  | Map<unknown, unknown>
+  | Set<unknown>
+  | WeakMap<object, unknown>
+  | WeakSet<object>;
+
+type TupleToCamelCase<T extends readonly unknown[]> = {
+  [I in keyof T]: KeysToCamelCase<T[I]>;
 };
 
-export function keysToCamelCase<T>(
-  obj: T,
-): T extends Record<string, unknown> ? KeysToCamelCase<T> : T {
+export type KeysToCamelCase<T> = T extends Builtin
+  ? T
+  : T extends (...args: unknown[]) => unknown
+    ? T
+    : T extends readonly unknown[]
+      ? number extends T['length']
+        ? KeysToCamelCase<T[number]>[]
+        : TupleToCamelCase<T>
+      : T extends object
+        ? {
+            [K in keyof T as K extends string ? ToCamelCase<K> : K]: KeysToCamelCase<
+              T[K]
+            >;
+          }
+        : T;
+
+export function keysToCamelCase<T>(obj: T): KeysToCamelCase<T> {
   if (Array.isArray(obj)) {
-    return obj.map(keysToCamelCase) as T extends Record<string, unknown>
-      ? KeysToCamelCase<T>
-      : T;
+    return obj.map(keysToCamelCase) as KeysToCamelCase<T>;
   }
   if (obj === null || typeof obj !== 'object') {
-    return obj as T extends Record<string, unknown> ? KeysToCamelCase<T> : T;
+    return obj as KeysToCamelCase<T>;
   }
 
   const result = {} as Record<string, unknown>;
@@ -32,5 +65,5 @@ export function keysToCamelCase<T>(
     const camelKey = toCamelCaseString(key);
     result[camelKey] = keysToCamelCase(value);
   }
-  return result as T extends Record<string, unknown> ? KeysToCamelCase<T> : T;
+  return result as KeysToCamelCase<T>;
 }

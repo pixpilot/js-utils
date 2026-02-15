@@ -1,5 +1,6 @@
-import { describe, expect, it } from 'vitest';
+import type { KeysToSnakeCase } from '../src/keys-to-snake-case';
 
+import { describe, expect, expectTypeOf, it } from 'vitest';
 import { keysToSnakeCase } from '../src/keys-to-snake-case';
 
 describe('keysToSnakeCase', () => {
@@ -159,5 +160,47 @@ describe('keysToSnakeCase', () => {
     const input = { XMLData: 'value' };
     const expected = { xml_data: 'value' };
     expect(keysToSnakeCase(input)).toEqual(expected);
+  });
+
+  it('should transform nested keys at the type level', () => {
+    interface Input {
+      parentKey: {
+        childKey: string;
+        anotherChild: {
+          deepKey: string;
+        };
+      };
+    }
+
+    interface Expected {
+      parent_key: {
+        child_key: string;
+        another_child: {
+          deep_key: string;
+        };
+      };
+    }
+
+    expectTypeOf<KeysToSnakeCase<Input>>().toEqualTypeOf<Expected>();
+  });
+
+  it('should transform nested arrays/tuples at the type level', () => {
+    interface Input {
+      items: Array<{ itemKey: string; deepList: { deepKey: string }[] }>;
+      tuple: [{ firstKey: 1 }, { secondKey: 2 }];
+      privateKey: string;
+      xmlData: string;
+    }
+
+    interface Expected {
+      items: Array<{ item_key: string; deep_list: { deep_key: string }[] }>;
+      tuple: [{ first_key: 1 }, { second_key: 2 }];
+      private_key: string;
+      xml_data: string;
+    }
+
+    type Result = KeysToSnakeCase<Input>;
+
+    expectTypeOf<Result>().toEqualTypeOf<Expected>();
   });
 });

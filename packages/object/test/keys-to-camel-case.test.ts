@@ -1,12 +1,15 @@
-import { describe, expect, it } from 'vitest';
+import type { KeysToCamelCase } from '../src/keys-to-camel-case';
 
+import { describe, expect, expectTypeOf, it } from 'vitest';
 import { keysToCamelCase } from '../src/keys-to-camel-case';
 
 describe('toCamelCase', () => {
   it('should convert simple snake_case keys to camelCase', () => {
     const input = { snake_case_key: 'value' };
     const expected = { snakeCaseKey: 'value' };
-    expect(keysToCamelCase(input)).toEqual(expected);
+
+    const result = keysToCamelCase(input);
+    expect(result).toEqual(expected);
   });
 
   it('should handle multiple underscores', () => {
@@ -18,13 +21,15 @@ describe('toCamelCase', () => {
   it('should handle keys that are already camelCase', () => {
     const input = { camelCaseKey: 'value' };
     const expected = { camelCaseKey: 'value' };
-    expect(keysToCamelCase(input)).toEqual(expected);
+    const result = keysToCamelCase(input);
+    expect(result).toEqual(expected);
   });
 
   it('should handle keys without underscores', () => {
     const input = { simplekey: 'value' };
     const expected = { simplekey: 'value' };
-    expect(keysToCamelCase(input)).toEqual(expected);
+    const result = keysToCamelCase(input);
+    expect(result).toEqual(expected);
   });
 
   it('should handle nested objects', () => {
@@ -44,7 +49,8 @@ describe('toCamelCase', () => {
         },
       },
     };
-    expect(keysToCamelCase(input)).toEqual(expected);
+    const result = keysToCamelCase(input);
+    expect(result).toEqual(expected);
   });
 
   it('should handle arrays of objects', () => {
@@ -159,5 +165,64 @@ describe('toCamelCase', () => {
     const input = { key__with__double: 'value' };
     const expected = { keyWithDouble: 'value' };
     expect(keysToCamelCase(input)).toEqual(expected);
+  });
+
+  it('should handle nested arrays with objects', () => {
+    const input = {
+      deeplyNested: [
+        [{ first_level_key: 'value1' }, { second_level_key: 'value2' }],
+        [{ another_key: 'value3' }],
+      ],
+    };
+    const expected = {
+      deeplyNested: [
+        [{ firstLevelKey: 'value1' }, { secondLevelKey: 'value2' }],
+        [{ anotherKey: 'value3' }],
+      ],
+    };
+    const result = keysToCamelCase(input);
+    expect(result).toEqual(expected);
+  });
+
+  it('should transform nested keys at the type level', () => {
+    interface Input {
+      parent_key: {
+        child_key: string;
+        another_child: {
+          deep_key: string;
+        };
+      };
+    }
+
+    interface Expected {
+      parentKey: {
+        childKey: string;
+        anotherChild: {
+          deepKey: string;
+        };
+      };
+    }
+
+    expectTypeOf<KeysToCamelCase<Input>>().toEqualTypeOf<Expected>();
+  });
+
+  it('should transform nested arrays/tuples at the type level', () => {
+    interface Input {
+      items: Array<{ item_key: string; deep_list: { deep_key: string }[] }>;
+      tuple: [{ first_key: 1 }, { second_key: 2 }];
+      _private_key: string;
+      key__with__double: string;
+    }
+
+    interface Expected {
+      items: Array<{ itemKey: string; deepList: { deepKey: string }[] }>;
+      tuple: [{ firstKey: 1 }, { secondKey: 2 }];
+      privateKey: string;
+      keyWithDouble: string;
+    }
+
+    type Result = KeysToCamelCase<Input>;
+
+    expectTypeOf<Result>().toEqualTypeOf<Expected>();
   });
 });
