@@ -7,7 +7,7 @@ export default defineConfig({
   bundleSize: MAX_BUNDLE_SIZE_KB * KB,
   entry: 'src/index.ts',
   dts: true,
-  minify: true,
+  minify: false,
   clean: true,
   failOnWarn: false,
 });

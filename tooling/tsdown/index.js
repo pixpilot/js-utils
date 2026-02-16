@@ -9,7 +9,7 @@ const LIMIT_KB = LIMIT * KB;
  */
 export function defineConfig(options) {
   return defineTsDownConfig({
-    minify: true,
+    minify: false,
     bundleSize: LIMIT_KB,
     unbundle: true,
     format: ['es', 'cjs'],

@@ -1,3 +1,4 @@
+export * from './clean-object';
 export * from './deep-merge';
 export * from './delete-object-property-by-path';
 export * from './get-object-value-by-path';
