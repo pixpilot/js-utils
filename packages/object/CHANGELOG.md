@@ -1,5 +1,11 @@
 # @pixpilot/object
 
+## 2.1.0
+
+### Minor Changes
+
+- enhance key transformation utilities for camelCase and snake_case
+
 ## 2.0.0
 
 ### Major Changes

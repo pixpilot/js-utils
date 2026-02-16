@@ -1,7 +1,7 @@
 {
   "name": "@pixpilot/object",
   "type": "module",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "packageManager": "pnpm@10.17.0",
   "description": "A collection of utility functions for object manipulation and transformation.",
   "author": "Pixpilot <m.doaie@hotmail.com>",
