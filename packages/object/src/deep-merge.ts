@@ -1,3 +1,4 @@
+import type { Options } from '@fastify/deepmerge';
 import deepmerge from '@fastify/deepmerge';
 
 // Create a deepmerge instance with default options
@@ -50,6 +51,11 @@ export function deepMergeMany<T extends Record<string, unknown>>(
  * This provides direct access to the deepmerge function for advanced use cases,
  * allowing merging of multiple objects and custom options.
  *
+ * @param target - The target object to merge into
+ * @param source - The source object to merge from
+ * @param options - Optional deepmerge options
+ * @returns A new merged object containing properties from both target and source
+ *
  * @example
  * ```typescript
  * import { deepmerge } from '@pixpilot/object';
@@ -60,6 +66,9 @@ export function deepMergeMany<T extends Record<string, unknown>>(
 export function deepMerge<
   T extends Record<string, unknown>,
   U extends Record<string, unknown>,
->(target: T, source: U): T & U {
+>(target: T, source: U, options?: Options): T & U {
+  if (options) {
+    return deepmerge(options)(target, source) as T & U;
+  }
   return getDeepMerge()(target, source) as T & U;
 }

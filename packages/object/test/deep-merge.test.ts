@@ -90,6 +90,16 @@ describe('merge', () => {
     const obj2 = { a: 'string' };
     expect(deepMerge(obj1, obj2)).toEqual({ a: 'string' });
   });
+
+  it('should merge symbols when symbols option is enabled', () => {
+    const sym = Symbol('test');
+    const obj1 = { [sym]: 1, a: 2 };
+    const obj2 = { [sym]: 3, b: 4 };
+    const result = deepMerge(obj1 as any, obj2 as any, { symbols: true });
+    expect(result[sym]).toBe(3);
+    expect(result.a).toBe(2);
+    expect(result.b).toBe(4);
+  });
 });
 
 describe('deepMergeMany', () => {
