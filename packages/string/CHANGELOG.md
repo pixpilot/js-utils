@@ -1,5 +1,11 @@
 # @pixpilot/string
 
+## 2.4.0
+
+### Minor Changes
+
+- add cleanObject utility for deep cleaning objects
+
 ## 2.3.0
 
 ### Minor Changes

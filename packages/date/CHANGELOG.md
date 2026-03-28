@@ -1,5 +1,11 @@
 # @pixpilot/date
 
+## 1.2.0
+
+### Minor Changes
+
+- add cleanObject utility for deep cleaning objects
+
 ## 1.1.1
 
 ### Patch Changes
