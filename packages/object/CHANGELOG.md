@@ -1,5 +1,11 @@
 # @pixpilot/object
 
+## 2.2.0
+
+### Minor Changes
+
+- enhance deepMerge function to support options
+
 ## 2.1.1
 
 ### Patch Changes
