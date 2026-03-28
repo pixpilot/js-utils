@@ -100,6 +100,24 @@ describe('merge', () => {
     expect(result.a).toBe(2);
     expect(result.b).toBe(4);
   });
+
+  it('should use custom array merge function', () => {
+    const obj1 = { a: [1, 2] };
+    const obj2 = { a: [3, 4] };
+    const result = deepMerge(obj1, obj2, {
+      mergeArray: () => (target, source) => [...target, ...source].reverse(),
+    });
+    expect(result.a).toEqual([4, 3, 2, 1]);
+  });
+
+  it('should use custom isMergeableObject function', () => {
+    const obj1 = { a: { b: 1 } };
+    const obj2 = { a: { c: 2 } };
+    const result = deepMerge(obj1, obj2, {
+      isMergeableObject: () => false, // Nothing is mergeable, so replace
+    });
+    expect(result.a).toEqual({ c: 2 }); // Should replace instead of merge
+  });
 });
 
 describe('deepMergeMany', () => {
