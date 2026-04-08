@@ -1,5 +1,11 @@
 # @pixpilot/object
 
+## 2.4.0
+
+### Minor Changes
+
+- enhance `keysToCamelCase` to support custom conversion options
+
 ## 2.3.0
 
 ### Minor Changes
