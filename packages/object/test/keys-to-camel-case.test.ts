@@ -167,6 +167,53 @@ describe('toCamelCase', () => {
     expect(keysToCamelCase(input)).toEqual(expected);
   });
 
+  it('should preserve GUID keys while still converting nested keys', () => {
+    const guid = '550e8400-e29b-41d4-a716-446655440000';
+    const input = {
+      [guid]: {
+        nested_key: 'value',
+      },
+      regular_key: 'regular',
+    };
+    const expected = {
+      [guid]: {
+        nestedKey: 'value',
+      },
+      regularKey: 'regular',
+    };
+
+    expect(keysToCamelCase(input)).toEqual(expected);
+  });
+
+  it('should allow skipping conversion with shouldConvert', () => {
+    const input = {
+      regular_key: 'value',
+      skip_this_key: {
+        nested_value: 'nested',
+      },
+      nested_object: {
+        nested_skip_key: 'value',
+        convert_this_key: 'other',
+      },
+    };
+    const expected = {
+      regularKey: 'value',
+      skip_this_key: {
+        nestedValue: 'nested',
+      },
+      nestedObject: {
+        nested_skip_key: 'value',
+        convertThisKey: 'other',
+      },
+    };
+
+    expect(
+      keysToCamelCase(input, {
+        shouldConvert: (key) => key !== 'skip_this_key' && key !== 'nested_skip_key',
+      }),
+    ).toEqual(expected);
+  });
+
   it('should handle nested arrays with objects', () => {
     const input = {
       deeplyNested: [

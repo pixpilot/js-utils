@@ -25,6 +25,10 @@ const obj = { user_name: 'john', user_details: { first_name: 'John' } };
 const camelCaseObj = keysToCamelCase(obj);
 // { userName: 'john', userDetails: { firstName: 'John' } }
 
+const guidSafeObj = keysToCamelCase(obj, {
+  shouldConvert: (key) => key !== 'legacy_key',
+});
+
 // Manipulate objects
 const picked = pick({ a: 1, b: 2, c: 3 }, ['a', 'c']); // { a: 1, c: 3 }
 const omitted = omit({ a: 1, b: 2, c: 3 }, ['b']); // { a: 1, c: 3 }
@@ -48,7 +52,7 @@ if (isObject(value)) {
 
 ### Key Transformation
 
-- `keysToCamelCase<T>(obj: T): KeysToCamelCase<T>` - Convert all keys to camelCase
+- `keysToCamelCase<T>(obj: T, options?: { shouldConvert?: (key: string) => boolean }): KeysToCamelCase<T>` - Convert keys to camelCase, except GUID keys and keys rejected by `shouldConvert`
 - `keysToSnakeCase<T>(obj: T): KeysToSnakeCase<T>` - Convert all keys to snake_case
 
 ### Object Manipulation
