@@ -1,5 +1,11 @@
 # @pixpilot/string
 
+## 2.5.0
+
+### Minor Changes
+
+- add GUID utility functions and related files
+
 ## 2.4.0
 
 ### Minor Changes
