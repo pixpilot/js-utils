@@ -55,6 +55,10 @@ if (isString(value)) {
 - `isEmail(str: string): boolean` - Check if a string is a valid email address
 - `isUrl(str: string): boolean` - Check if a string is a valid URL
 
+### GUID Helpers
+
+- `isGuidString(str: string): boolean` - Check if a string matches the canonical GUID format
+
 ### Manipulation Functions
 
 - `truncate(str: string, maxLength: number, ellipsis?: string): string` - Truncate a string

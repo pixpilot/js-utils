@@ -234,6 +234,36 @@ importers:
         specifier: catalog:dev
         version: 5.9.3
 
+  packages/guid:
+    devDependencies:
+      '@internal/eslint-config':
+        specifier: workspace:*
+        version: link:../../tooling/eslint
+      '@internal/prettier-config':
+        specifier: workspace:*
+        version: link:../../tooling/prettier
+      '@internal/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
+      '@internal/tsdown-config':
+        specifier: workspace:*
+        version: link:../../tooling/tsdown
+      '@internal/vitest-config':
+        specifier: workspace:*
+        version: link:../../tooling/vitest
+      '@types/node':
+        specifier: catalog:dev
+        version: 22.18.10
+      eslint:
+        specifier: catalog:dev
+        version: 9.37.0(jiti@2.6.1)
+      tsdown:
+        specifier: catalog:dev
+        version: 0.15.11(ms@2.1.3)(synckit@0.11.11)(typescript@5.9.3)
+      typescript:
+        specifier: catalog:dev
+        version: 5.9.3
+
   packages/hash:
     devDependencies:
       '@internal/eslint-config':
@@ -299,6 +329,9 @@ importers:
       '@fastify/deepmerge':
         specifier: ^3.1.0
         version: 3.1.0
+      '@pixpilot/guid':
+        specifier: workspace:*
+        version: link:../guid
       '@pixpilot/string':
         specifier: workspace:*
         version: link:../string

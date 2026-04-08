@@ -1,15 +1,19 @@
 {
-  "name": "@pixpilot/object",
+  "name": "@pixpilot/guid",
   "type": "module",
-  "version": "2.4.0",
+  "version": "0.0.0",
   "packageManager": "pnpm@10.17.0",
-  "description": "A collection of utility functions for object manipulation and transformation.",
-  "author": "Pixpilot <m.doaie@hotmail.com>",
+  "description": "A utility for working with GUIDs in JavaScript.",
+  "author": "Mo Doaie <m.doaie@hotmail.com>",
   "license": "MIT",
+  "homepage": "https://github.com/pixpilot/js-utils",
   "repository": {
     "type": "git",
     "url": "https://github.com/pixpilot/js-utils.git",
-    "directory": "packages/object"
+    "directory": "packages/guid"
+  },
+  "bugs": {
+    "url": "https://github.com/pixpilot/js-utils/issues"
   },
   "keywords": [],
   "exports": "./src/index.ts",
@@ -32,9 +36,9 @@
   "scripts": {
     "prepublishOnly": "pnpm run clean && pnpm run build",
     "clean": "git clean -xdf .cache .turbo dist",
-    "clean:all": "git clean -xdf .cache .turbo dist node_modules",
+    "clean:all": "pnpm clean && git clean -xdf node_modules",
     "build": "tsdown",
-    "buld:watch": "tsdown --watch",
+    "build:watch": "tsdown --watch",
     "test": "vitest --run --passWithNoTests",
     "test:watch": "vitest --watch",
     "test:ui": "vitest --ui",
@@ -43,19 +47,12 @@
     "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
-  "dependencies": {
-    "@fastify/deepmerge": "^3.1.0",
-    "@pixpilot/guid": "workspace:*",
-    "@pixpilot/string": "workspace:*",
-    "dot-prop": "^10.1.0"
-  },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",
     "@internal/prettier-config": "workspace:*",
     "@internal/tsconfig": "workspace:*",
     "@internal/tsdown-config": "workspace:*",
     "@internal/vitest-config": "workspace:*",
-    "@manypkg/get-packages": "^3.1.0",
     "@types/node": "catalog:dev",
     "eslint": "catalog:dev",
     "tsdown": "catalog:dev",

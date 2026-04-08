@@ -51,6 +51,10 @@ A collection of utility functions for date manipulation and parsing.
 
 A collection of utility functions for environment detection.
 
+### [guid](./packages/guid/README.md)
+
+A utility for working with GUIDs in JavaScript.
+
 ### [hash](./packages/hash/README.md)
 
 Hashing utilities
