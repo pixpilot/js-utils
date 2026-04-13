@@ -1,5 +1,12 @@
 # @pixpilot/object
 
+## 2.4.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @pixpilot/string@2.5.0
+
 ## 2.4.0
 
 ### Minor Changes
