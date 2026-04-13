@@ -50,7 +50,7 @@ if (isString(value)) {
 
 ### Validation Functions
 
-- `isEmpty(str: string, trimWhitespace?: boolean): boolean` - Check if a string is empty
+- `isEmptyString(str: string, trimWhitespace?: boolean): boolean` - Check if a string is empty
 - `isAlphanumeric(str: string): boolean` - Check if a string contains only alphanumeric characters
 - `isEmail(str: string): boolean` - Check if a string is a valid email address
 - `isUrl(str: string): boolean` - Check if a string is a valid URL

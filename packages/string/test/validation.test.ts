@@ -1,21 +1,49 @@
 import { describe, expect, it } from 'vitest';
 import { countOccurrences } from '../src/manipulation';
-import { isAlphanumeric, isEmail, isEmpty, isUrl } from '../src/validation';
+import {
+  isAlphanumeric,
+  isEmail,
+  isEmptyString,
+  isEmptyStringOrNil,
+  isUrl,
+} from '../src/validation';
 
-describe('isEmpty', () => {
+describe('isEmptyString', () => {
   it('should return true for empty strings', () => {
-    expect(isEmpty('')).toBe(true);
-    expect(isEmpty('   ')).toBe(true);
+    expect(isEmptyString('')).toBe(true);
+    expect(isEmptyString('   ')).toBe(true);
   });
 
   it('should return false for non-empty strings', () => {
-    expect(isEmpty('hello')).toBe(false);
-    expect(isEmpty(' a ')).toBe(false);
+    expect(isEmptyString('hello')).toBe(false);
+    expect(isEmptyString(' a ')).toBe(false);
   });
 
   it('should respect trimWhitespace parameter', () => {
-    expect(isEmpty('   ', false)).toBe(false);
-    expect(isEmpty('', false)).toBe(true);
+    expect(isEmptyString('   ', false)).toBe(false);
+    expect(isEmptyString('', false)).toBe(true);
+  });
+});
+
+describe('isEmptyStringOrNil', () => {
+  it('should return true for null or undefined', () => {
+    expect(isEmptyStringOrNil(null)).toBe(true);
+    expect(isEmptyStringOrNil(undefined)).toBe(true);
+  });
+
+  it('should return true for empty strings', () => {
+    expect(isEmptyStringOrNil('')).toBe(true);
+    expect(isEmptyStringOrNil('   ')).toBe(true);
+  });
+
+  it('should return false for non-empty strings', () => {
+    expect(isEmptyStringOrNil('hello')).toBe(false);
+    expect(isEmptyStringOrNil(' a ')).toBe(false);
+  });
+
+  it('should respect trimWhitespace parameter', () => {
+    expect(isEmptyStringOrNil('   ', false)).toBe(false);
+    expect(isEmptyStringOrNil('', false)).toBe(true);
   });
 });
 

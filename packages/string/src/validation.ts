@@ -6,18 +6,30 @@
  * @returns True if the string is empty, false otherwise
  *
  * @example
- * ```typescript
- * isEmpty(''); // true
- * isEmpty('   '); // true
- * isEmpty('   ', false); // false
- * isEmpty('hello'); // false
- * ```
+ * isEmpty('');        // true
+ * isEmpty('   ');     // true
+ * isEmpty('hello');   // false
  */
-export function isEmpty(str: string, trimWhitespace = true): boolean {
-  if (trimWhitespace) {
-    return str.trim().length === 0;
-  }
-  return str.length === 0;
+export function isEmptyString(str: string, trimWhitespace = true): boolean {
+  return trimWhitespace ? str.trim().length === 0 : str.length === 0;
+}
+
+/**
+ * Like isEmptyString, but also returns true for null or undefined.
+ * Use this when working with optional fields, API responses, or environment variables.
+ *
+ * @example
+ * isEmptyStringOrNil(null);      // true
+ * isEmptyStringOrNil(undefined); // true
+ * isEmptyStringOrNil('   ');     // true
+ * isEmptyStringOrNil('hello');   // false
+ */
+export function isEmptyStringOrNil(
+  str: string | null | undefined,
+  trimWhitespace = true,
+): boolean {
+  if (str == null) return true;
+  return isEmptyString(str, trimWhitespace);
 }
 
 /**
