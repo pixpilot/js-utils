@@ -7,10 +7,6 @@
 
 - If a comment is long, write it as a multi-line comment and break lines for readability.
 
-## Testing
-
-This project uses Vitest for testing.
-
 # File Naming Conventions
 
 ## JavaScript/TypeScript
