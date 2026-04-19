@@ -1,5 +1,11 @@
 # @pixpilot/string
 
+## 3.0.0
+
+### Major Changes
+
+- rename `isEmpty` to `isEmptyString` and add `isEmptyStringOrNil`
+
 ## 2.5.0
 
 ### Minor Changes
