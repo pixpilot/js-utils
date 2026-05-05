@@ -36,4 +36,3 @@ export function sumOfParentZindex(element: HTMLElement, parentDefaultZindex = 0)
   );
   return sumOfZindex;
 }
-
