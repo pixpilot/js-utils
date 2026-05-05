@@ -47,6 +47,10 @@ A utility for changesets
 
 A collection of utility functions for date manipulation and parsing.
 
+### [dom](./packages/dom/README.md)
+
+A collection of DOM utilities for JavaScript projects.
+
 ### [env](./packages/env/README.md)
 
 A collection of utility functions for environment detection.
@@ -58,6 +62,10 @@ A utility for working with GUIDs in JavaScript.
 ### [hash](./packages/hash/README.md)
 
 Hashing utilities
+
+### [math](./packages/math/README.md)
+
+A collection of math utilities for JavaScript projects.
 
 ### [number](./packages/number/README.md)
 
