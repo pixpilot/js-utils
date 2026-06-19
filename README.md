@@ -75,6 +75,10 @@ A collection of utility functions for number manipulation and validation.
 
 A collection of utility functions for object manipulation and transformation.
 
+### [pagination](./packages/pagination/README.md)
+
+A simple and efficient pagination utility for JavaScript and TypeScript.
+
 ### [string](./packages/string/README.md)
 
 A collection of utility functions for string manipulation and validation.
