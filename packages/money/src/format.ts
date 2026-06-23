@@ -1,8 +1,16 @@
-const CENTS_PER_UNIT = 100;
+function getMinorUnitDivisor(currency: string): number {
+  const { minimumFractionDigits = 0 } = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: currency.toUpperCase(),
+  }).resolvedOptions();
 
-export function formatMoney(amountCents: number, currency = 'usd'): string {
+  return 10 ** minimumFractionDigits;
+}
+
+export function formatMoney(amountMinorUnits: number, currency = 'usd'): string {
+  const divisor = getMinorUnitDivisor(currency);
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: currency.toUpperCase(),
-  }).format(amountCents / CENTS_PER_UNIT);
+  }).format(amountMinorUnits / divisor);
 }
