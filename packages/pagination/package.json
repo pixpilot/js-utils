@@ -1,7 +1,7 @@
 {
   "name": "@pixpilot/pagination",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "packageManager": "pnpm@10.17.0",
   "description": "A simple and efficient pagination utility for JavaScript and TypeScript.",
   "author": "Mo Doaie <m.doaie@hotmail.com>",
