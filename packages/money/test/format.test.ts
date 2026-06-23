@@ -8,4 +8,7 @@ describe('formatMoney', () => {
   it('should format money correctly', () => {
     expect(formatMoney(123456)).toBe('$1,234.56');
   });
+  it('should format money correctly with different currency', () => {
+    expect(formatMoney(123456, 'eur')).toBe('€1,234.56');
+  });
 });
