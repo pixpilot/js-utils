@@ -67,6 +67,10 @@ Hashing utilities
 
 A collection of math utilities for JavaScript projects.
 
+### [money](./packages/money/README.md)
+
+A utility for formatting and manipulating money values in JavaScript.
+
 ### [number](./packages/number/README.md)
 
 A collection of utility functions for number manipulation and validation.
