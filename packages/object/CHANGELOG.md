@@ -1,5 +1,14 @@
 # @pixpilot/object
 
+## 2.4.3
+
+### Patch Changes
+
+- bfc89a3: provenance release
+- Updated dependencies [bfc89a3]
+  - @pixpilot/guid@0.0.1
+  - @pixpilot/string@3.0.1
+
 ## 2.4.2
 
 ### Patch Changes

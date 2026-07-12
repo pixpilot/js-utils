@@ -1,7 +1,7 @@
 {
   "name": "@pixpilot/guid",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "packageManager": "pnpm@10.17.0",
   "description": "A utility for working with GUIDs in JavaScript.",
   "author": "Mo Doaie <m.doaie@hotmail.com>",

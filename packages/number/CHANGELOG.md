@@ -1,5 +1,11 @@
 # @pixpilot/number
 
+## 1.2.1
+
+### Patch Changes
+
+- bfc89a3: provenance release
+
 ## 1.2.0
 
 ### Minor Changes
