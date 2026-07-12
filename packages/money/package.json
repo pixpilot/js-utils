@@ -1,7 +1,7 @@
 {
   "name": "@pixpilot/money",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "packageManager": "pnpm@10.17.0",
   "description": "A utility for formatting and manipulating money values in JavaScript.",
   "author": "Mo Doaie <m.doaie@hotmail.com>",
