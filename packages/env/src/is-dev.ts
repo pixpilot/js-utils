@@ -1,6 +1,7 @@
 /* eslint-disable node/prefer-global/process */
 
 /**
+ * @deprecated
  * ⚠️ WARNING: This function PREVENTS dead code elimination in production builds!
  *
  * Bundlers cannot optimize away calls to this function because:
