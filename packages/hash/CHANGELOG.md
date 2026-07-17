@@ -1,5 +1,11 @@
 # @pixpilot/hash
 
+## 0.2.1
+
+### Patch Changes
+
+- bfc89a3: provenance release
+
 ## 0.2.0
 
 ### Minor Changes

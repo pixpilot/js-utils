@@ -1,5 +1,11 @@
 # @pixpilot/string
 
+## 3.0.1
+
+### Patch Changes
+
+- bfc89a3: provenance release
+
 ## 3.0.0
 
 ### Major Changes

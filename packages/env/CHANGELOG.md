@@ -1,5 +1,11 @@
 # @pixpilot/env
 
+## 1.0.1
+
+### Patch Changes
+
+- bfc89a3: provenance release
+
 ## 1.0.0
 
 ### Major Changes
