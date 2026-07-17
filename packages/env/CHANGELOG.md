@@ -1,5 +1,11 @@
 # @pixpilot/env
 
+## 1.0.2
+
+### Patch Changes
+
+- mark function as deprecated
+
 ## 1.0.1
 
 ### Patch Changes
