@@ -11,6 +11,9 @@
     "url": "https://github.com/pixpilot/js-utils.git",
     "directory": "packages/array"
   },
+  "bugs": {
+    "url": "https://github.com/pixpilot/js-utils/issues"
+  },
   "keywords": [],
   "exports": "./src/index.ts",
   "files": [
