@@ -1,7 +1,7 @@
 {
   "name": "@pixpilot/js-utils-mcp",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "packageManager": "pnpm@10.17.0",
   "description": "MCP server that lets AI coding assistants search, install, and use the @pixpilot JavaScript & TypeScript utility packages.",
   "author": "Mo Doaie <m.doaie@hotmail.com>",

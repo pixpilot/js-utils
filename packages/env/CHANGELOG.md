@@ -1,5 +1,16 @@
 # @pixpilot/env
 
+## 1.2.0
+
+### Minor Changes
+
+- add searchable MCP server for workspace utilities
+
+### Patch Changes
+
+- Updated dependencies
+  - @pixpilot/fs@0.2.0
+
 ## 1.1.0
 
 ### Minor Changes
