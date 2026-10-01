@@ -1,5 +1,18 @@
 # @pixpilot/object
 
+## 2.5.0
+
+### Minor Changes
+
+- add root-aware environment file utilities
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies
+  - @pixpilot/guid@0.1.0
+  - @pixpilot/string@3.1.0
+
 ## 2.4.3
 
 ### Patch Changes

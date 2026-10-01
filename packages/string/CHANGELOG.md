@@ -1,5 +1,11 @@
 # @pixpilot/string
 
+## 3.1.0
+
+### Minor Changes
+
+- add root-aware environment file utilities
+
 ## 3.0.1
 
 ### Patch Changes
