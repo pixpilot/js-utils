@@ -8,6 +8,11 @@ export default defineConfig({
   entry: ['src/index.ts', 'src/cli.ts'],
   // ESM only: the bin uses top-level await and the server targets Node.js.
   format: ['es'],
+  // Bundle the @pixpilot/mcp runtime so installs skip the generator's dependencies
+  // (jiti, TypeScript) and the dist also runs inside this monorepo, where workspace
+  // packages resolve to TypeScript sources.
+  unbundle: false,
+  noExternal: ['@pixpilot/mcp'],
   dts: true,
   minify: false,
   clean: true,

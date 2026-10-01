@@ -1,4 +1,4 @@
-import type { UtilityRuntime } from '../src/types';
+import type { UtilityRuntime } from '../types';
 
 /**
  * Hand-written extras for one utility. Everything factual (signature, params,
@@ -25,14 +25,15 @@ export interface CatalogEntryPoint {
 }
 
 /**
- * MCP catalog overlay for one workspace package, stored as `catalog/<package-dir>.ts`.
- * Every public package under `packages/` must have one; the registry generator fails otherwise.
+ * MCP catalog overlay for one workspace package, stored at the config's `catalog`
+ * path (default `catalog/<package-dir>.ts`). With `requireCatalog` (the default),
+ * generation fails for a package without one.
  */
 export interface CatalogPackage {
-  /** Group label shown in package listings and matched by search. */
-  category: string;
-  /** Runtime of the main (`.`) entry point. */
-  runtime: UtilityRuntime;
+  /** Group label shown in package listings and matched by search. Default: the package directory name. */
+  category?: string;
+  /** Runtime of the main (`.`) entry point. Default: `universal`. */
+  runtime?: UtilityRuntime;
   /** Fallback when package.json has no `description`. */
   description?: string;
   /** Package-level search terms. */

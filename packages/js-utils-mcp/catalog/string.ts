@@ -1,4 +1,4 @@
-import { defineCatalogPackage } from '../scripts/catalog';
+import { defineCatalogPackage } from '@pixpilot/mcp/generator';
 
 const CASE = ['case conversion', 'change case'];
 

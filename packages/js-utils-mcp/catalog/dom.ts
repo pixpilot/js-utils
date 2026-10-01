@@ -1,4 +1,4 @@
-import { defineCatalogPackage } from '../scripts/catalog';
+import { defineCatalogPackage } from '@pixpilot/mcp/generator';
 
 export default defineCatalogPackage({
   category: 'DOM',

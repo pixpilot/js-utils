@@ -75,6 +75,10 @@ MCP server that lets AI coding assistants search, install, and use the @pixpilot
 
 A collection of math utilities for JavaScript projects.
 
+### [mcp](./packages/mcp/README.md)
+
+Generate a searchable MCP server for a TypeScript package monorepo from its sources and JSDoc, with drift detection.
+
 ### [money](./packages/money/README.md)
 
 A utility for formatting and manipulating money values in JavaScript.

@@ -6,8 +6,7 @@ import type {
   ReturnDoc,
   SignatureDoc,
   UtilityKind,
-} from '../src/types';
-import path from 'node:path';
+} from '../types';
 import ts from 'typescript';
 
 /** One exported symbol of an entry point, as declared in source. */
@@ -138,7 +137,7 @@ function extractExamples(
   return examples.map(normalizeExample).filter((example) => example.length > 0);
 }
 
-/** Rewrites a third-party example so it uses the name the @pixpilot package exports. */
+/** Rewrites a third-party example so it uses the name the workspace package exports. */
 function adaptReexportExample(
   example: string,
   reexport: ReexportDoc,
@@ -168,26 +167,49 @@ function printDeclaration(node: ts.Node): string {
   return text.replace(/^(?:export\s+)?(?:declare\s+)?/u, '').trim();
 }
 
+const DEFAULT_COMPILER_OPTIONS: ts.CompilerOptions = {
+  target: ts.ScriptTarget.ES2022,
+  module: ts.ModuleKind.ESNext,
+  moduleResolution: ts.ModuleResolutionKind.Bundler,
+  strict: true,
+  skipLibCheck: true,
+  allowJs: true,
+  resolveJsonModule: true,
+};
+
+function readCompilerOptions(tsconfigPath: string | undefined): ts.CompilerOptions {
+  if (tsconfigPath === undefined) {
+    return DEFAULT_COMPILER_OPTIONS;
+  }
+
+  const parsed = ts.getParsedCommandLineOfConfigFile(tsconfigPath, undefined, {
+    ...ts.sys,
+    onUnRecoverableConfigFileDiagnostic: (diagnostic) => {
+      throw new Error(ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n'));
+    },
+  });
+
+  if (!parsed) {
+    throw new Error(`Could not read ${tsconfigPath}`);
+  }
+
+  return parsed.options;
+}
+
+/** Reads the public API of entry files with the TypeScript compiler. */
 export class ApiExtractor {
   private readonly program: ts.Program;
   private readonly checker: ts.TypeChecker;
 
-  constructor(entryFiles: readonly string[], tsconfigPath: string) {
-    const parsed = ts.getParsedCommandLineOfConfigFile(tsconfigPath, undefined, {
-      ...ts.sys,
-      onUnRecoverableConfigFileDiagnostic: (diagnostic) => {
-        throw new Error(ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n'));
-      },
-    });
-
-    if (!parsed) {
-      throw new Error(`Could not read ${tsconfigPath}`);
-    }
-
+  /**
+   * @param entryFiles - Absolute paths of the entry points to read
+   * @param tsconfigPath - tsconfig whose module resolution settings to use; sensible ESM defaults otherwise
+   */
+  constructor(entryFiles: readonly string[], tsconfigPath?: string) {
     this.program = ts.createProgram({
       rootNames: [...entryFiles],
       options: {
-        ...parsed.options,
+        ...readCompilerOptions(tsconfigPath),
         noEmit: true,
         incremental: false,
         // Ambient test/runtime typings are irrelevant to exported signatures.
@@ -570,9 +592,4 @@ export class ApiExtractor {
 
     return { deprecated: text.length > 0 ? text : 'Deprecated.' };
   }
-}
-
-/** Repo-relative POSIX path, used for stable `source` fields. */
-export function toRepoPath(repoRoot: string, filePath: string): string {
-  return path.relative(repoRoot, filePath).replaceAll(path.sep, '/');
 }

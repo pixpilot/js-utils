@@ -1,4 +1,4 @@
-# @pixpilot/js-utils-mcp
+# pixpilot-js-utils-mcp
 
 MCP server that lets AI coding assistants find, install, and use the `@pixpilot` JavaScript and TypeScript utility packages, so they reuse an existing helper instead of writing a new one.
 
@@ -11,7 +11,7 @@ Add the server to your MCP client:
   "mcpServers": {
     "pixpilot-js-utils": {
       "command": "npx",
-      "args": ["-y", "@pixpilot/js-utils-mcp"]
+      "args": ["-y", "pixpilot-js-utils-mcp"]
     }
   }
 }
@@ -31,34 +31,16 @@ Search ranks by name, keywords, category, and description. It handles natural-la
 
 `runtime` is `universal`, `node`, or `browser`. Searching with `runtime: "browser"` leaves out Node-only utilities such as `@pixpilot/env/node`.
 
-## How the registry is built
+## How it is built
 
-The server ships one generated file, [`src/generated/registry.json`](src/generated/registry.json). Do not edit it by hand.
+This package is a consumer of [`@pixpilot/mcp`](../mcp), which does the generating, checking, and serving. This package holds only:
 
-`pnpm mcp:generate` builds it from two sources:
+- [`mcp.config.ts`](mcp.config.ts): generator settings
+- [`catalog/`](catalog): one file per utility package with what the source cannot express (category, runtime, search keywords, notes, exports to hide)
+- [`src/generated/registry.json`](src/generated/registry.json): the generated registry the server ships. Do not edit it by hand.
+- the bin entry point and the tests
 
-- **The package source.** The TypeScript compiler API reads every entry point listed in each package's `exports`. It records each export's signature, parameter and return types, option-object properties, and JSDoc description, `@example` blocks, and `@deprecated` notes.
-- **A catalog file per package**, in [`catalog/`](catalog), for what the source cannot express: category, runtime, search keywords, notes, and exports to hide.
-
-Generation fails, listing every problem, when:
-
-- a public package under `packages/` has no `catalog/<dir>.ts` file
-- a function or constant has no JSDoc description
-- a function has no `@example`, or none of its examples call it by name (usually a rename the examples missed)
-- a catalog file names an export that no longer exists
-
-## Drift detection
-
-`test/registry.test.ts` rebuilds the registry from the current source and compares it with the committed file. It fails when a utility is added or removed, or when a signature, parameter type, return type, or doc changes without regenerating. For example:
-
-```text
-src/generated/registry.json is stale. Run `pnpm mcp:generate`, review the diff, and commit it:
-  changed @pixpilot/string › truncate signature:
-      was: truncate(str: string, maxLength: number, ellipsis: string = '...'): string
-      now: truncate(str: string, maxLength: number, ellipsis: string = '...', fromEnd?: boolean): string
-```
-
-The test runs in CI through `pnpm test`. This package's `turbo.json` adds the other packages' sources to the test inputs, so a cached result is not reused after they change. `pnpm mcp:check` runs the same check outside the test runner.
+The `@pixpilot/mcp` runtime is bundled into `dist`, so installing this server does not pull in the generator's dependencies.
 
 ## Maintaining
 
@@ -69,12 +51,14 @@ pnpm mcp:generate   # rebuild src/generated/registry.json
 pnpm mcp:check      # fail if the committed registry is stale
 ```
 
-**When you add or change a utility,** write its JSDoc summary and an `@example`, run `pnpm mcp:generate`, and commit the updated registry. Add catalog keywords when people would search for it with words its name and description do not contain.
+`test/registry.test.ts` runs the same check in CI. It fails when a utility is added or removed, or when a signature, parameter type, return type, or doc changes without regenerating.
+
+**When you add or change a utility,** write its JSDoc summary and an `@example`, run `pnpm mcp:generate`, and commit the updated registry. Add catalog keywords when people would search for it with words its name and description do not contain. `test/search.test.ts` checks that realistic queries still find the right utility.
 
 **When you add a package,** create `catalog/<package-dir>.ts`:
 
 ```ts
-import { defineCatalogPackage } from '../scripts/catalog';
+import { defineCatalogPackage } from '@pixpilot/mcp/generator';
 
 export default defineCatalogPackage({
   category: 'String',
@@ -86,12 +70,6 @@ export default defineCatalogPackage({
 });
 ```
 
-Use `entryPoints` to give a subpath export its own runtime or description, as [`catalog/env.ts`](catalog/env.ts) does for `@pixpilot/env/node`. Use `exclude` to hide an export.
+Use `entryPoints` to give a subpath export its own runtime or description, as [`catalog/env.ts`](catalog/env.ts) does for `@pixpilot/env/node`. Use `exclude` to hide an export. Packages that are not utilities go in `excludePackages` in `mcp.config.ts`.
 
-## Programmatic use
-
-```ts
-import { registry, searchUtilities } from '@pixpilot/js-utils-mcp';
-
-searchUtilities(registry.utilities, 'start of day', { limit: 3 });
-```
+See the [`@pixpilot/mcp` README](../mcp/README.md) for every config option, catalog field, and check.
