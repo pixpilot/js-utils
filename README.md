@@ -55,6 +55,10 @@ A collection of DOM utilities for JavaScript projects.
 
 A collection of utility functions for environment detection.
 
+### [fs](./packages/fs/README.md)
+
+File system utilities for Node.js, such as finding a project or repository root.
+
 ### [guid](./packages/guid/README.md)
 
 A utility for working with GUIDs in JavaScript.
@@ -62,6 +66,10 @@ A utility for working with GUIDs in JavaScript.
 ### [hash](./packages/hash/README.md)
 
 Hashing utilities
+
+### [js-utils-mcp](./packages/js-utils-mcp/README.md)
+
+MCP server that lets AI coding assistants search, install, and use the @pixpilot JavaScript & TypeScript utility packages.
 
 ### [math](./packages/math/README.md)
 

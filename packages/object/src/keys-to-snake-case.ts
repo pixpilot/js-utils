@@ -44,6 +44,12 @@ export type KeysToSnakeCase<T> = T extends Builtin
 
 /**
  * Converts object keys from camelCase to snake_case recursively
+ *
+ * @example
+ * ```typescript
+ * keysToSnakeCase({ userId: 1, profile: { firstName: 'Ada' } });
+ * // { user_id: 1, profile: { first_name: 'Ada' } }
+ * ```
  */
 export function keysToSnakeCase<T>(obj: T): KeysToSnakeCase<T> {
   if (Array.isArray(obj)) {

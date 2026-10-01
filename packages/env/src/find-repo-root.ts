@@ -25,6 +25,12 @@ function toPath(from: string | URL): string {
  * Walks up from `from` to the nearest directory containing one of `rootMarkers`.
  *
  * @returns The repository root, or `undefined` if none was found.
+ *
+ * @example
+ * ```typescript
+ * findRepoRoot(); // nearest dir with pnpm-workspace.yaml or .git, from process.cwd()
+ * findRepoRoot({ from: import.meta.url, rootMarkers: ['turbo.json'] });
+ * ```
  */
 export function findRepoRoot(options: FindRepoRootOptions = {}): string | undefined {
   const { from = process.cwd(), rootMarkers = DEFAULT_ROOT_MARKERS } = options;

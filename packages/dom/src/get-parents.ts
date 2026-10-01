@@ -1,3 +1,18 @@
+/**
+ * Collect the ancestors of an element, nearest first, up to and including `document.body`.
+ *
+ * @param elm - The element whose ancestors to collect
+ * @param options - Optional stop conditions
+ * @param options.breakBefore - Stop before adding the first ancestor that matches
+ * @param options.breakAfter - Stop after adding the first ancestor that matches
+ * @returns The ancestor elements, from the direct parent outwards
+ *
+ * @example
+ * ```typescript
+ * getParents(button); // [form, section, main, body]
+ * getParents(button, { breakAfter: (el) => el.matches('form') }); // [form]
+ * ```
+ */
 export function getParents(
   elm: HTMLElement | Element,
   options?: {

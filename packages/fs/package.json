@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "packageManager": "pnpm@10.17.0",
+  "description": "File system utilities for Node.js, such as finding a project or repository root.",
   "author": "Mo Doaie <m.doaie@hotmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/pixpilot/js-utils",

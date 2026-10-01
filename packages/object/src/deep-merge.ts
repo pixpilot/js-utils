@@ -46,10 +46,10 @@ export function deepMergeMany<T extends Record<string, unknown>>(
 }
 
 /**
- * Re-export the configured deepmerge instance from @fastify/deepmerge.
+ * Deep merge two objects with @fastify/deepmerge; `source` wins on conflicts.
  *
- * This provides direct access to the deepmerge function for advanced use cases,
- * allowing merging of multiple objects and custom options.
+ * Nested objects are merged recursively and arrays are concatenated. Pass
+ * @fastify/deepmerge `options` (e.g. `mergeArray`) to customize the merge.
  *
  * @param target - The target object to merge into
  * @param source - The source object to merge from
@@ -58,9 +58,8 @@ export function deepMergeMany<T extends Record<string, unknown>>(
  *
  * @example
  * ```typescript
- * import { deepmerge } from '@pixpilot/object';
- * const result = deepmerge({ a: 1 }, { b: 2 }, { c: 3 });
- * // { a: 1, b: 2, c: 3 }
+ * deepMerge({ a: 1, nested: { x: 1 }, list: [1] }, { nested: { y: 2 }, list: [2] });
+ * // { a: 1, nested: { x: 1, y: 2 }, list: [1, 2] }
  * ```
  */
 export function deepMerge<

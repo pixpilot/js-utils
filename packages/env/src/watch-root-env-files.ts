@@ -20,6 +20,16 @@ export interface WatchRootEnvFilesOptions extends FindRepoRootOptions {
  * The watcher does not keep the process alive.
  *
  * @returns A function that stops watching. A no-op if no repository root was found.
+ *
+ * @example
+ * ```typescript
+ * const stop = watchRootEnvFiles({
+ *   from: import.meta.url,
+ *   onChange: (file) => console.log(`${file} changed, restart to apply`),
+ * });
+ *
+ * stop();
+ * ```
  */
 export function watchRootEnvFiles(options: WatchRootEnvFilesOptions): () => void {
   const {

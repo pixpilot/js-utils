@@ -38,5 +38,7 @@ catalogs:
 
   runtime:
     '@fastify/deepmerge': ^3.1.0
+    '@modelcontextprotocol/sdk': ^1.31.0
     change-case: ^5.4.4
     dot-prop: ^10.1.0
+    zod: ^4.6.5

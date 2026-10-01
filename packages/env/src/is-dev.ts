@@ -1,6 +1,9 @@
 /* eslint-disable node/prefer-global/process */
 
 /**
+ * Detect development mode at runtime from `DEV`/`NODE_ENV` in `process.env` or
+ * `DEV`/`MODE` in `import.meta.env`.
+ *
  * @deprecated
  * ⚠️ WARNING: This function PREVENTS dead code elimination in production builds!
  *

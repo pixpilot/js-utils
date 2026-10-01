@@ -1,0 +1,4766 @@
+{
+  "packages": [
+    {
+      "name": "@pixpilot/array",
+      "description": "A collection of utility functions for array manipulation.",
+      "category": "Array",
+      "keywords": ["array", "list"],
+      "entryPoints": [{ "importPath": "@pixpilot/array", "runtime": "universal" }],
+      "utilityCount": 1
+    },
+    {
+      "name": "@pixpilot/changeset",
+      "description": "A utility for changesets",
+      "category": "Release",
+      "keywords": ["changesets", "npm", "publish", "release"],
+      "entryPoints": [{ "importPath": "@pixpilot/changeset", "runtime": "node" }],
+      "utilityCount": 1
+    },
+    {
+      "name": "@pixpilot/date",
+      "description": "A collection of utility functions for date manipulation and parsing.",
+      "category": "Date",
+      "keywords": ["date", "time", "calendar"],
+      "entryPoints": [{ "importPath": "@pixpilot/date", "runtime": "universal" }],
+      "utilityCount": 23
+    },
+    {
+      "name": "@pixpilot/dom",
+      "description": "A collection of DOM utilities for JavaScript projects.",
+      "category": "DOM",
+      "keywords": ["dom", "html", "element", "browser"],
+      "entryPoints": [{ "importPath": "@pixpilot/dom", "runtime": "browser" }],
+      "utilityCount": 3
+    },
+    {
+      "name": "@pixpilot/env",
+      "description": "A collection of utility functions for environment detection.",
+      "category": "Environment",
+      "keywords": [
+        "environment variables",
+        "dotenv",
+        "env",
+        "process.env",
+        "import.meta.env"
+      ],
+      "entryPoints": [
+        {
+          "importPath": "@pixpilot/env",
+          "runtime": "universal",
+          "description": "Helpers that are safe in Node.js, browsers, and edge runtimes."
+        },
+        {
+          "importPath": "@pixpilot/env/node",
+          "runtime": "node",
+          "description": "Node.js-only helpers that read the file system (.env files, repository root)."
+        }
+      ],
+      "utilityCount": 10
+    },
+    {
+      "name": "@pixpilot/fs",
+      "description": "File system utilities for Node.js, such as finding a project or repository root.",
+      "category": "File system",
+      "keywords": ["filesystem", "fs", "path", "directory"],
+      "entryPoints": [{ "importPath": "@pixpilot/fs", "runtime": "node" }],
+      "utilityCount": 2
+    },
+    {
+      "name": "@pixpilot/guid",
+      "description": "A utility for working with GUIDs in JavaScript.",
+      "category": "Identifier",
+      "keywords": ["guid", "uuid", "identifier"],
+      "entryPoints": [{ "importPath": "@pixpilot/guid", "runtime": "universal" }],
+      "utilityCount": 1
+    },
+    {
+      "name": "@pixpilot/hash",
+      "description": "Hashing utilities",
+      "category": "Hashing",
+      "keywords": ["hash", "checksum"],
+      "entryPoints": [{ "importPath": "@pixpilot/hash", "runtime": "universal" }],
+      "utilityCount": 1
+    },
+    {
+      "name": "@pixpilot/math",
+      "description": "A collection of math utilities for JavaScript projects.",
+      "category": "Math",
+      "keywords": ["math", "arithmetic"],
+      "entryPoints": [{ "importPath": "@pixpilot/math", "runtime": "universal" }],
+      "utilityCount": 1
+    },
+    {
+      "name": "@pixpilot/money",
+      "description": "A utility for formatting and manipulating money values in JavaScript.",
+      "category": "Money",
+      "keywords": ["money", "currency", "price"],
+      "entryPoints": [{ "importPath": "@pixpilot/money", "runtime": "universal" }],
+      "utilityCount": 1
+    },
+    {
+      "name": "@pixpilot/number",
+      "description": "A collection of utility functions for number manipulation and validation.",
+      "category": "Number",
+      "keywords": ["number", "numeric", "math"],
+      "entryPoints": [{ "importPath": "@pixpilot/number", "runtime": "universal" }],
+      "utilityCount": 21
+    },
+    {
+      "name": "@pixpilot/object",
+      "description": "A collection of utility functions for object manipulation and transformation.",
+      "category": "Object",
+      "keywords": ["object", "record"],
+      "entryPoints": [{ "importPath": "@pixpilot/object", "runtime": "universal" }],
+      "utilityCount": 33
+    },
+    {
+      "name": "@pixpilot/pagination",
+      "description": "A simple and efficient pagination utility for JavaScript and TypeScript.",
+      "category": "Pagination",
+      "keywords": ["pagination", "paging", "offset", "limit"],
+      "entryPoints": [{ "importPath": "@pixpilot/pagination", "runtime": "universal" }],
+      "utilityCount": 5
+    },
+    {
+      "name": "@pixpilot/string",
+      "description": "A collection of utility functions for string manipulation and validation.",
+      "category": "String",
+      "keywords": ["string", "text"],
+      "entryPoints": [{ "importPath": "@pixpilot/string", "runtime": "universal" }],
+      "utilityCount": 29
+    }
+  ],
+  "utilities": [
+    {
+      "name": "arrayMove",
+      "kind": "function",
+      "package": "@pixpilot/array",
+      "importPath": "@pixpilot/array",
+      "runtime": "universal",
+      "category": "Array",
+      "description": "Move an item to another index, returning a new array (the input is not mutated).\n\nNegative indices count from the end. If `from` is out of range, an unchanged copy is returned.",
+      "signatures": [
+        {
+          "text": "arrayMove<T>(array: T[], from: number, to: number): T[]",
+          "typeParameters": ["T"],
+          "parameters": [
+            {
+              "name": "array",
+              "type": "T[]",
+              "optional": false,
+              "description": "The source array"
+            },
+            {
+              "name": "from",
+              "type": "number",
+              "optional": false,
+              "description": "Index of the item to move (negative counts from the end)"
+            },
+            {
+              "name": "to",
+              "type": "number",
+              "optional": false,
+              "description": "Index to move the item to (negative counts from the end)"
+            }
+          ],
+          "returns": { "type": "T[]", "description": "A new array with the item moved" }
+        }
+      ],
+      "examples": [
+        "arrayMove(['a', 'b', 'c'], 0, 2); // ['b', 'c', 'a']\narrayMove(['a', 'b', 'c'], -1, 0); // ['c', 'a', 'b']"
+      ],
+      "keywords": ["reorder", "swap", "drag and drop", "sortable", "move item"],
+      "notes": [],
+      "source": "packages/array/src/array-move.ts"
+    },
+    {
+      "name": "publish",
+      "kind": "function",
+      "package": "@pixpilot/changeset",
+      "importPath": "@pixpilot/changeset",
+      "runtime": "node",
+      "category": "Release",
+      "description": "Run `pnpm changeset publish`, authenticating with the `NPM_TOKEN` from `.env.local`\nthrough a temporary `.npmrc` that is deleted afterwards.\n\nExits the process with code 1 when `NPM_TOKEN` is missing. Also available as the\n`changeset-publish` CLI (`--dry-run`, `--next`).",
+      "signatures": [
+        {
+          "text": "publish(options: { isDryRun: boolean; isNext: boolean }): void",
+          "parameters": [
+            {
+              "name": "options",
+              "type": "{ isDryRun: boolean; isNext: boolean }",
+              "optional": false,
+              "description": "Publish options",
+              "properties": [
+                {
+                  "name": "isDryRun",
+                  "type": "boolean",
+                  "optional": false,
+                  "description": "Pass `--dry-run` to `changeset publish`"
+                },
+                {
+                  "name": "isNext",
+                  "type": "boolean",
+                  "optional": false,
+                  "description": "Publish under the `next` dist-tag"
+                }
+              ]
+            }
+          ],
+          "returns": { "type": "void" }
+        }
+      ],
+      "examples": ["publish({ isDryRun: true, isNext: false });"],
+      "keywords": ["npm publish", "release", "npm token", "npmrc", "changesets"],
+      "notes": [
+        "Also installed as the `changeset-publish` CLI: `changeset-publish [--dry-run] [--next]`."
+      ],
+      "source": "packages/changeset/src/publish.ts"
+    },
+    {
+      "name": "addDays",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Add days to a date.",
+      "signatures": [
+        {
+          "text": "addDays(date: Date, days: number): Date",
+          "parameters": [
+            {
+              "name": "date",
+              "type": "Date",
+              "optional": false,
+              "description": "The source date"
+            },
+            {
+              "name": "days",
+              "type": "number",
+              "optional": false,
+              "description": "The number of days to add (can be negative)"
+            }
+          ],
+          "returns": { "type": "Date", "description": "A new date with the days added" }
+        }
+      ],
+      "examples": [
+        "const date = new Date('2023-01-01');\naddDays(date, 5); // 2023-01-06\naddDays(date, -1); // 2022-12-31"
+      ],
+      "keywords": ["subtract days", "tomorrow", "yesterday", "date math"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "addHours",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Add hours to a date.",
+      "signatures": [
+        {
+          "text": "addHours(date: Date, hours: number): Date",
+          "parameters": [
+            {
+              "name": "date",
+              "type": "Date",
+              "optional": false,
+              "description": "The source date"
+            },
+            {
+              "name": "hours",
+              "type": "number",
+              "optional": false,
+              "description": "The number of hours to add (can be negative)"
+            }
+          ],
+          "returns": { "type": "Date", "description": "A new date with the hours added" }
+        }
+      ],
+      "examples": [
+        "const date = new Date('2023-01-01T12:00:00');\naddHours(date, 3); // 2023-01-01T15:00:00\naddHours(date, -2); // 2023-01-01T10:00:00"
+      ],
+      "keywords": ["subtract hours", "date math"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "addMinutes",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Add minutes to a date.",
+      "signatures": [
+        {
+          "text": "addMinutes(date: Date, minutes: number): Date",
+          "parameters": [
+            {
+              "name": "date",
+              "type": "Date",
+              "optional": false,
+              "description": "The source date"
+            },
+            {
+              "name": "minutes",
+              "type": "number",
+              "optional": false,
+              "description": "The number of minutes to add (can be negative)"
+            }
+          ],
+          "returns": {
+            "type": "Date",
+            "description": "A new date with the minutes added"
+          }
+        }
+      ],
+      "examples": [
+        "const date = new Date('2023-01-01T12:00:00');\naddMinutes(date, 30); // 2023-01-01T12:30:00\naddMinutes(date, -15); // 2023-01-01T11:45:00"
+      ],
+      "keywords": ["subtract minutes", "date math"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "addMonths",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Add months to a date.",
+      "signatures": [
+        {
+          "text": "addMonths(date: Date, months: number): Date",
+          "parameters": [
+            {
+              "name": "date",
+              "type": "Date",
+              "optional": false,
+              "description": "The source date"
+            },
+            {
+              "name": "months",
+              "type": "number",
+              "optional": false,
+              "description": "The number of months to add (can be negative)"
+            }
+          ],
+          "returns": { "type": "Date", "description": "A new date with the months added" }
+        }
+      ],
+      "examples": [
+        "const date = new Date('2023-01-01');\naddMonths(date, 2); // 2023-03-01\naddMonths(date, -1); // 2022-12-01"
+      ],
+      "keywords": ["subtract months", "next month", "date math"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "addYears",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Add years to a date.",
+      "signatures": [
+        {
+          "text": "addYears(date: Date, years: number): Date",
+          "parameters": [
+            {
+              "name": "date",
+              "type": "Date",
+              "optional": false,
+              "description": "The source date"
+            },
+            {
+              "name": "years",
+              "type": "number",
+              "optional": false,
+              "description": "The number of years to add (can be negative)"
+            }
+          ],
+          "returns": { "type": "Date", "description": "A new date with the years added" }
+        }
+      ],
+      "examples": [
+        "const date = new Date('2023-01-01');\naddYears(date, 1); // 2024-01-01\naddYears(date, -1); // 2022-01-01"
+      ],
+      "keywords": ["subtract years", "date math"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "diffDays",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Calculate the difference in days between two dates.",
+      "signatures": [
+        {
+          "text": "diffDays(date1: Date, date2: Date): number",
+          "parameters": [
+            {
+              "name": "date1",
+              "type": "Date",
+              "optional": false,
+              "description": "The first date"
+            },
+            {
+              "name": "date2",
+              "type": "Date",
+              "optional": false,
+              "description": "The second date"
+            }
+          ],
+          "returns": {
+            "type": "number",
+            "description": "The number of days between the dates (can be negative)"
+          }
+        }
+      ],
+      "examples": [
+        "const date1 = new Date('2023-01-01');\nconst date2 = new Date('2023-01-10');\ndiffDays(date1, date2); // 9\ndiffDays(date2, date1); // -9"
+      ],
+      "keywords": ["difference", "days between", "elapsed", "duration"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "diffHours",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Calculate the difference in hours between two dates.",
+      "signatures": [
+        {
+          "text": "diffHours(date1: Date, date2: Date): number",
+          "parameters": [
+            {
+              "name": "date1",
+              "type": "Date",
+              "optional": false,
+              "description": "The first date"
+            },
+            {
+              "name": "date2",
+              "type": "Date",
+              "optional": false,
+              "description": "The second date"
+            }
+          ],
+          "returns": {
+            "type": "number",
+            "description": "The number of hours between the dates (can be negative)"
+          }
+        }
+      ],
+      "examples": [
+        "const date1 = new Date('2023-01-01T12:00:00');\nconst date2 = new Date('2023-01-01T15:00:00');\ndiffHours(date1, date2); // 3"
+      ],
+      "keywords": ["difference", "hours between", "elapsed", "duration"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "diffMinutes",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Calculate the difference in minutes between two dates.",
+      "signatures": [
+        {
+          "text": "diffMinutes(date1: Date, date2: Date): number",
+          "parameters": [
+            {
+              "name": "date1",
+              "type": "Date",
+              "optional": false,
+              "description": "The first date"
+            },
+            {
+              "name": "date2",
+              "type": "Date",
+              "optional": false,
+              "description": "The second date"
+            }
+          ],
+          "returns": {
+            "type": "number",
+            "description": "The number of minutes between the dates (can be negative)"
+          }
+        }
+      ],
+      "examples": [
+        "const date1 = new Date('2023-01-01T12:00:00');\nconst date2 = new Date('2023-01-01T12:30:00');\ndiffMinutes(date1, date2); // 30"
+      ],
+      "keywords": ["difference", "minutes between", "elapsed", "duration"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "endOfDay",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Get the end of the day for a date (23:59:59.999).",
+      "signatures": [
+        {
+          "text": "endOfDay(date: Date): Date",
+          "parameters": [
+            {
+              "name": "date",
+              "type": "Date",
+              "optional": false,
+              "description": "The source date"
+            }
+          ],
+          "returns": { "type": "Date", "description": "A new date at the end of the day" }
+        }
+      ],
+      "examples": [
+        "const date = new Date('2023-01-01T15:30:45');\nendOfDay(date); // 2023-01-01T23:59:59.999"
+      ],
+      "keywords": ["last moment of day", "23:59:59"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "endOfMonth",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Get the end of the month for a date.",
+      "signatures": [
+        {
+          "text": "endOfMonth(date: Date): Date",
+          "parameters": [
+            {
+              "name": "date",
+              "type": "Date",
+              "optional": false,
+              "description": "The source date"
+            }
+          ],
+          "returns": {
+            "type": "Date",
+            "description": "A new date at the end of the month"
+          }
+        }
+      ],
+      "examples": [
+        "const date = new Date('2023-01-15');\nendOfMonth(date); // 2023-01-31T23:59:59.999"
+      ],
+      "keywords": ["last day of month"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "formatISODate",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Format a date to ISO string (YYYY-MM-DD).",
+      "signatures": [
+        {
+          "text": "formatISODate(date: Date): string",
+          "parameters": [
+            {
+              "name": "date",
+              "type": "Date",
+              "optional": false,
+              "description": "The date to format"
+            }
+          ],
+          "returns": { "type": "string", "description": "The formatted date string" }
+        }
+      ],
+      "examples": [
+        "const date = new Date('2023-01-15T10:30:00');\nformatISODate(date); // '2023-01-15'"
+      ],
+      "keywords": ["yyyy-mm-dd", "format date", "iso 8601", "date string"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "formatISODateTime",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Format a date to ISO datetime string (YYYY-MM-DDTHH:mm:ss).",
+      "signatures": [
+        {
+          "text": "formatISODateTime(date: Date): string",
+          "parameters": [
+            {
+              "name": "date",
+              "type": "Date",
+              "optional": false,
+              "description": "The date to format"
+            }
+          ],
+          "returns": { "type": "string", "description": "The formatted datetime string" }
+        }
+      ],
+      "examples": [
+        "const date = new Date('2023-01-15T10:30:45');\nformatISODateTime(date); // '2023-01-15T10:30:45'"
+      ],
+      "keywords": ["iso 8601", "format datetime", "timestamp string"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "getDaysInMonth",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Get the number of days in a month.",
+      "signatures": [
+        {
+          "text": "getDaysInMonth(year: number, month: number): number",
+          "parameters": [
+            {
+              "name": "year",
+              "type": "number",
+              "optional": false,
+              "description": "The year"
+            },
+            {
+              "name": "month",
+              "type": "number",
+              "optional": false,
+              "description": "The month (0-11)"
+            }
+          ],
+          "returns": {
+            "type": "number",
+            "description": "The number of days in the month"
+          }
+        }
+      ],
+      "examples": [
+        "getDaysInMonth(2023, 0); // 31 (January)\ngetDaysInMonth(2023, 1); // 28 (February, non-leap year)\ngetDaysInMonth(2024, 1); // 29 (February, leap year)"
+      ],
+      "keywords": ["month length", "number of days"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "isDate",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Type guard to check if a value is a Date object.",
+      "signatures": [
+        {
+          "text": "isDate(value: unknown): value is Date",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "unknown",
+              "optional": false,
+              "description": "The value to check"
+            }
+          ],
+          "returns": {
+            "type": "value is Date",
+            "description": "True if the value is a Date object, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isDate(new Date()); // true\nisDate('2023-01-01'); // false\nisDate(null); // false"
+      ],
+      "keywords": ["type guard", "instanceof date"],
+      "notes": [],
+      "source": "packages/date/src/type-guards.ts"
+    },
+    {
+      "name": "isFuture",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Check if a date is in the future.",
+      "signatures": [
+        {
+          "text": "isFuture(date: Date): boolean",
+          "parameters": [
+            {
+              "name": "date",
+              "type": "Date",
+              "optional": false,
+              "description": "The date to check"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the date is in the future, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isFuture(new Date('2099-01-01')); // true\nisFuture(new Date('2020-01-01')); // false (assuming current date is after 2020)"
+      ],
+      "keywords": ["upcoming", "after now"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "isLeapYear",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Check if a year is a leap year.",
+      "signatures": [
+        {
+          "text": "isLeapYear(year: number): boolean",
+          "parameters": [
+            {
+              "name": "year",
+              "type": "number",
+              "optional": false,
+              "description": "The year to check"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the year is a leap year, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isLeapYear(2024); // true\nisLeapYear(2023); // false\nisLeapYear(2000); // true\nisLeapYear(1900); // false"
+      ],
+      "keywords": ["february 29"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "isPast",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Check if a date is in the past.",
+      "signatures": [
+        {
+          "text": "isPast(date: Date): boolean",
+          "parameters": [
+            {
+              "name": "date",
+              "type": "Date",
+              "optional": false,
+              "description": "The date to check"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the date is in the past, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isPast(new Date('2020-01-01')); // true (assuming current date is after 2020)\nisPast(new Date('2099-01-01')); // false"
+      ],
+      "keywords": ["expired", "before now"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "isSameDay",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Check if two dates are on the same day.",
+      "signatures": [
+        {
+          "text": "isSameDay(date1: Date, date2: Date): boolean",
+          "parameters": [
+            {
+              "name": "date1",
+              "type": "Date",
+              "optional": false,
+              "description": "The first date"
+            },
+            {
+              "name": "date2",
+              "type": "Date",
+              "optional": false,
+              "description": "The second date"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the dates are on the same day, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "const date1 = new Date('2023-01-01T10:00:00');\nconst date2 = new Date('2023-01-01T15:00:00');\nisSameDay(date1, date2); // true"
+      ],
+      "keywords": ["compare dates", "same date"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "isToday",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Check if a date is today.",
+      "signatures": [
+        {
+          "text": "isToday(date: Date): boolean",
+          "parameters": [
+            {
+              "name": "date",
+              "type": "Date",
+              "optional": false,
+              "description": "The date to check"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the date is today, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isToday(new Date()); // true\nisToday(new Date('2020-01-01')); // false"
+      ],
+      "keywords": ["current day"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "isValidDate",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Type guard to check if a value is a valid Date object (not Invalid Date).",
+      "signatures": [
+        {
+          "text": "isValidDate(value: unknown): value is Date",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "unknown",
+              "optional": false,
+              "description": "The value to check"
+            }
+          ],
+          "returns": {
+            "type": "value is Date",
+            "description": "True if the value is a valid Date object, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isValidDate(new Date()); // true\nisValidDate(new Date('invalid')); // false\nisValidDate('2023-01-01'); // false"
+      ],
+      "keywords": ["type guard", "invalid date", "validate date"],
+      "notes": [],
+      "source": "packages/date/src/type-guards.ts"
+    },
+    {
+      "name": "parseDateOrNull",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Parses a value as a Date object, returning null if the value cannot be parsed as a valid date.",
+      "signatures": [
+        {
+          "text": "parseDateOrNull(value: unknown): Date | null",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "unknown",
+              "optional": false,
+              "description": "The value to parse as a date. Can be a string, number, or Date object."
+            }
+          ],
+          "returns": {
+            "type": "Date | null",
+            "description": "A Date object if the value is a valid date, otherwise null."
+          }
+        }
+      ],
+      "examples": [
+        "parseDateOrNull('2023-01-15'); // Date for 2023-01-15\nparseDateOrNull(1673740800000); // Date from a timestamp\nparseDateOrNull('not a date'); // null\nparseDateOrNull(undefined); // null"
+      ],
+      "keywords": ["parse date", "safe date", "invalid date", "to date"],
+      "notes": [],
+      "source": "packages/date/src/parse-date-or-null.ts"
+    },
+    {
+      "name": "startOfDay",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Get the start of the day for a date (00:00:00.000).",
+      "signatures": [
+        {
+          "text": "startOfDay(date: Date): Date",
+          "parameters": [
+            {
+              "name": "date",
+              "type": "Date",
+              "optional": false,
+              "description": "The source date"
+            }
+          ],
+          "returns": {
+            "type": "Date",
+            "description": "A new date at the start of the day"
+          }
+        }
+      ],
+      "examples": [
+        "const date = new Date('2023-01-01T15:30:45');\nstartOfDay(date); // 2023-01-01T00:00:00.000"
+      ],
+      "keywords": ["midnight", "beginning of day", "strip time"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "startOfMonth",
+      "kind": "function",
+      "package": "@pixpilot/date",
+      "importPath": "@pixpilot/date",
+      "runtime": "universal",
+      "category": "Date",
+      "description": "Get the start of the month for a date.",
+      "signatures": [
+        {
+          "text": "startOfMonth(date: Date): Date",
+          "parameters": [
+            {
+              "name": "date",
+              "type": "Date",
+              "optional": false,
+              "description": "The source date"
+            }
+          ],
+          "returns": {
+            "type": "Date",
+            "description": "A new date at the start of the month"
+          }
+        }
+      ],
+      "examples": [
+        "const date = new Date('2023-01-15');\nstartOfMonth(date); // 2023-01-01T00:00:00.000"
+      ],
+      "keywords": ["first day of month"],
+      "notes": [],
+      "source": "packages/date/src/manipulation.ts"
+    },
+    {
+      "name": "getHighestZindex",
+      "kind": "function",
+      "package": "@pixpilot/dom",
+      "importPath": "@pixpilot/dom",
+      "runtime": "browser",
+      "category": "DOM",
+      "description": "Find the highest computed `z-index` among all descendants of an element.\n\nDescendants with `z-index: auto` and `<script>` elements are ignored.",
+      "signatures": [
+        {
+          "text": "getHighestZindex(element?: HTMLElement | Document, defaultZindex: number = 0): number",
+          "parameters": [
+            {
+              "name": "element",
+              "type": "HTMLElement | Document",
+              "optional": true,
+              "description": "Element or document to scan (default: `document.body`)"
+            },
+            {
+              "name": "defaultZindex",
+              "type": "number",
+              "optional": true,
+              "defaultValue": "0",
+              "description": "Value returned when no descendant has a numeric z-index (default: 0)"
+            }
+          ],
+          "returns": {
+            "type": "number",
+            "description": "The highest z-index found, or `defaultZindex`"
+          }
+        }
+      ],
+      "examples": [
+        "// Place a new overlay above everything on the page\noverlay.style.zIndex = String(getHighestZindex() + 1);"
+      ],
+      "keywords": ["z-index", "zindex", "stacking", "overlay", "modal", "bring to front"],
+      "notes": [],
+      "source": "packages/dom/src/z-index.ts"
+    },
+    {
+      "name": "getParents",
+      "kind": "function",
+      "package": "@pixpilot/dom",
+      "importPath": "@pixpilot/dom",
+      "runtime": "browser",
+      "category": "DOM",
+      "description": "Collect the ancestors of an element, nearest first, up to and including `document.body`.",
+      "signatures": [
+        {
+          "text": "getParents(elm: HTMLElement | Element, options?: { breakBefore?: (element: HTMLElement | Element) => boolean; breakAfter?: (element: HTMLElement | Element) => boolean }): HTMLElement[]",
+          "parameters": [
+            {
+              "name": "elm",
+              "type": "HTMLElement | Element",
+              "optional": false,
+              "description": "The element whose ancestors to collect"
+            },
+            {
+              "name": "options",
+              "type": "{ breakBefore?: (element: HTMLElement | Element) => boolean; breakAfter?: (element: HTMLElement | Element) => boolean }",
+              "optional": true,
+              "description": "Optional stop conditions",
+              "properties": [
+                {
+                  "name": "breakBefore",
+                  "type": "(element: HTMLElement | Element) => boolean",
+                  "optional": true,
+                  "description": "Stop before adding the first ancestor that matches"
+                },
+                {
+                  "name": "breakAfter",
+                  "type": "(element: HTMLElement | Element) => boolean",
+                  "optional": true,
+                  "description": "Stop after adding the first ancestor that matches"
+                }
+              ]
+            }
+          ],
+          "returns": {
+            "type": "HTMLElement[]",
+            "description": "The ancestor elements, from the direct parent outwards"
+          }
+        }
+      ],
+      "examples": [
+        "getParents(button); // [form, section, main, body]\ngetParents(button, { breakAfter: (el) => el.matches('form') }); // [form]"
+      ],
+      "keywords": ["ancestors", "parent elements", "closest", "walk up dom"],
+      "notes": [],
+      "source": "packages/dom/src/get-parents.ts"
+    },
+    {
+      "name": "sumOfParentZindex",
+      "kind": "function",
+      "package": "@pixpilot/dom",
+      "importPath": "@pixpilot/dom",
+      "runtime": "browser",
+      "category": "DOM",
+      "description": "Sum the inline `style.zIndex` of every ancestor of an element (see `getParents`).\n\nOnly inline styles are read, not stylesheet or computed values. Ancestors without\na numeric inline z-index count as `parentDefaultZindex`.",
+      "signatures": [
+        {
+          "text": "sumOfParentZindex(element: HTMLElement, parentDefaultZindex: number = 0): number",
+          "parameters": [
+            {
+              "name": "element",
+              "type": "HTMLElement",
+              "optional": false,
+              "description": "The element whose ancestors to sum"
+            },
+            {
+              "name": "parentDefaultZindex",
+              "type": "number",
+              "optional": true,
+              "defaultValue": "0",
+              "description": "Value used for ancestors without a numeric inline z-index (default: 0)"
+            }
+          ],
+          "returns": {
+            "type": "number",
+            "description": "The summed z-index of all ancestors"
+          }
+        }
+      ],
+      "examples": [
+        "// <div style=\"z-index: 10\"><div style=\"z-index: 5\"><span id=\"target\"></span></div></div>\nsumOfParentZindex(document.querySelector<HTMLElement>('#target')!); // 15"
+      ],
+      "keywords": ["z-index", "zindex", "stacking context"],
+      "notes": [],
+      "source": "packages/dom/src/z-index.ts"
+    },
+    {
+      "name": "getEnv",
+      "kind": "function",
+      "package": "@pixpilot/env",
+      "importPath": "@pixpilot/env",
+      "runtime": "universal",
+      "category": "Environment",
+      "description": "Read an environment variable from `process.env` (Node.js) or, failing that,\n`import.meta.env` (Vite and other bundlers).",
+      "signatures": [
+        {
+          "text": "getEnv(key: string): string | undefined",
+          "parameters": [
+            {
+              "name": "key",
+              "type": "string",
+              "optional": false,
+              "description": "The variable name"
+            }
+          ],
+          "returns": {
+            "type": "string | undefined",
+            "description": "The value, or `undefined` when the variable is not set"
+          }
+        }
+      ],
+      "examples": ["const apiUrl = getEnv('API_URL') ?? 'http://localhost:3000';"],
+      "keywords": [
+        "process.env",
+        "import.meta.env",
+        "environment variable",
+        "vite",
+        "read env"
+      ],
+      "notes": [],
+      "source": "packages/env/src/get-env.ts"
+    },
+    {
+      "name": "isDevelopment",
+      "kind": "function",
+      "package": "@pixpilot/env",
+      "importPath": "@pixpilot/env",
+      "runtime": "universal",
+      "category": "Environment",
+      "description": "Detect development mode at runtime from `DEV`/`NODE_ENV` in `process.env` or\n`DEV`/`MODE` in `import.meta.env`.",
+      "signatures": [
+        {
+          "text": "isDevelopment(): boolean",
+          "parameters": [],
+          "returns": { "type": "boolean" }
+        }
+      ],
+      "examples": [],
+      "keywords": ["dev mode", "node_env", "development"],
+      "notes": [],
+      "deprecated": "⚠️ WARNING: This function PREVENTS dead code elimination in production builds!\n\nBundlers cannot optimize away calls to this function because:\n1. It's a function call (not a constant)\n2. Runtime typeof checks prevent compile-time evaluation\n\n❌ DON'T USE THIS: if (isDevelopment()) { devOnlyCode(); }\n✅ USE THIS INSTEAD: if (process.env.NODE_ENV !== 'production') { devOnlyCode(); }\n\nThe direct check allows bundlers to eliminate dead code at build time.\nOnly use this function if you need runtime environment detection.",
+      "source": "packages/env/src/is-dev.ts"
+    },
+    {
+      "name": "DEFAULT_ROOT_ENV_FILES",
+      "kind": "constant",
+      "package": "@pixpilot/env",
+      "importPath": "@pixpilot/env/node",
+      "runtime": "node",
+      "category": "Environment",
+      "description": "Root env files loaded and watched by default, highest precedence first.",
+      "type": "string[]",
+      "value": "['.env.local', '.env']",
+      "examples": [],
+      "keywords": [".env.local", ".env"],
+      "notes": [],
+      "source": "packages/env/src/root-env-files.ts"
+    },
+    {
+      "name": "findRepoRoot",
+      "kind": "function",
+      "package": "@pixpilot/env",
+      "importPath": "@pixpilot/env/node",
+      "runtime": "node",
+      "category": "Environment",
+      "description": "Walks up from `from` to the nearest directory containing one of `rootMarkers`.",
+      "signatures": [
+        {
+          "text": "findRepoRoot(options: FindRepoRootOptions = {}): string | undefined",
+          "parameters": [
+            {
+              "name": "options",
+              "type": "FindRepoRootOptions",
+              "optional": true,
+              "defaultValue": "{}",
+              "properties": [
+                {
+                  "name": "from",
+                  "type": "string | URL",
+                  "optional": true,
+                  "description": "Where to start searching for the repository root: a file or directory path,\nor a file URL such as `import.meta.url`. Defaults to `process.cwd()`."
+                },
+                {
+                  "name": "rootMarkers",
+                  "type": "string[]",
+                  "optional": true,
+                  "description": "Files or directories whose presence marks the repository root."
+                }
+              ]
+            }
+          ],
+          "returns": {
+            "type": "string | undefined",
+            "description": "The repository root, or `undefined` if none was found."
+          }
+        }
+      ],
+      "examples": [
+        "findRepoRoot(); // nearest dir with pnpm-workspace.yaml or .git, from process.cwd()\nfindRepoRoot({ from: import.meta.url, rootMarkers: ['turbo.json'] });"
+      ],
+      "keywords": ["monorepo root", "workspace root", "git root", "pnpm workspace"],
+      "notes": [],
+      "source": "packages/env/src/find-repo-root.ts"
+    },
+    {
+      "name": "FindRepoRootOptions",
+      "kind": "type",
+      "package": "@pixpilot/env",
+      "importPath": "@pixpilot/env/node",
+      "runtime": "node",
+      "category": "Environment",
+      "description": "TypeScript type exported by @pixpilot/env/node.",
+      "type": "interface FindRepoRootOptions {\n    from?: string | URL;\n    rootMarkers?: string[];\n}",
+      "properties": [
+        {
+          "name": "from",
+          "type": "string | URL",
+          "optional": true,
+          "description": "Where to start searching for the repository root: a file or directory path,\nor a file URL such as `import.meta.url`. Defaults to `process.cwd()`."
+        },
+        {
+          "name": "rootMarkers",
+          "type": "string[]",
+          "optional": true,
+          "description": "Files or directories whose presence marks the repository root."
+        }
+      ],
+      "examples": [],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/env/src/find-repo-root.ts"
+    },
+    {
+      "name": "loadEnvFiles",
+      "kind": "function",
+      "package": "@pixpilot/env",
+      "importPath": "@pixpilot/env/node",
+      "runtime": "node",
+      "category": "Environment",
+      "description": "Loads environment variables from .env files into `process.env`.\nEarlier files in the list take precedence over later ones, and variables that\nare already set are never overridden.",
+      "signatures": [
+        {
+          "text": "loadEnvFiles(options?: { keys?: string[]; files?: string[]; cwd?: string }): void",
+          "parameters": [
+            {
+              "name": "options",
+              "type": "{ keys?: string[]; files?: string[]; cwd?: string }",
+              "optional": true,
+              "description": "Configuration options",
+              "properties": [
+                {
+                  "name": "keys",
+                  "type": "string[]",
+                  "optional": true,
+                  "description": "Array of specific keys to load (loads all if not specified)"
+                },
+                {
+                  "name": "files",
+                  "type": "string[]",
+                  "optional": true,
+                  "description": "Array of file paths to load (defaults to ['.env.local', '.env', '.env.secret'])"
+                },
+                {
+                  "name": "cwd",
+                  "type": "string",
+                  "optional": true,
+                  "description": "Directory the files are resolved against (defaults to process.cwd())"
+                }
+              ]
+            }
+          ],
+          "returns": { "type": "void" }
+        }
+      ],
+      "examples": [
+        "loadEnvFiles(); // .env.local, .env and .env.secret from process.cwd()\nloadEnvFiles({ files: ['.env.test'], keys: ['DATABASE_URL'] });"
+      ],
+      "keywords": ["dotenv", ".env", "load env", "environment variables"],
+      "notes": [],
+      "source": "packages/env/src/load-env-files.ts"
+    },
+    {
+      "name": "loadRootEnvFiles",
+      "kind": "function",
+      "package": "@pixpilot/env",
+      "importPath": "@pixpilot/env/node",
+      "runtime": "node",
+      "category": "Environment",
+      "description": "Loads env files from the repository root so every app in a monorepo shares\none set of values.\n\nNever overrides: variables already set (by the shell, CI, or an app's own\n`.env*` loading) win, and earlier files in `files` win over later ones.",
+      "signatures": [
+        {
+          "text": "loadRootEnvFiles(options: LoadRootEnvFilesOptions = {}): string | undefined",
+          "parameters": [
+            {
+              "name": "options",
+              "type": "LoadRootEnvFilesOptions",
+              "optional": true,
+              "defaultValue": "{}",
+              "properties": [
+                {
+                  "name": "files",
+                  "type": "string[]",
+                  "optional": true,
+                  "description": "Env files to load from the repository root, highest precedence first."
+                },
+                {
+                  "name": "from",
+                  "type": "string | URL",
+                  "optional": true,
+                  "description": "Where to start searching for the repository root: a file or directory path,\nor a file URL such as `import.meta.url`. Defaults to `process.cwd()`."
+                },
+                {
+                  "name": "rootMarkers",
+                  "type": "string[]",
+                  "optional": true,
+                  "description": "Files or directories whose presence marks the repository root."
+                }
+              ]
+            }
+          ],
+          "returns": {
+            "type": "string | undefined",
+            "description": "The repository root, or `undefined` if none was found (nothing is loaded)."
+          }
+        }
+      ],
+      "examples": [
+        "// apps/web/next.config.ts\nloadRootEnvFiles({ from: import.meta.url });"
+      ],
+      "keywords": [
+        "dotenv",
+        "monorepo",
+        "shared env",
+        "next.config",
+        "vite.config",
+        ".env"
+      ],
+      "notes": [],
+      "source": "packages/env/src/load-root-env-files.ts"
+    },
+    {
+      "name": "LoadRootEnvFilesOptions",
+      "kind": "type",
+      "package": "@pixpilot/env",
+      "importPath": "@pixpilot/env/node",
+      "runtime": "node",
+      "category": "Environment",
+      "description": "TypeScript type exported by @pixpilot/env/node.",
+      "type": "interface LoadRootEnvFilesOptions extends FindRepoRootOptions {\n    files?: string[];\n}",
+      "properties": [
+        {
+          "name": "files",
+          "type": "string[]",
+          "optional": true,
+          "description": "Env files to load from the repository root, highest precedence first."
+        },
+        {
+          "name": "from",
+          "type": "string | URL",
+          "optional": true,
+          "description": "Where to start searching for the repository root: a file or directory path,\nor a file URL such as `import.meta.url`. Defaults to `process.cwd()`."
+        },
+        {
+          "name": "rootMarkers",
+          "type": "string[]",
+          "optional": true,
+          "description": "Files or directories whose presence marks the repository root."
+        }
+      ],
+      "examples": [],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/env/src/load-root-env-files.ts"
+    },
+    {
+      "name": "watchRootEnvFiles",
+      "kind": "function",
+      "package": "@pixpilot/env",
+      "importPath": "@pixpilot/env/node",
+      "runtime": "node",
+      "category": "Environment",
+      "description": "Watches env files in the repository root and calls `onChange` when any of them changes.\nThe watcher does not keep the process alive.",
+      "signatures": [
+        {
+          "text": "watchRootEnvFiles(options: WatchRootEnvFilesOptions): () => void",
+          "parameters": [
+            {
+              "name": "options",
+              "type": "WatchRootEnvFilesOptions",
+              "optional": false,
+              "properties": [
+                {
+                  "name": "files",
+                  "type": "string[]",
+                  "optional": true,
+                  "description": "Env file names in the repository root to watch. Nested paths are not watched."
+                },
+                {
+                  "name": "debounceMs",
+                  "type": "number",
+                  "optional": true,
+                  "description": "Quiet period before `onChange` fires, collapsing bursts of change events."
+                },
+                {
+                  "name": "onChange",
+                  "type": "(file: string) => void",
+                  "optional": false,
+                  "description": "Called once per burst of changes, with the last changed file name."
+                },
+                {
+                  "name": "from",
+                  "type": "string | URL",
+                  "optional": true,
+                  "description": "Where to start searching for the repository root: a file or directory path,\nor a file URL such as `import.meta.url`. Defaults to `process.cwd()`."
+                },
+                {
+                  "name": "rootMarkers",
+                  "type": "string[]",
+                  "optional": true,
+                  "description": "Files or directories whose presence marks the repository root."
+                }
+              ]
+            }
+          ],
+          "returns": {
+            "type": "() => void",
+            "description": "A function that stops watching. A no-op if no repository root was found."
+          }
+        }
+      ],
+      "examples": [
+        "const stop = watchRootEnvFiles({\n  from: import.meta.url,\n  onChange: (file) => console.log(`${file} changed, restart to apply`),\n});\n\nstop();"
+      ],
+      "keywords": ["hot reload", "file watcher", "dotenv", "restart on change"],
+      "notes": [],
+      "source": "packages/env/src/watch-root-env-files.ts"
+    },
+    {
+      "name": "WatchRootEnvFilesOptions",
+      "kind": "type",
+      "package": "@pixpilot/env",
+      "importPath": "@pixpilot/env/node",
+      "runtime": "node",
+      "category": "Environment",
+      "description": "TypeScript type exported by @pixpilot/env/node.",
+      "type": "interface WatchRootEnvFilesOptions extends FindRepoRootOptions {\n    files?: string[];\n    debounceMs?: number;\n    onChange: (file: string) => void;\n}",
+      "properties": [
+        {
+          "name": "files",
+          "type": "string[]",
+          "optional": true,
+          "description": "Env file names in the repository root to watch. Nested paths are not watched."
+        },
+        {
+          "name": "debounceMs",
+          "type": "number",
+          "optional": true,
+          "description": "Quiet period before `onChange` fires, collapsing bursts of change events."
+        },
+        {
+          "name": "onChange",
+          "type": "(file: string) => void",
+          "optional": false,
+          "description": "Called once per burst of changes, with the last changed file name."
+        },
+        {
+          "name": "from",
+          "type": "string | URL",
+          "optional": true,
+          "description": "Where to start searching for the repository root: a file or directory path,\nor a file URL such as `import.meta.url`. Defaults to `process.cwd()`."
+        },
+        {
+          "name": "rootMarkers",
+          "type": "string[]",
+          "optional": true,
+          "description": "Files or directories whose presence marks the repository root."
+        }
+      ],
+      "examples": [],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/env/src/watch-root-env-files.ts"
+    },
+    {
+      "name": "findRoot",
+      "kind": "function",
+      "package": "@pixpilot/fs",
+      "importPath": "@pixpilot/fs",
+      "runtime": "node",
+      "category": "File system",
+      "description": "Walks up the directory tree from `start` and returns the first directory\nthat satisfies `check`. Errors thrown by `check` are treated as a non-match.",
+      "signatures": [
+        {
+          "text": "findRoot(start: string = process.cwd(), check: FindRootCheck = hasPackageJson): string",
+          "parameters": [
+            {
+              "name": "start",
+              "type": "string",
+              "optional": true,
+              "defaultValue": "process.cwd()",
+              "description": "Directory (or file path) to start from. Defaults to `process.cwd()`."
+            },
+            {
+              "name": "check",
+              "type": "FindRootCheck",
+              "optional": true,
+              "defaultValue": "hasPackageJson",
+              "description": "Predicate run on each directory. Defaults to \"contains a package.json\"."
+            }
+          ],
+          "returns": {
+            "type": "string",
+            "description": "The absolute path of the first matching directory."
+          }
+        }
+      ],
+      "examples": [
+        "findRoot(); // nearest directory with a package.json, from process.cwd()\nfindRoot(import.meta.dirname, (dir) => existsSync(join(dir, 'pnpm-workspace.yaml')));"
+      ],
+      "keywords": [
+        "package.json",
+        "project root",
+        "find up",
+        "walk up directories",
+        "monorepo"
+      ],
+      "notes": [],
+      "source": "packages/fs/src/find-root.ts"
+    },
+    {
+      "name": "FindRootCheck",
+      "kind": "type",
+      "package": "@pixpilot/fs",
+      "importPath": "@pixpilot/fs",
+      "runtime": "node",
+      "category": "File system",
+      "description": "TypeScript type exported by @pixpilot/fs.",
+      "type": "type FindRootCheck = (dir: string) => boolean;",
+      "examples": [],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/fs/src/find-root.ts"
+    },
+    {
+      "name": "isGuidString",
+      "kind": "function",
+      "package": "@pixpilot/guid",
+      "importPath": "@pixpilot/guid",
+      "runtime": "universal",
+      "category": "Identifier",
+      "description": "Check if a string matches the canonical GUID format.\n\nThis implementation is optimized for repeated checks by validating fixed\npositions before scanning the remaining hexadecimal characters.",
+      "signatures": [
+        {
+          "text": "isGuidString(str: string): boolean",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to check"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the string matches `8-4-4-4-12` hex characters, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isGuidString('550e8400-e29b-41d4-a716-446655440000'); // true\nisGuidString('not-a-guid'); // false"
+      ],
+      "keywords": ["uuid", "validate uuid", "is uuid", "identifier"],
+      "notes": [],
+      "source": "packages/guid/src/is-guid.ts"
+    },
+    {
+      "name": "simpleHash",
+      "kind": "function",
+      "package": "@pixpilot/hash",
+      "importPath": "@pixpilot/hash",
+      "runtime": "universal",
+      "category": "Hashing",
+      "description": "Compute a fast, non-cryptographic 32-bit hash of a string.\n\n⚠️ WARNING: Not cryptographically secure. Use only for cache keys, bucketing,\nand other non-sensitive identifiers. For security, use `crypto.subtle.digest()` or bcrypt.",
+      "signatures": [
+        {
+          "text": "simpleHash(str: string, radix: number = DEFAULT_RADIX): string",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to hash"
+            },
+            {
+              "name": "radix",
+              "type": "number",
+              "optional": true,
+              "defaultValue": "DEFAULT_RADIX",
+              "description": "Base of the returned string, 2 to 36 (default: 36)"
+            }
+          ],
+          "returns": {
+            "type": "string",
+            "description": "The absolute hash value as a string in the given radix"
+          }
+        }
+      ],
+      "examples": [
+        "simpleHash('hello'); // '1n1e4y'\nsimpleHash('hello', 16); // '5e918d2'"
+      ],
+      "keywords": ["checksum", "cache key", "fingerprint", "hashcode", "string hash"],
+      "notes": [],
+      "source": "packages/hash/src/simple-hash.ts"
+    },
+    {
+      "name": "getSum",
+      "kind": "function",
+      "package": "@pixpilot/math",
+      "importPath": "@pixpilot/math",
+      "runtime": "universal",
+      "category": "Math",
+      "description": "Sum an array of numbers, skipping `NaN` and non-number entries.",
+      "signatures": [
+        {
+          "text": "getSum(arr: number[]): number",
+          "parameters": [
+            {
+              "name": "arr",
+              "type": "number[]",
+              "optional": false,
+              "description": "The numbers to add"
+            }
+          ],
+          "returns": {
+            "type": "number",
+            "description": "The sum, or 0 for an empty array"
+          }
+        }
+      ],
+      "examples": [
+        "getSum([1, 2, 3]); // 6\ngetSum([1, Number.NaN, 2]); // 3\ngetSum([]); // 0"
+      ],
+      "keywords": ["total", "add numbers", "sum array", "ignore nan"],
+      "notes": [],
+      "source": "packages/math/src/get-sum.ts"
+    },
+    {
+      "name": "formatMoney",
+      "kind": "function",
+      "package": "@pixpilot/money",
+      "importPath": "@pixpilot/money",
+      "runtime": "universal",
+      "category": "Money",
+      "description": "Format an amount in minor units (e.g. cents) as an `en-US` currency string.\n\nThe divisor follows the currency's standard fraction digits, so zero-decimal\ncurrencies such as JPY are not divided.",
+      "signatures": [
+        {
+          "text": "formatMoney(amountMinorUnits: number, currency: string = 'usd'): string",
+          "parameters": [
+            {
+              "name": "amountMinorUnits",
+              "type": "number",
+              "optional": false,
+              "description": "Amount in the currency's minor unit (cents for USD)"
+            },
+            {
+              "name": "currency",
+              "type": "string",
+              "optional": true,
+              "defaultValue": "'usd'",
+              "description": "ISO 4217 currency code, case-insensitive (default: 'usd')"
+            }
+          ],
+          "returns": { "type": "string", "description": "The formatted amount" }
+        }
+      ],
+      "examples": [
+        "formatMoney(1234); // '$12.34'\nformatMoney(1234, 'eur'); // '€12.34'\nformatMoney(500, 'jpy'); // '¥500'"
+      ],
+      "keywords": ["currency", "price", "cents", "format price", "intl", "stripe amount"],
+      "notes": [],
+      "source": "packages/money/src/format.ts"
+    },
+    {
+      "name": "average",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Calculate the average of an array of numbers.",
+      "signatures": [
+        {
+          "text": "average(numbers: readonly number[]): number",
+          "parameters": [
+            {
+              "name": "numbers",
+              "type": "readonly number[]",
+              "optional": false,
+              "description": "The array of numbers"
+            }
+          ],
+          "returns": {
+            "type": "number",
+            "description": "The average of the numbers, or 0 if the array is empty"
+          }
+        }
+      ],
+      "examples": [
+        "average([1, 2, 3, 4, 5]); // 3\naverage([10, 20, 30]); // 20\naverage([]); // 0"
+      ],
+      "keywords": ["mean", "avg"],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "clamp",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Clamp a number between a minimum and maximum value.",
+      "signatures": [
+        {
+          "text": "clamp(value: number, minValue: number, maxValue: number): number",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "number",
+              "optional": false,
+              "description": "The number to clamp"
+            },
+            {
+              "name": "minValue",
+              "type": "number",
+              "optional": false,
+              "description": "The minimum value"
+            },
+            {
+              "name": "maxValue",
+              "type": "number",
+              "optional": false,
+              "description": "The maximum value"
+            }
+          ],
+          "returns": { "type": "number", "description": "The clamped number" }
+        }
+      ],
+      "examples": [
+        "clamp(5, 0, 10); // 5\nclamp(-5, 0, 10); // 0\nclamp(15, 0, 10); // 10"
+      ],
+      "keywords": ["limit", "bound", "constrain", "min max"],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "formatWithSeparator",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Format a number with thousand separators.",
+      "signatures": [
+        {
+          "text": "formatWithSeparator(value: number, separator: string = ','): string",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "number",
+              "optional": false,
+              "description": "The number to format"
+            },
+            {
+              "name": "separator",
+              "type": "string",
+              "optional": true,
+              "defaultValue": "','",
+              "description": "The separator to use (default: ',')"
+            }
+          ],
+          "returns": { "type": "string", "description": "The formatted number string" }
+        }
+      ],
+      "examples": [
+        "formatWithSeparator(1000000); // '1,000,000'\nformatWithSeparator(1234.56); // '1,234.56'\nformatWithSeparator(1000000, ' '); // '1 000 000'"
+      ],
+      "keywords": ["thousands separator", "comma", "format number", "digit grouping"],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "inRange",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Check if a number is in a range (inclusive).",
+      "signatures": [
+        {
+          "text": "inRange(value: number, minValue: number, maxValue: number): boolean",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "number",
+              "optional": false,
+              "description": "The number to check"
+            },
+            {
+              "name": "minValue",
+              "type": "number",
+              "optional": false,
+              "description": "The minimum value"
+            },
+            {
+              "name": "maxValue",
+              "type": "number",
+              "optional": false,
+              "description": "The maximum value"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the number is in the range, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "inRange(5, 0, 10); // true\ninRange(15, 0, 10); // false\ninRange(0, 0, 10); // true"
+      ],
+      "keywords": ["between", "within range"],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "isEven",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Check if a number is even.",
+      "signatures": [
+        {
+          "text": "isEven(value: number): boolean",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "number",
+              "optional": false,
+              "description": "The number to check"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the number is even, false otherwise"
+          }
+        }
+      ],
+      "examples": ["isEven(4); // true\nisEven(3); // false\nisEven(0); // true"],
+      "keywords": ["parity"],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "isFiniteNumber",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Type guard to check if a value is a finite number.",
+      "signatures": [
+        {
+          "text": "isFiniteNumber(value: unknown): value is number",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "unknown",
+              "optional": false,
+              "description": "The value to check"
+            }
+          ],
+          "returns": {
+            "type": "value is number",
+            "description": "True if the value is a finite number, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isFiniteNumber(42); // true\nisFiniteNumber(Infinity); // false\nisFiniteNumber(NaN); // false"
+      ],
+      "keywords": ["type guard", "infinity"],
+      "notes": [],
+      "source": "packages/number/src/type-guards.ts"
+    },
+    {
+      "name": "isInteger",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Type guard to check if a value is an integer.",
+      "signatures": [
+        {
+          "text": "isInteger(value: unknown): value is number",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "unknown",
+              "optional": false,
+              "description": "The value to check"
+            }
+          ],
+          "returns": {
+            "type": "value is number",
+            "description": "True if the value is an integer, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isInteger(42); // true\nisInteger(3.14); // false\nisInteger(NaN); // false"
+      ],
+      "keywords": ["type guard", "whole number"],
+      "notes": [],
+      "source": "packages/number/src/type-guards.ts"
+    },
+    {
+      "name": "isNegative",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Check if a number is negative.",
+      "signatures": [
+        {
+          "text": "isNegative(value: number): boolean",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "number",
+              "optional": false,
+              "description": "The number to check"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the number is negative, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isNegative(-5); // true\nisNegative(5); // false\nisNegative(0); // false"
+      ],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "isNumber",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Type guard to check if a value is a number (excluding NaN).",
+      "signatures": [
+        {
+          "text": "isNumber(value: unknown): value is number",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "unknown",
+              "optional": false,
+              "description": "The value to check"
+            }
+          ],
+          "returns": {
+            "type": "value is number",
+            "description": "True if the value is a valid number, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isNumber(42); // true\nisNumber(3.14); // true\nisNumber(NaN); // false\nisNumber('42'); // false"
+      ],
+      "keywords": ["type guard", "nan"],
+      "notes": [],
+      "source": "packages/number/src/type-guards.ts"
+    },
+    {
+      "name": "isOdd",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Check if a number is odd.",
+      "signatures": [
+        {
+          "text": "isOdd(value: number): boolean",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "number",
+              "optional": false,
+              "description": "The number to check"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the number is odd, false otherwise"
+          }
+        }
+      ],
+      "examples": ["isOdd(3); // true\nisOdd(4); // false\nisOdd(1); // true"],
+      "keywords": ["parity"],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "isPositive",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Check if a number is positive.",
+      "signatures": [
+        {
+          "text": "isPositive(value: number): boolean",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "number",
+              "optional": false,
+              "description": "The number to check"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the number is positive, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isPositive(5); // true\nisPositive(-5); // false\nisPositive(0); // false"
+      ],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "isSafeInteger",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Type guard to check if a value is a safe integer.",
+      "signatures": [
+        {
+          "text": "isSafeInteger(value: unknown): value is number",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "unknown",
+              "optional": false,
+              "description": "The value to check"
+            }
+          ],
+          "returns": {
+            "type": "value is number",
+            "description": "True if the value is a safe integer, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isSafeInteger(42); // true\nisSafeInteger(Number.MAX_SAFE_INTEGER); // true\nisSafeInteger(Number.MAX_SAFE_INTEGER + 1); // false"
+      ],
+      "keywords": ["type guard", "max safe integer"],
+      "notes": [],
+      "source": "packages/number/src/type-guards.ts"
+    },
+    {
+      "name": "max",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Find the maximum value in an array of numbers.",
+      "signatures": [
+        {
+          "text": "max(numbers: readonly number[]): number",
+          "parameters": [
+            {
+              "name": "numbers",
+              "type": "readonly number[]",
+              "optional": false,
+              "description": "The array of numbers"
+            }
+          ],
+          "returns": {
+            "type": "number",
+            "description": "The maximum value, or -Infinity if the array is empty"
+          }
+        }
+      ],
+      "examples": ["max([3, 1, 4, 1, 5]); // 5\nmax([10, -5, 20]); // 20"],
+      "keywords": ["largest", "highest", "maximum"],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "min",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Find the minimum value in an array of numbers.",
+      "signatures": [
+        {
+          "text": "min(numbers: readonly number[]): number",
+          "parameters": [
+            {
+              "name": "numbers",
+              "type": "readonly number[]",
+              "optional": false,
+              "description": "The array of numbers"
+            }
+          ],
+          "returns": {
+            "type": "number",
+            "description": "The minimum value, or Infinity if the array is empty"
+          }
+        }
+      ],
+      "examples": ["min([3, 1, 4, 1, 5]); // 1\nmin([10, -5, 20]); // -5"],
+      "keywords": ["smallest", "lowest", "minimum"],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "parseNumberOrNull",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Parse a number from a string, returning null if invalid.",
+      "signatures": [
+        {
+          "text": "parseNumberOrNull(value: string): number | null",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "string",
+              "optional": false,
+              "description": "The string to parse"
+            }
+          ],
+          "returns": {
+            "type": "number | null",
+            "description": "The parsed number or null if invalid"
+          }
+        }
+      ],
+      "examples": [
+        "parseNumberOrNull('42'); // 42\nparseNumberOrNull('3.14'); // 3.14\nparseNumberOrNull('invalid'); // null"
+      ],
+      "keywords": ["parse number", "string to number", "safe parse", "parseFloat"],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "random",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Generate a random number between min and max (inclusive).",
+      "signatures": [
+        {
+          "text": "random(minValue: number, maxValue: number): number",
+          "parameters": [
+            {
+              "name": "minValue",
+              "type": "number",
+              "optional": false,
+              "description": "The minimum value"
+            },
+            {
+              "name": "maxValue",
+              "type": "number",
+              "optional": false,
+              "description": "The maximum value"
+            }
+          ],
+          "returns": {
+            "type": "number",
+            "description": "A random number between min and max"
+          }
+        }
+      ],
+      "examples": [
+        "random(0, 1); // Random number between 0 and 1\nrandom(5.5, 10.5); // Random number between 5.5 and 10.5"
+      ],
+      "keywords": ["random float", "random number"],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "randomInt",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Generate a random integer between min and max (inclusive).",
+      "signatures": [
+        {
+          "text": "randomInt(minValue: number, maxValue: number): number",
+          "parameters": [
+            {
+              "name": "minValue",
+              "type": "number",
+              "optional": false,
+              "description": "The minimum value"
+            },
+            {
+              "name": "maxValue",
+              "type": "number",
+              "optional": false,
+              "description": "The maximum value"
+            }
+          ],
+          "returns": {
+            "type": "number",
+            "description": "A random integer between min and max"
+          }
+        }
+      ],
+      "examples": [
+        "randomInt(1, 10); // Random number between 1 and 10\nrandomInt(0, 100); // Random number between 0 and 100"
+      ],
+      "keywords": ["random integer", "dice"],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "round",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Round a number to a specified number of decimal places.",
+      "signatures": [
+        {
+          "text": "round(value: number, decimals: number = 0): number",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "number",
+              "optional": false,
+              "description": "The number to round"
+            },
+            {
+              "name": "decimals",
+              "type": "number",
+              "optional": true,
+              "defaultValue": "0",
+              "description": "The number of decimal places (default: 0)"
+            }
+          ],
+          "returns": { "type": "number", "description": "The rounded number" }
+        }
+      ],
+      "examples": [
+        "round(3.14159, 2); // 3.14\nround(3.5); // 4\nround(10.6789, 1); // 10.7"
+      ],
+      "keywords": ["decimal places", "precision", "toFixed"],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "sum",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Calculate the sum of an array of numbers.",
+      "signatures": [
+        {
+          "text": "sum(numbers: readonly number[]): number",
+          "parameters": [
+            {
+              "name": "numbers",
+              "type": "readonly number[]",
+              "optional": false,
+              "description": "The array of numbers"
+            }
+          ],
+          "returns": { "type": "number", "description": "The sum of the numbers" }
+        }
+      ],
+      "examples": ["sum([1, 2, 3, 4, 5]); // 15\nsum([]); // 0"],
+      "keywords": ["total", "add numbers"],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "toDegrees",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Convert radians to degrees.",
+      "signatures": [
+        {
+          "text": "toDegrees(radians: number): number",
+          "parameters": [
+            {
+              "name": "radians",
+              "type": "number",
+              "optional": false,
+              "description": "The angle in radians"
+            }
+          ],
+          "returns": { "type": "number", "description": "The angle in degrees" }
+        }
+      ],
+      "examples": ["toDegrees(Math.PI); // 180\ntoDegrees(Math.PI / 2); // 90"],
+      "keywords": ["angle", "convert angle", "trigonometry"],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "toRadians",
+      "kind": "function",
+      "package": "@pixpilot/number",
+      "importPath": "@pixpilot/number",
+      "runtime": "universal",
+      "category": "Number",
+      "description": "Convert degrees to radians.",
+      "signatures": [
+        {
+          "text": "toRadians(degrees: number): number",
+          "parameters": [
+            {
+              "name": "degrees",
+              "type": "number",
+              "optional": false,
+              "description": "The angle in degrees"
+            }
+          ],
+          "returns": { "type": "number", "description": "The angle in radians" }
+        }
+      ],
+      "examples": ["toRadians(180); // Math.PI\ntoRadians(90); // Math.PI / 2"],
+      "keywords": ["angle", "convert angle", "trigonometry"],
+      "notes": [],
+      "source": "packages/number/src/manipulation.ts"
+    },
+    {
+      "name": "cleanObject",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Recursively remove empty values from an object or array, returning a new value.\n\nBy default removes `null`, `undefined`, empty strings, empty arrays, and empty plain\nobjects, including objects that become empty once cleaned. Other input is returned as is.",
+      "signatures": [
+        {
+          "text": "cleanObject<T>(value: T, options?: CleanOptions): T",
+          "typeParameters": ["T"],
+          "parameters": [
+            {
+              "name": "value",
+              "type": "T",
+              "optional": false,
+              "description": "The object or array to clean"
+            },
+            {
+              "name": "options",
+              "type": "CleanOptions",
+              "optional": true,
+              "description": "Which values and keys to remove",
+              "properties": [
+                {
+                  "name": "cleanKeys",
+                  "type": "readonly string[]",
+                  "optional": true,
+                  "description": "Keys (array indices as strings) that are always removed."
+                },
+                {
+                  "name": "cleanValues",
+                  "type": "readonly unknown[]",
+                  "optional": true,
+                  "description": "Values that are always removed."
+                },
+                {
+                  "name": "emptyArrays",
+                  "type": "boolean",
+                  "optional": true,
+                  "description": "Remove empty arrays (default: true)."
+                },
+                {
+                  "name": "emptyObjects",
+                  "type": "boolean",
+                  "optional": true,
+                  "description": "Remove empty plain objects (default: true)."
+                },
+                {
+                  "name": "emptyStrings",
+                  "type": "boolean",
+                  "optional": true,
+                  "description": "Remove empty strings (default: true)."
+                },
+                {
+                  "name": "NaNValues",
+                  "type": "boolean",
+                  "optional": true,
+                  "description": "Remove `NaN` values (default: false)."
+                },
+                {
+                  "name": "nullValues",
+                  "type": "boolean",
+                  "optional": true,
+                  "description": "Remove `null` values (default: true)."
+                },
+                {
+                  "name": "undefinedValues",
+                  "type": "boolean",
+                  "optional": true,
+                  "description": "Remove `undefined` values (default: true)."
+                },
+                {
+                  "name": "shouldRemove",
+                  "type": "(key: string, value: unknown, base?: unknown) => boolean",
+                  "optional": true,
+                  "description": "Custom predicate run after a value is cleaned; return true to remove it."
+                },
+                {
+                  "name": "transform",
+                  "type": "(key: string, value: unknown, base?: unknown) => unknown",
+                  "optional": true,
+                  "description": "Transforms each value before it is cleaned."
+                }
+              ]
+            }
+          ],
+          "returns": { "type": "T", "description": "A cleaned copy of `value`" }
+        }
+      ],
+      "examples": [
+        "cleanObject({ a: 1, b: null, c: '', d: { e: undefined }, f: [] }); // { a: 1 }\ncleanObject({ a: '', b: null }, { emptyStrings: false }); // { a: '' }\ncleanObject({ id: 1, secret: 'x' }, { cleanKeys: ['secret'] }); // { id: 1 }"
+      ],
+      "keywords": ["remove empty", "compact", "strip null", "remove undefined", "prune"],
+      "notes": [],
+      "source": "packages/object/src/clean-object.ts"
+    },
+    {
+      "name": "CleanOptions",
+      "kind": "type",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "TypeScript type exported by @pixpilot/object.",
+      "type": "interface CleanOptions {\n    cleanKeys?: readonly string[];\n    cleanValues?: readonly unknown[];\n    emptyArrays?: boolean;\n    emptyObjects?: boolean;\n    emptyStrings?: boolean;\n    NaNValues?: boolean;\n    nullValues?: boolean;\n    undefinedValues?: boolean;\n    shouldRemove?: (key: string, value: unknown, base?: unknown) => boolean;\n    transform?: (key: string, value: unknown, base?: unknown) => unknown;\n}",
+      "properties": [
+        {
+          "name": "cleanKeys",
+          "type": "readonly string[]",
+          "optional": true,
+          "description": "Keys (array indices as strings) that are always removed."
+        },
+        {
+          "name": "cleanValues",
+          "type": "readonly unknown[]",
+          "optional": true,
+          "description": "Values that are always removed."
+        },
+        {
+          "name": "emptyArrays",
+          "type": "boolean",
+          "optional": true,
+          "description": "Remove empty arrays (default: true)."
+        },
+        {
+          "name": "emptyObjects",
+          "type": "boolean",
+          "optional": true,
+          "description": "Remove empty plain objects (default: true)."
+        },
+        {
+          "name": "emptyStrings",
+          "type": "boolean",
+          "optional": true,
+          "description": "Remove empty strings (default: true)."
+        },
+        {
+          "name": "NaNValues",
+          "type": "boolean",
+          "optional": true,
+          "description": "Remove `NaN` values (default: false)."
+        },
+        {
+          "name": "nullValues",
+          "type": "boolean",
+          "optional": true,
+          "description": "Remove `null` values (default: true)."
+        },
+        {
+          "name": "undefinedValues",
+          "type": "boolean",
+          "optional": true,
+          "description": "Remove `undefined` values (default: true)."
+        },
+        {
+          "name": "shouldRemove",
+          "type": "(key: string, value: unknown, base?: unknown) => boolean",
+          "optional": true,
+          "description": "Custom predicate run after a value is cleaned; return true to remove it."
+        },
+        {
+          "name": "transform",
+          "type": "(key: string, value: unknown, base?: unknown) => unknown",
+          "optional": true,
+          "description": "Transforms each value before it is cleaned."
+        }
+      ],
+      "examples": [],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/object/src/clean-object.ts"
+    },
+    {
+      "name": "deepClone",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Deep clone an object.",
+      "signatures": [
+        {
+          "text": "deepClone<T>(obj: T): T",
+          "typeParameters": ["T"],
+          "parameters": [
+            {
+              "name": "obj",
+              "type": "T",
+              "optional": false,
+              "description": "The object to clone"
+            }
+          ],
+          "returns": { "type": "T", "description": "A deep clone of the object" }
+        }
+      ],
+      "examples": [
+        "const obj = { a: 1, b: { c: 2 } };\nconst cloned = deepClone(obj);\ncloned.b.c = 3;\nconsole.log(obj.b.c); // 2 (original unchanged)"
+      ],
+      "keywords": ["copy", "clone deep", "structuredClone"],
+      "notes": [],
+      "source": "packages/object/src/manipulation.ts"
+    },
+    {
+      "name": "deepEqual",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Compare two objects for deep equality.",
+      "signatures": [
+        {
+          "text": "deepEqual(obj1: unknown, obj2: unknown): boolean",
+          "parameters": [
+            {
+              "name": "obj1",
+              "type": "unknown",
+              "optional": false,
+              "description": "The first object"
+            },
+            {
+              "name": "obj2",
+              "type": "unknown",
+              "optional": false,
+              "description": "The second object"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the objects are deeply equal, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "deepEqual({ a: 1, b: { c: 2 } }, { a: 1, b: { c: 2 } }); // true\ndeepEqual({ a: 1 }, { a: 2 }); // false"
+      ],
+      "keywords": ["compare", "isEqual", "equality"],
+      "notes": [],
+      "source": "packages/object/src/manipulation.ts"
+    },
+    {
+      "name": "deepMerge",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Deep merge two objects with",
+      "signatures": [
+        {
+          "text": "deepMerge<T extends Record<string, unknown>, U extends Record<string, unknown>>(target: T, source: U, options?: Options): T & U",
+          "typeParameters": [
+            "T extends Record<string, unknown>",
+            "U extends Record<string, unknown>"
+          ],
+          "parameters": [
+            {
+              "name": "target",
+              "type": "T",
+              "optional": false,
+              "description": "The target object to merge into"
+            },
+            {
+              "name": "source",
+              "type": "U",
+              "optional": false,
+              "description": "The source object to merge from"
+            },
+            {
+              "name": "options",
+              "type": "Options",
+              "optional": true,
+              "description": "Optional deepmerge options"
+            }
+          ],
+          "returns": {
+            "type": "T & U",
+            "description": "A new merged object containing properties from both target and source"
+          }
+        }
+      ],
+      "examples": [
+        "deepMerge({ a: 1, nested: { x: 1 }, list: [1] }, { nested: { y: 2 }, list: [2] });\n// { a: 1, nested: { x: 1, y: 2 }, list: [1, 2] }"
+      ],
+      "keywords": ["merge", "assign", "extend", "combine objects", "defaults"],
+      "notes": [],
+      "source": "packages/object/src/deep-merge.ts"
+    },
+    {
+      "name": "deepMergeMany",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Deep merge multiple objects.\n\nUses",
+      "signatures": [
+        {
+          "text": "deepMergeMany<T extends Record<string, unknown>>(...objects: T[]): Record<string, unknown>",
+          "typeParameters": ["T extends Record<string, unknown>"],
+          "parameters": [
+            {
+              "name": "objects",
+              "type": "T[]",
+              "optional": false,
+              "rest": true,
+              "description": "The objects to merge"
+            }
+          ],
+          "returns": {
+            "type": "Record<string, unknown>",
+            "description": "A new merged object"
+          }
+        }
+      ],
+      "examples": [
+        "const obj1 = { a: 1, b: { c: 2 } };\nconst obj2 = { b: { d: 3 }, e: 4 };\nconst obj3 = { e: 5, f: 6 };\ndeepMergeMany(obj1, obj2, obj3); // { a: 1, b: { c: 2, d: 3 }, e: 5, f: 6 }"
+      ],
+      "keywords": ["merge", "combine objects", "merge config"],
+      "notes": [],
+      "source": "packages/object/src/deep-merge.ts"
+    },
+    {
+      "name": "deleteObjectPropertyByPath",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Delete the property at the given path.",
+      "signatures": [
+        {
+          "text": "deleteObjectPropertyByPath(object: Record<string, any> | unknown[], path: string | ReadonlyArray<string | number>): boolean",
+          "parameters": [
+            {
+              "name": "object",
+              "type": "Record<string, any> | unknown[]",
+              "optional": false,
+              "description": "Object or array to delete the `path` value."
+            },
+            {
+              "name": "path",
+              "type": "string | ReadonlyArray<string | number>",
+              "optional": false,
+              "description": "Path of the property in the object, using `.` to separate each nested key. Use `\\\\.` if you have a `.` in the key. Array indices can be accessed using bracket notation (`'users[0].name'`) or dot notation (`'users.0.name'`). Both syntaxes are equivalent and will create arrays when setting values. Numeric strings in dot notation (like `'users.0.name'`) are automatically coerced to numbers. When using array paths, numeric strings are normalized to numbers for simplicity (treating `['users', '0']` the same as `['users', 0]`)."
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "A boolean of whether the property existed before being deleted."
+          }
+        }
+      ],
+      "examples": [
+        "const object = {foo: {bar: 'a'}};\ndeleteObjectPropertyByPath(object, 'foo.bar');\nconsole.log(object);\n//=> {foo: {}}\n\nobject.foo.bar = {x: 'y', y: 'x'};\ndeleteObjectPropertyByPath(object, 'foo.bar.x');\nconsole.log(object);\n//=> {foo: {bar: {y: 'x'}}}"
+      ],
+      "keywords": ["dot path", "nested", "deep", "unset", "remove nested key"],
+      "notes": ["Same function as `deleteProperty` from this package."],
+      "reexport": { "module": "dot-prop", "name": "deleteProperty" },
+      "source": "packages/object/src/delete-object-property-by-path.ts"
+    },
+    {
+      "name": "deleteProperty",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Delete the property at the given path.",
+      "signatures": [
+        {
+          "text": "deleteProperty(object: Record<string, any> | unknown[], path: string | ReadonlyArray<string | number>): boolean",
+          "parameters": [
+            {
+              "name": "object",
+              "type": "Record<string, any> | unknown[]",
+              "optional": false,
+              "description": "Object or array to delete the `path` value."
+            },
+            {
+              "name": "path",
+              "type": "string | ReadonlyArray<string | number>",
+              "optional": false,
+              "description": "Path of the property in the object, using `.` to separate each nested key. Use `\\\\.` if you have a `.` in the key. Array indices can be accessed using bracket notation (`'users[0].name'`) or dot notation (`'users.0.name'`). Both syntaxes are equivalent and will create arrays when setting values. Numeric strings in dot notation (like `'users.0.name'`) are automatically coerced to numbers. When using array paths, numeric strings are normalized to numbers for simplicity (treating `['users', '0']` the same as `['users', 0]`)."
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "A boolean of whether the property existed before being deleted."
+          }
+        }
+      ],
+      "examples": [
+        "const object = {foo: {bar: 'a'}};\ndeleteProperty(object, 'foo.bar');\nconsole.log(object);\n//=> {foo: {}}\n\nobject.foo.bar = {x: 'y', y: 'x'};\ndeleteProperty(object, 'foo.bar.x');\nconsole.log(object);\n//=> {foo: {bar: {y: 'x'}}}"
+      ],
+      "keywords": ["dot path", "nested", "deep", "unset", "remove nested key"],
+      "notes": ["Also exported as `deleteObjectPropertyByPath`."],
+      "reexport": { "module": "dot-prop", "name": "deleteProperty" },
+      "source": "packages/object/src/manipulation.ts"
+    },
+    {
+      "name": "escapePath",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Escape special characters in a path. Useful for sanitizing user input.",
+      "signatures": [
+        {
+          "text": "escapePath(path: string): string",
+          "parameters": [
+            {
+              "name": "path",
+              "type": "string",
+              "optional": false,
+              "description": "The dot path to sanitize."
+            }
+          ],
+          "returns": { "type": "string" }
+        }
+      ],
+      "examples": [
+        "const object = {\n\tfoo: {\n\t\tbar: '👸🏻 You found me Mario!',\n\t},\n\t'foo.bar' : '🍄 The princess is in another castle!',\n};\nconst escapedPath = escapePath('foo.bar');\n\nconsole.log(getProperty(object, escapedPath));\n//=> '🍄 The princess is in another castle!'"
+      ],
+      "keywords": ["dot path", "nested", "deep"],
+      "notes": [],
+      "reexport": { "module": "dot-prop", "name": "escapePath" },
+      "source": "packages/object/src/manipulation.ts"
+    },
+    {
+      "name": "flatKeys",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Returns an array of every path. Non-empty plain objects and arrays are deeply recursed and are not themselves included.\n\nThis can be useful to help flatten an object for an API that only accepts key-value pairs or for a tagged template literal.",
+      "signatures": [
+        {
+          "text": "flatKeys(object: unknown): string[]",
+          "parameters": [
+            {
+              "name": "object",
+              "type": "unknown",
+              "optional": false,
+              "description": "The object to iterate through."
+            }
+          ],
+          "returns": { "type": "string[]" }
+        }
+      ],
+      "examples": [
+        "const user = {\n\tname: {\n\t\tfirst: 'Richie',\n\t\tlast: 'Bendall',\n\t},\n\tactiveTasks: [],\n\tcurrentProject: null\n};\n\nfor (const property of flatKeys(user)) {\n\tconsole.log(`${property}: ${getProperty(user, property)}`);\n\t//=> name.first: Richie\n\t//=> name.last: Bendall\n\t//=> activeTasks: []\n\t//=> currentProject: null\n}"
+      ],
+      "keywords": ["flatten", "deep keys", "all paths", "dot path", "nested", "deep"],
+      "notes": [],
+      "reexport": { "module": "dot-prop", "name": "deepKeys" },
+      "source": "packages/object/src/manipulation.ts"
+    },
+    {
+      "name": "getObjectValueByPath",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Get the value of the property at the given path.",
+      "signatures": [
+        {
+          "text": "getObjectValueByPath<ObjectType, PathType extends string, DefaultValue = undefined>(object: ObjectType, path: PathType | ReadonlyArray<string | number>, defaultValue?: DefaultValue): ObjectType extends Record<string, unknown> | unknown[] ? (unknown extends Get<ObjectType, PathType> ? DefaultValue : Get<ObjectType, PathType>) : DefaultValue extends undefined ? unknown : DefaultValue",
+          "typeParameters": [
+            "ObjectType",
+            "PathType extends string",
+            "DefaultValue = undefined"
+          ],
+          "parameters": [
+            {
+              "name": "object",
+              "type": "ObjectType",
+              "optional": false,
+              "description": "Object or array to get the `path` value."
+            },
+            {
+              "name": "path",
+              "type": "PathType | ReadonlyArray<string | number>",
+              "optional": false,
+              "description": "Path of the property in the object, using `.` to separate each nested key. Use `\\\\.` if you have a `.` in the key. Array indices can be accessed using bracket notation (`'users[0].name'`) or dot notation (`'users.0.name'`). Both syntaxes are equivalent and will create arrays when setting values. Numeric strings in dot notation (like `'users.0.name'`) are automatically coerced to numbers. When using array paths, numeric strings are normalized to numbers for simplicity (treating `['users', '0']` the same as `['users', 0]`)."
+            },
+            {
+              "name": "defaultValue",
+              "type": "DefaultValue",
+              "optional": true,
+              "description": "Default value."
+            }
+          ],
+          "returns": {
+            "type": "ObjectType extends Record<string, unknown> | unknown[] ? (unknown extends Get<ObjectType, PathType> ? DefaultValue : Get<ObjectType, PathType>) : DefaultValue extends undefined ? unknown : DefaultValue"
+          }
+        }
+      ],
+      "examples": [
+        "getObjectValueByPath({foo: {bar: 'unicorn'}}, 'foo.bar');\n//=> 'unicorn'\n\ngetObjectValueByPath({foo: {bar: 'a'}}, 'foo.notDefined.deep');\n//=> undefined\n\ngetObjectValueByPath({foo: {bar: 'a'}}, 'foo.notDefined.deep', 'default value');\n//=> 'default value'\n\ngetObjectValueByPath({foo: {'dot.dot': 'unicorn'}}, 'foo.dot\\\\.dot');\n//=> 'unicorn'\n\ngetObjectValueByPath({foo: [{bar: 'unicorn'}]}, 'foo[0].bar');\n//=> 'unicorn'\n\ngetObjectValueByPath({foo: [{bar: 'unicorn'}]}, 'foo.0.bar');\n//=> 'unicorn'"
+      ],
+      "keywords": ["dot path", "nested", "deep", "get by path", "lodash get"],
+      "notes": ["Same function as `getProperty` from this package."],
+      "reexport": { "module": "dot-prop", "name": "getProperty" },
+      "source": "packages/object/src/get-object-value-by-path.ts"
+    },
+    {
+      "name": "getProperty",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Get the value of the property at the given path.",
+      "signatures": [
+        {
+          "text": "getProperty<ObjectType, PathType extends string, DefaultValue = undefined>(object: ObjectType, path: PathType | ReadonlyArray<string | number>, defaultValue?: DefaultValue): ObjectType extends Record<string, unknown> | unknown[] ? (unknown extends Get<ObjectType, PathType> ? DefaultValue : Get<ObjectType, PathType>) : DefaultValue extends undefined ? unknown : DefaultValue",
+          "typeParameters": [
+            "ObjectType",
+            "PathType extends string",
+            "DefaultValue = undefined"
+          ],
+          "parameters": [
+            {
+              "name": "object",
+              "type": "ObjectType",
+              "optional": false,
+              "description": "Object or array to get the `path` value."
+            },
+            {
+              "name": "path",
+              "type": "PathType | ReadonlyArray<string | number>",
+              "optional": false,
+              "description": "Path of the property in the object, using `.` to separate each nested key. Use `\\\\.` if you have a `.` in the key. Array indices can be accessed using bracket notation (`'users[0].name'`) or dot notation (`'users.0.name'`). Both syntaxes are equivalent and will create arrays when setting values. Numeric strings in dot notation (like `'users.0.name'`) are automatically coerced to numbers. When using array paths, numeric strings are normalized to numbers for simplicity (treating `['users', '0']` the same as `['users', 0]`)."
+            },
+            {
+              "name": "defaultValue",
+              "type": "DefaultValue",
+              "optional": true,
+              "description": "Default value."
+            }
+          ],
+          "returns": {
+            "type": "ObjectType extends Record<string, unknown> | unknown[] ? (unknown extends Get<ObjectType, PathType> ? DefaultValue : Get<ObjectType, PathType>) : DefaultValue extends undefined ? unknown : DefaultValue"
+          }
+        }
+      ],
+      "examples": [
+        "getProperty({foo: {bar: 'unicorn'}}, 'foo.bar');\n//=> 'unicorn'\n\ngetProperty({foo: {bar: 'a'}}, 'foo.notDefined.deep');\n//=> undefined\n\ngetProperty({foo: {bar: 'a'}}, 'foo.notDefined.deep', 'default value');\n//=> 'default value'\n\ngetProperty({foo: {'dot.dot': 'unicorn'}}, 'foo.dot\\\\.dot');\n//=> 'unicorn'\n\ngetProperty({foo: [{bar: 'unicorn'}]}, 'foo[0].bar');\n//=> 'unicorn'\n\ngetProperty({foo: [{bar: 'unicorn'}]}, 'foo.0.bar');\n//=> 'unicorn'"
+      ],
+      "keywords": ["dot path", "nested", "deep", "get by path", "lodash get"],
+      "notes": ["Also exported as `getObjectValueByPath`."],
+      "reexport": { "module": "dot-prop", "name": "getProperty" },
+      "source": "packages/object/src/manipulation.ts"
+    },
+    {
+      "name": "hasObjectValueByPath",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Check whether the property at the given path exists.",
+      "signatures": [
+        {
+          "text": "hasObjectValueByPath(object: Record<string, any> | unknown[] | undefined, path: string | ReadonlyArray<string | number>): boolean",
+          "parameters": [
+            {
+              "name": "object",
+              "type": "Record<string, any> | unknown[] | undefined",
+              "optional": false,
+              "description": "Object or array to test the `path` value."
+            },
+            {
+              "name": "path",
+              "type": "string | ReadonlyArray<string | number>",
+              "optional": false,
+              "description": "Path of the property in the object, using `.` to separate each nested key. Use `\\\\.` if you have a `.` in the key. Array indices can be accessed using bracket notation (`'users[0].name'`) or dot notation (`'users.0.name'`). Both syntaxes are equivalent and will create arrays when setting values. Numeric strings in dot notation (like `'users.0.name'`) are automatically coerced to numbers. When using array paths, numeric strings are normalized to numbers for simplicity (treating `['users', '0']` the same as `['users', 0]`)."
+            }
+          ],
+          "returns": { "type": "boolean" }
+        }
+      ],
+      "examples": [
+        "hasObjectValueByPath({foo: {bar: 'unicorn'}}, 'foo.bar');\n//=> true"
+      ],
+      "keywords": ["dot path", "nested", "deep", "has path", "key exists"],
+      "notes": ["Same function as `hasProperty` from this package."],
+      "reexport": { "module": "dot-prop", "name": "hasProperty" },
+      "source": "packages/object/src/has-object-value-by-path.ts"
+    },
+    {
+      "name": "hasProperty",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Check whether the property at the given path exists.",
+      "signatures": [
+        {
+          "text": "hasProperty(object: Record<string, any> | unknown[] | undefined, path: string | ReadonlyArray<string | number>): boolean",
+          "parameters": [
+            {
+              "name": "object",
+              "type": "Record<string, any> | unknown[] | undefined",
+              "optional": false,
+              "description": "Object or array to test the `path` value."
+            },
+            {
+              "name": "path",
+              "type": "string | ReadonlyArray<string | number>",
+              "optional": false,
+              "description": "Path of the property in the object, using `.` to separate each nested key. Use `\\\\.` if you have a `.` in the key. Array indices can be accessed using bracket notation (`'users[0].name'`) or dot notation (`'users.0.name'`). Both syntaxes are equivalent and will create arrays when setting values. Numeric strings in dot notation (like `'users.0.name'`) are automatically coerced to numbers. When using array paths, numeric strings are normalized to numbers for simplicity (treating `['users', '0']` the same as `['users', 0]`)."
+            }
+          ],
+          "returns": { "type": "boolean" }
+        }
+      ],
+      "examples": ["hasProperty({foo: {bar: 'unicorn'}}, 'foo.bar');\n//=> true"],
+      "keywords": ["dot path", "nested", "deep", "has path", "key exists"],
+      "notes": ["Also exported as `hasObjectValueByPath`."],
+      "reexport": { "module": "dot-prop", "name": "hasProperty" },
+      "source": "packages/object/src/manipulation.ts"
+    },
+    {
+      "name": "isEmptyObject",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Type guard to check if a value is an empty object.",
+      "signatures": [
+        {
+          "text": "isEmptyObject(value: unknown): boolean",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "unknown",
+              "optional": false,
+              "description": "The value to check"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the value is an empty object, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isEmptyObject({}); // true\nisEmptyObject({ key: 'value' }); // false\nisEmptyObject([]); // false"
+      ],
+      "keywords": ["type guard", "no keys"],
+      "notes": [],
+      "source": "packages/object/src/type-guards.ts"
+    },
+    {
+      "name": "isObject",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Type guard to check if a value is an object (and not null or an array).",
+      "signatures": [
+        {
+          "text": "isObject(value: unknown): value is Record<string, unknown>",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "unknown",
+              "optional": false,
+              "description": "The value to check"
+            }
+          ],
+          "returns": {
+            "type": "value is Record<string, unknown>",
+            "description": "True if the value is an object, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isObject({}); // true\nisObject({ key: 'value' }); // true\nisObject([]); // false\nisObject(null); // false\nisObject('string'); // false"
+      ],
+      "keywords": ["type guard"],
+      "notes": [],
+      "source": "packages/object/src/type-guards.ts"
+    },
+    {
+      "name": "isPlainObject",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Type guard to check if a value is a plain object\n(created with {} or new Object(), not a class instance).",
+      "signatures": [
+        {
+          "text": "isPlainObject(value: unknown): value is Record<string, unknown>",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "unknown",
+              "optional": false,
+              "description": "The value to check"
+            }
+          ],
+          "returns": {
+            "type": "value is Record<string, unknown>",
+            "description": "True if the value is a plain object, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isPlainObject({}); // true\nisPlainObject({ key: 'value' }); // true\nisPlainObject(new Date()); // false\nisPlainObject([]); // false"
+      ],
+      "keywords": ["type guard", "pojo"],
+      "notes": [],
+      "source": "packages/object/src/type-guards.ts"
+    },
+    {
+      "name": "keysToCamelCase",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Converts object keys from snake_case to camelCase recursively, including keys\ninside nested objects and arrays. GUID keys are left unchanged.",
+      "signatures": [
+        {
+          "text": "keysToCamelCase<T>(obj: T, options?: KeysToCamelCaseOptions): KeysToCamelCase<T>",
+          "typeParameters": ["T"],
+          "parameters": [
+            {
+              "name": "obj",
+              "type": "T",
+              "optional": false,
+              "description": "The value whose keys to convert"
+            },
+            {
+              "name": "options",
+              "type": "KeysToCamelCaseOptions",
+              "optional": true,
+              "description": "Conversion options",
+              "properties": [
+                {
+                  "name": "shouldConvert",
+                  "type": "(key: string) => boolean",
+                  "optional": true,
+                  "description": "Return false to keep a key unchanged. GUID keys are never converted."
+                }
+              ]
+            }
+          ],
+          "returns": {
+            "type": "KeysToCamelCase<T>",
+            "description": "A new value with camelCase keys, typed accordingly"
+          }
+        }
+      ],
+      "examples": [
+        "keysToCamelCase({ user_id: 1, profile: { first_name: 'Ada' } });\n// { userId: 1, profile: { firstName: 'Ada' } }\n\nkeysToCamelCase({ keep_me: 1, convert_me: 2 }, { shouldConvert: (key) => key !== 'keep_me' });\n// { keep_me: 1, convertMe: 2 }"
+      ],
+      "keywords": [
+        "camelcase keys",
+        "snake case to camel case",
+        "api response",
+        "transform keys"
+      ],
+      "notes": [],
+      "source": "packages/object/src/keys-to-camel-case.ts"
+    },
+    {
+      "name": "KeysToCamelCase",
+      "kind": "type",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "TypeScript type exported by @pixpilot/object.",
+      "type": "type KeysToCamelCase<T> = T extends Builtin ? T : T extends (...args: unknown[]) => unknown ? T : T extends readonly unknown[] ? number extends T['length'] ? KeysToCamelCase<T[number]>[] : TupleToCamelCase<T> : T extends object ? {\n    [K in keyof T as K extends string ? ToCamelCase<K> : K]: KeysToCamelCase<T[K]>;\n} : T;",
+      "examples": [],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/object/src/keys-to-camel-case.ts"
+    },
+    {
+      "name": "KeysToCamelCaseOptions",
+      "kind": "type",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "TypeScript type exported by @pixpilot/object.",
+      "type": "interface KeysToCamelCaseOptions {\n    shouldConvert?: (key: string) => boolean;\n}",
+      "properties": [
+        {
+          "name": "shouldConvert",
+          "type": "(key: string) => boolean",
+          "optional": true,
+          "description": "Return false to keep a key unchanged. GUID keys are never converted."
+        }
+      ],
+      "examples": [],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/object/src/keys-to-camel-case.ts"
+    },
+    {
+      "name": "keysToSnakeCase",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Converts object keys from camelCase to snake_case recursively",
+      "signatures": [
+        {
+          "text": "keysToSnakeCase<T>(obj: T): KeysToSnakeCase<T>",
+          "typeParameters": ["T"],
+          "parameters": [{ "name": "obj", "type": "T", "optional": false }],
+          "returns": { "type": "KeysToSnakeCase<T>" }
+        }
+      ],
+      "examples": [
+        "keysToSnakeCase({ userId: 1, profile: { firstName: 'Ada' } });\n// { user_id: 1, profile: { first_name: 'Ada' } }"
+      ],
+      "keywords": [
+        "snake case keys",
+        "camel case to snake case",
+        "api request",
+        "transform keys"
+      ],
+      "notes": [],
+      "source": "packages/object/src/keys-to-snake-case.ts"
+    },
+    {
+      "name": "KeysToSnakeCase",
+      "kind": "type",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "TypeScript type exported by @pixpilot/object.",
+      "type": "type KeysToSnakeCase<T> = T extends Builtin ? T : T extends (...args: unknown[]) => unknown ? T : T extends readonly unknown[] ? number extends T['length'] ? KeysToSnakeCase<T[number]>[] : TupleToSnakeCase<T> : T extends object ? {\n    [K in keyof T as K extends string ? ToSnakeCase<K> : K]: KeysToSnakeCase<T[K]>;\n} : T;",
+      "examples": [],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/object/src/keys-to-snake-case.ts"
+    },
+    {
+      "name": "mapKeys",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Map over the keys of an object.",
+      "signatures": [
+        {
+          "text": "mapKeys<T extends Record<string, unknown>>(obj: T, fn: (key: keyof T) => string): Record<string, T[keyof T]>",
+          "typeParameters": ["T extends Record<string, unknown>"],
+          "parameters": [
+            {
+              "name": "obj",
+              "type": "T",
+              "optional": false,
+              "description": "The source object"
+            },
+            {
+              "name": "fn",
+              "type": "(key: keyof T) => string",
+              "optional": false,
+              "description": "The mapping function"
+            }
+          ],
+          "returns": {
+            "type": "Record<string, T[keyof T]>",
+            "description": "A new object with mapped keys"
+          }
+        }
+      ],
+      "examples": [
+        "const obj = { a: 1, b: 2 };\nmapKeys(obj, (key) => key.toUpperCase()); // { A: 1, B: 2 }"
+      ],
+      "keywords": ["rename keys", "transform keys"],
+      "notes": [],
+      "source": "packages/object/src/manipulation.ts"
+    },
+    {
+      "name": "mapValues",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Map over the values of an object.",
+      "signatures": [
+        {
+          "text": "mapValues<T extends Record<string, unknown>, U>(obj: T, fn: (value: T[keyof T], key: keyof T) => U): Record<keyof T, U>",
+          "typeParameters": ["T extends Record<string, unknown>", "U"],
+          "parameters": [
+            {
+              "name": "obj",
+              "type": "T",
+              "optional": false,
+              "description": "The source object"
+            },
+            {
+              "name": "fn",
+              "type": "(value: T[keyof T], key: keyof T) => U",
+              "optional": false,
+              "description": "The mapping function"
+            }
+          ],
+          "returns": {
+            "type": "Record<keyof T, U>",
+            "description": "A new object with mapped values"
+          }
+        }
+      ],
+      "examples": [
+        "const obj = { a: 1, b: 2, c: 3 };\nmapValues(obj, (value) => value * 2); // { a: 2, b: 4, c: 6 }"
+      ],
+      "keywords": ["transform values"],
+      "notes": [],
+      "source": "packages/object/src/manipulation.ts"
+    },
+    {
+      "name": "omit",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Omit specific keys from an object.",
+      "signatures": [
+        {
+          "text": "omit<T extends Record<string, unknown>, K extends keyof T>(obj: T, keys: readonly K[]): Omit<T, K>",
+          "typeParameters": ["T extends Record<string, unknown>", "K extends keyof T"],
+          "parameters": [
+            {
+              "name": "obj",
+              "type": "T",
+              "optional": false,
+              "description": "The source object"
+            },
+            {
+              "name": "keys",
+              "type": "readonly K[]",
+              "optional": false,
+              "description": "The keys to omit"
+            }
+          ],
+          "returns": {
+            "type": "Omit<T, K>",
+            "description": "A new object without the specified keys"
+          }
+        }
+      ],
+      "examples": [
+        "const obj = { a: 1, b: 2, c: 3 };\nomit(obj, ['b']); // { a: 1, c: 3 }"
+      ],
+      "keywords": ["exclude keys", "remove keys", "without"],
+      "notes": [],
+      "source": "packages/object/src/manipulation.ts"
+    },
+    {
+      "name": "parsePath",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Parse a dot path into an array of path segments.",
+      "signatures": [
+        {
+          "text": "parsePath(path: string): Array<string | number>",
+          "parameters": [
+            {
+              "name": "path",
+              "type": "string",
+              "optional": false,
+              "description": "Path to parse. Use `\\\\.` if you have a `.` in the key. Array indices can be accessed using bracket notation (`'users[0].name'`) or dot notation (`'users.0.name'`). Both syntaxes are equivalent. Numeric strings in dot notation (like `'users.0.name'`) are automatically coerced to numbers."
+            }
+          ],
+          "returns": {
+            "type": "Array<string | number>",
+            "description": "An array of path segments where numbers represent array indices and strings represent object keys."
+          }
+        }
+      ],
+      "examples": [
+        "parsePath('foo.bar');\n//=> ['foo', 'bar']\n\nparsePath('foo[0].bar');\n//=> ['foo', 0, 'bar']\n\nparsePath('foo.0.bar');\n//=> ['foo', 0, 'bar']\n\nparsePath('foo\\\\.bar');\n//=> ['foo.bar']\n\n// Use case: Iterate over path segments to build up a nested object\nconst path = 'users[0].profile.settings.theme';\nconst segments = parsePath(path);\n//=> ['users', 0, 'profile', 'settings', 'theme']"
+      ],
+      "keywords": ["dot path", "nested", "deep"],
+      "notes": [],
+      "reexport": { "module": "dot-prop", "name": "parsePath" },
+      "source": "packages/object/src/manipulation.ts"
+    },
+    {
+      "name": "pick",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Pick specific keys from an object.",
+      "signatures": [
+        {
+          "text": "pick<T extends Record<string, unknown>, K extends keyof T>(obj: T, keys: readonly K[]): Pick<T, K>",
+          "typeParameters": ["T extends Record<string, unknown>", "K extends keyof T"],
+          "parameters": [
+            {
+              "name": "obj",
+              "type": "T",
+              "optional": false,
+              "description": "The source object"
+            },
+            {
+              "name": "keys",
+              "type": "readonly K[]",
+              "optional": false,
+              "description": "The keys to pick"
+            }
+          ],
+          "returns": {
+            "type": "Pick<T, K>",
+            "description": "A new object with only the specified keys"
+          }
+        }
+      ],
+      "examples": [
+        "const obj = { a: 1, b: 2, c: 3 };\npick(obj, ['a', 'c']); // { a: 1, c: 3 }"
+      ],
+      "keywords": ["select keys", "subset"],
+      "notes": [],
+      "source": "packages/object/src/manipulation.ts"
+    },
+    {
+      "name": "setObjectValueByPath",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Set a nested value in an object using a path string.",
+      "signatures": [
+        {
+          "text": "setObjectValueByPath<TResult = any>(object: object, path: Path, value: TResult, options: { deleteUndefine?: boolean } = {}): void",
+          "typeParameters": ["TResult = any"],
+          "parameters": [
+            {
+              "name": "object",
+              "type": "object",
+              "optional": false,
+              "description": "The target object"
+            },
+            {
+              "name": "path",
+              "type": "Path",
+              "optional": false,
+              "description": "The path to set the value at (e.g., 'a.b.c')"
+            },
+            {
+              "name": "value",
+              "type": "TResult",
+              "optional": false,
+              "description": "The value to set"
+            },
+            {
+              "name": "options",
+              "type": "{ deleteUndefine?: boolean }",
+              "optional": true,
+              "defaultValue": "{}",
+              "description": "Options for setting the value",
+              "properties": [
+                {
+                  "name": "deleteUndefine",
+                  "type": "boolean",
+                  "optional": true,
+                  "description": "If true, delete the property when value is undefined"
+                }
+              ]
+            }
+          ],
+          "returns": { "type": "void" }
+        }
+      ],
+      "examples": [
+        "const obj = { a: { b: {} } };\nsetObjectValueByPath(obj, 'a.b.c', 42); // { a: { b: { c: 42 } } }"
+      ],
+      "keywords": ["dot path", "nested", "deep", "set by path", "lodash set"],
+      "notes": [
+        "Mutates `object` and returns void. With `{ deleteUndefine: true }`, setting `undefined` deletes the key."
+      ],
+      "source": "packages/object/src/set-object-value-by-path.ts"
+    },
+    {
+      "name": "setProperty",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Set the property at the given path to the given value.",
+      "signatures": [
+        {
+          "text": "setProperty<ObjectType extends (Record<string, any> | unknown[])>(object: ObjectType, path: string | ReadonlyArray<string | number>, value: unknown): ObjectType",
+          "typeParameters": ["ObjectType extends (Record<string, any> | unknown[])"],
+          "parameters": [
+            {
+              "name": "object",
+              "type": "ObjectType",
+              "optional": false,
+              "description": "Object or array to set the `path` value."
+            },
+            {
+              "name": "path",
+              "type": "string | ReadonlyArray<string | number>",
+              "optional": false,
+              "description": "Path of the property in the object, using `.` to separate each nested key. Use `\\\\.` if you have a `.` in the key. Array indices can be accessed using bracket notation (`'users[0].name'`) or dot notation (`'users.0.name'`). Both syntaxes are equivalent and will create arrays when setting values. Numeric strings in dot notation (like `'users.0.name'`) are automatically coerced to numbers. When using array paths, numeric strings are normalized to numbers for simplicity (treating `['users', '0']` the same as `['users', 0]`)."
+            },
+            {
+              "name": "value",
+              "type": "unknown",
+              "optional": false,
+              "description": "Value to set at `path`."
+            }
+          ],
+          "returns": { "type": "ObjectType", "description": "The object." }
+        }
+      ],
+      "examples": [
+        "const object = {foo: {bar: 'a'}};\nsetProperty(object, 'foo.bar', 'b');\nconsole.log(object);\n//=> {foo: {bar: 'b'}}\n\nconst foo = setProperty({}, 'foo.bar', 'c');\nconsole.log(foo);\n//=> {foo: {bar: 'c'}}\n\nsetProperty(object, 'foo.baz', 'x');\nconsole.log(object);\n//=> {foo: {bar: 'b', baz: 'x'}}\n\nsetProperty(object, 'foo.biz[0]', 'a');\nconsole.log(object);\n//=> {foo: {bar: 'b', baz: 'x', biz: ['a']}}\n\nsetProperty(object, 'foo.items.0', 'first');\nconsole.log(object);\n//=> {foo: {bar: 'b', baz: 'x', biz: ['a'], items: ['first']}}"
+      ],
+      "keywords": ["dot path", "nested", "deep", "set by path", "lodash set"],
+      "notes": ["Mutates and returns `object`."],
+      "reexport": { "module": "dot-prop", "name": "setProperty" },
+      "source": "packages/object/src/manipulation.ts"
+    },
+    {
+      "name": "stringifyPath",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Convert an array of path segments back into a path string.",
+      "signatures": [
+        {
+          "text": "stringifyPath(pathSegments: ReadonlyArray<string | number>, options?: {preferDotForIndices?: boolean}): string",
+          "parameters": [
+            {
+              "name": "pathSegments",
+              "type": "ReadonlyArray<string | number>",
+              "optional": false,
+              "description": "Array of path segments where numbers represent array indices and strings represent object keys."
+            },
+            {
+              "name": "options",
+              "type": "{preferDotForIndices?: boolean}",
+              "optional": true,
+              "description": "Options for stringifying the path."
+            }
+          ],
+          "returns": { "type": "string" }
+        }
+      ],
+      "examples": [
+        "stringifyPath(['foo', 'bar']);\n//=> 'foo.bar'\n\nstringifyPath(['foo', 0, 'bar']);\n//=> 'foo[0].bar'\n\nstringifyPath(['foo', '0', 'bar']);\n//=> 'foo[0].bar'\n\n// With preferDotForIndices option\nstringifyPath(['foo', 0, 'bar'], {preferDotForIndices: true});\n//=> 'foo.0.bar'"
+      ],
+      "keywords": ["dot path", "nested", "deep"],
+      "notes": [],
+      "reexport": { "module": "dot-prop", "name": "stringifyPath" },
+      "source": "packages/object/src/manipulation.ts"
+    },
+    {
+      "name": "ToCamelCase",
+      "kind": "type",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Convert snake_case to camelCase at the type level.\n\nThis intentionally matches the runtime behavior of `change-case`'s `camelCase`\nfor underscores:\n- ignores leading/consecutive underscores\n- lowercases words",
+      "type": "type ToCamelCase<S extends string, IsFirst extends boolean = true> = S extends `${infer Head}_${infer Tail}` ? Head extends '' ? ToCamelCase<Tail, IsFirst> : `${IsFirst extends true ? Lowercase<Head> : CamelizeSegment<Head>}${ToCamelCase<Tail, false>}` : S extends '' ? '' : IsFirst extends true ? Lowercase<S> : CamelizeSegment<S>;",
+      "examples": [],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/object/src/keys-to-camel-case.ts"
+    },
+    {
+      "name": "ToSnakeCase",
+      "kind": "type",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Convert camelCase to snake_case at the type level.\n\nThis intentionally matches the runtime behavior of `change-case`'s `snakeCase`\nfor camelCase conversion: inserts underscores before uppercase letters and lowercases.",
+      "type": "type ToSnakeCase<S extends string> = S extends `${infer P1}${infer P2}${infer P3}` ? P1 extends Lowercase<P1> ? P2 extends Uppercase<P2> ? `${P1}_${ToSnakeCase<`${Lowercase<P2>}${P3}`>}` : `${P1}${ToSnakeCase<`${P2}${P3}`>}` : S : S;",
+      "examples": [],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/object/src/keys-to-snake-case.ts"
+    },
+    {
+      "name": "unflatten",
+      "kind": "function",
+      "package": "@pixpilot/object",
+      "importPath": "@pixpilot/object",
+      "runtime": "universal",
+      "category": "Object",
+      "description": "Convert an object with dot paths into a nested object.\n\nUses the same path rules and escaping as the rest of the API.",
+      "signatures": [
+        {
+          "text": "unflatten(object: Record<string, unknown>): Record<string, unknown>",
+          "parameters": [
+            {
+              "name": "object",
+              "type": "Record<string, unknown>",
+              "optional": false,
+              "description": "A plain object mapping paths to values."
+            }
+          ],
+          "returns": {
+            "type": "Record<string, unknown>",
+            "description": "A new nested object."
+          }
+        }
+      ],
+      "examples": [
+        "const flat = {\n\t'unicorn.name': 'Rainbow Dash',\n\t'unicorn.color': '🦄',\n\t'unicorn.treasures[0]': 'sparkles',\n\t'unicorn.treasures[1]': 'glitter',\n};\n\nunflatten(flat);\n//=> {\n//=> \tunicorn: {\n//=> \t\tname: 'Rainbow Dash',\n//=> \t\tcolor: '🦄',\n//=> \t\ttreasures: ['sparkles', 'glitter']\n//=> \t}\n//=> }"
+      ],
+      "keywords": ["dot paths to object", "expand", "dot path", "nested", "deep"],
+      "notes": [],
+      "reexport": { "module": "dot-prop", "name": "unflatten" },
+      "source": "packages/object/src/manipulation.ts"
+    },
+    {
+      "name": "createPaginatedResult",
+      "kind": "function",
+      "package": "@pixpilot/pagination",
+      "importPath": "@pixpilot/pagination",
+      "runtime": "universal",
+      "category": "Pagination",
+      "description": "Wrap a page of items with pagination metadata (total pages, next/previous flags).\n\n`total` is clamped to at least 0, `page` and `itemsPerPage` to at least 1.",
+      "signatures": [
+        {
+          "text": "createPaginatedResult<TItem>(items: TItem[], total: number, page: number, itemsPerPage: number): PaginatedResult<TItem>",
+          "typeParameters": ["TItem"],
+          "parameters": [
+            {
+              "name": "items",
+              "type": "TItem[]",
+              "optional": false,
+              "description": "Items on the current page"
+            },
+            {
+              "name": "total",
+              "type": "number",
+              "optional": false,
+              "description": "Total number of items across all pages"
+            },
+            {
+              "name": "page",
+              "type": "number",
+              "optional": false,
+              "description": "Current 1-based page number"
+            },
+            {
+              "name": "itemsPerPage",
+              "type": "number",
+              "optional": false,
+              "description": "Page size"
+            }
+          ],
+          "returns": {
+            "type": "PaginatedResult<TItem>",
+            "description": "The items plus pagination metadata",
+            "properties": [
+              {
+                "name": "items",
+                "type": "TItem[]",
+                "optional": false,
+                "description": "Items on the current page."
+              },
+              {
+                "name": "total",
+                "type": "number",
+                "optional": false,
+                "description": "Total number of items across all pages."
+              },
+              {
+                "name": "page",
+                "type": "number",
+                "optional": false,
+                "description": "Current 1-based page number."
+              },
+              {
+                "name": "itemsPerPage",
+                "type": "number",
+                "optional": false,
+                "description": "Page size."
+              },
+              {
+                "name": "totalPages",
+                "type": "number",
+                "optional": false,
+                "description": "Number of pages, at least 1."
+              },
+              { "name": "hasNextPage", "type": "boolean", "optional": false },
+              { "name": "hasPreviousPage", "type": "boolean", "optional": false }
+            ]
+          }
+        }
+      ],
+      "examples": [
+        "const { offset, limit, page, itemsPerPage } = getPaginationOffsets({ page: 2 });\nconst rows = await db.select().from(users).limit(limit).offset(offset);\n\ncreatePaginatedResult(rows, 45, page, itemsPerPage);\n// { items: rows, total: 45, page: 2, itemsPerPage: 20, totalPages: 3, hasNextPage: true, hasPreviousPage: true }"
+      ],
+      "keywords": ["paginated response", "total pages", "has next page", "api response"],
+      "notes": [],
+      "source": "packages/pagination/src/pagination.ts"
+    },
+    {
+      "name": "getPaginationOffsets",
+      "kind": "function",
+      "package": "@pixpilot/pagination",
+      "importPath": "@pixpilot/pagination",
+      "runtime": "universal",
+      "category": "Pagination",
+      "description": "Normalize page-based pagination input into `offset`/`limit` values for a query.\n\n`page` is clamped to at least 1 and `itemsPerPage` to 1–100; missing or\nnon-finite values fall back to page 1 and 20 items per page.",
+      "signatures": [
+        {
+          "text": "getPaginationOffsets(input: PaginationInput): PaginationOffsets",
+          "parameters": [
+            {
+              "name": "input",
+              "type": "PaginationInput",
+              "optional": false,
+              "description": "Requested page and page size",
+              "properties": [
+                {
+                  "name": "page",
+                  "type": "number",
+                  "optional": true,
+                  "description": "1-based page number (default: 1)."
+                },
+                {
+                  "name": "itemsPerPage",
+                  "type": "number",
+                  "optional": true,
+                  "description": "Page size, clamped to 1–100 (default: 20)."
+                }
+              ]
+            }
+          ],
+          "returns": {
+            "type": "PaginationOffsets",
+            "description": "The offset and limit plus the normalized page and page size",
+            "properties": [
+              {
+                "name": "offset",
+                "type": "number",
+                "optional": false,
+                "description": "Number of items to skip."
+              },
+              {
+                "name": "limit",
+                "type": "number",
+                "optional": false,
+                "description": "Number of items to take (equal to `itemsPerPage`)."
+              },
+              {
+                "name": "page",
+                "type": "number",
+                "optional": false,
+                "description": "Normalized 1-based page number."
+              },
+              {
+                "name": "itemsPerPage",
+                "type": "number",
+                "optional": false,
+                "description": "Normalized page size."
+              }
+            ]
+          }
+        }
+      ],
+      "examples": [
+        "getPaginationOffsets({ page: 3, itemsPerPage: 10 });\n// { offset: 20, limit: 10, page: 3, itemsPerPage: 10 }\n\ngetPaginationOffsets({}); // { offset: 0, limit: 20, page: 1, itemsPerPage: 20 }"
+      ],
+      "keywords": ["offset", "limit", "skip", "take", "sql", "page size"],
+      "notes": [],
+      "source": "packages/pagination/src/pagination.ts"
+    },
+    {
+      "name": "PaginatedResult",
+      "kind": "type",
+      "package": "@pixpilot/pagination",
+      "importPath": "@pixpilot/pagination",
+      "runtime": "universal",
+      "category": "Pagination",
+      "description": "TypeScript type exported by @pixpilot/pagination.",
+      "type": "interface PaginatedResult<TItem> {\n    items: TItem[];\n    total: number;\n    page: number;\n    itemsPerPage: number;\n    totalPages: number;\n    hasNextPage: boolean;\n    hasPreviousPage: boolean;\n}",
+      "properties": [
+        {
+          "name": "items",
+          "type": "TItem[]",
+          "optional": false,
+          "description": "Items on the current page."
+        },
+        {
+          "name": "total",
+          "type": "number",
+          "optional": false,
+          "description": "Total number of items across all pages."
+        },
+        {
+          "name": "page",
+          "type": "number",
+          "optional": false,
+          "description": "Current 1-based page number."
+        },
+        {
+          "name": "itemsPerPage",
+          "type": "number",
+          "optional": false,
+          "description": "Page size."
+        },
+        {
+          "name": "totalPages",
+          "type": "number",
+          "optional": false,
+          "description": "Number of pages, at least 1."
+        },
+        { "name": "hasNextPage", "type": "boolean", "optional": false },
+        { "name": "hasPreviousPage", "type": "boolean", "optional": false }
+      ],
+      "examples": [],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/pagination/src/pagination.ts"
+    },
+    {
+      "name": "PaginationInput",
+      "kind": "type",
+      "package": "@pixpilot/pagination",
+      "importPath": "@pixpilot/pagination",
+      "runtime": "universal",
+      "category": "Pagination",
+      "description": "TypeScript type exported by @pixpilot/pagination.",
+      "type": "interface PaginationInput {\n    page?: number;\n    itemsPerPage?: number;\n}",
+      "properties": [
+        {
+          "name": "page",
+          "type": "number",
+          "optional": true,
+          "description": "1-based page number (default: 1)."
+        },
+        {
+          "name": "itemsPerPage",
+          "type": "number",
+          "optional": true,
+          "description": "Page size, clamped to 1–100 (default: 20)."
+        }
+      ],
+      "examples": [],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/pagination/src/pagination.ts"
+    },
+    {
+      "name": "PaginationOffsets",
+      "kind": "type",
+      "package": "@pixpilot/pagination",
+      "importPath": "@pixpilot/pagination",
+      "runtime": "universal",
+      "category": "Pagination",
+      "description": "TypeScript type exported by @pixpilot/pagination.",
+      "type": "interface PaginationOffsets {\n    offset: number;\n    limit: number;\n    page: number;\n    itemsPerPage: number;\n}",
+      "properties": [
+        {
+          "name": "offset",
+          "type": "number",
+          "optional": false,
+          "description": "Number of items to skip."
+        },
+        {
+          "name": "limit",
+          "type": "number",
+          "optional": false,
+          "description": "Number of items to take (equal to `itemsPerPage`)."
+        },
+        {
+          "name": "page",
+          "type": "number",
+          "optional": false,
+          "description": "Normalized 1-based page number."
+        },
+        {
+          "name": "itemsPerPage",
+          "type": "number",
+          "optional": false,
+          "description": "Normalized page size."
+        }
+      ],
+      "examples": [],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/pagination/src/pagination.ts"
+    },
+    {
+      "name": "capitalize",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Capitalize the first letter of a string.",
+      "signatures": [
+        {
+          "text": "capitalize(str: string): string",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to capitalize"
+            }
+          ],
+          "returns": { "type": "string", "description": "The capitalized string" }
+        }
+      ],
+      "examples": [
+        "capitalize('hello'); // 'Hello'\ncapitalize('WORLD'); // 'WORLD'\ncapitalize(''); // ''"
+      ],
+      "keywords": ["uppercase first letter", "ucfirst"],
+      "notes": [],
+      "source": "packages/string/src/manipulation.ts"
+    },
+    {
+      "name": "capitalizeFirst",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Capitalize the first letter of a string and lowercase the rest.",
+      "signatures": [
+        {
+          "text": "capitalizeFirst(str: string): string",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to capitalize"
+            }
+          ],
+          "returns": { "type": "string", "description": "The capitalized string" }
+        }
+      ],
+      "examples": [
+        "capitalizeFirst('hello'); // 'Hello'\ncapitalizeFirst('WORLD'); // 'World'\ncapitalizeFirst('hELLO wORLD'); // 'Hello world'"
+      ],
+      "keywords": ["ucfirst", "lowercase rest"],
+      "notes": [],
+      "source": "packages/string/src/manipulation.ts"
+    },
+    {
+      "name": "countOccurrences",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Count the occurrences of a substring in a string.",
+      "signatures": [
+        {
+          "text": "countOccurrences(str: string, searchValue: string, caseSensitive: boolean = true): number",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to search in"
+            },
+            {
+              "name": "searchValue",
+              "type": "string",
+              "optional": false,
+              "description": "The substring to count"
+            },
+            {
+              "name": "caseSensitive",
+              "type": "boolean",
+              "optional": true,
+              "defaultValue": "true",
+              "description": "Whether the search is case-sensitive (default: true)"
+            }
+          ],
+          "returns": { "type": "number", "description": "The number of occurrences" }
+        }
+      ],
+      "examples": [
+        "countOccurrences('hello world hello', 'hello'); // 2\ncountOccurrences('Hello HELLO hello', 'hello', false); // 3"
+      ],
+      "keywords": ["count substring", "frequency"],
+      "notes": [],
+      "source": "packages/string/src/manipulation.ts"
+    },
+    {
+      "name": "isAlphanumeric",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Check if a string contains only alphanumeric characters.",
+      "signatures": [
+        {
+          "text": "isAlphanumeric(str: string): boolean",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to check"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the string contains only alphanumeric characters, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isAlphanumeric('abc123'); // true\nisAlphanumeric('abc-123'); // false\nisAlphanumeric(''); // false"
+      ],
+      "keywords": ["letters and digits", "validate"],
+      "notes": [],
+      "source": "packages/string/src/validation.ts"
+    },
+    {
+      "name": "isEmail",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Check if a string is a valid email address.",
+      "signatures": [
+        {
+          "text": "isEmail(str: string): boolean",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to check"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the string is a valid email address, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isEmail('test@example.com'); // true\nisEmail('invalid-email'); // false"
+      ],
+      "keywords": ["validate email", "email address"],
+      "notes": [],
+      "source": "packages/string/src/validation.ts"
+    },
+    {
+      "name": "isEmptyString",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Check if a string is empty (zero length or only whitespace).",
+      "signatures": [
+        {
+          "text": "isEmptyString(str: string, trimWhitespace: boolean = true): boolean",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to check"
+            },
+            {
+              "name": "trimWhitespace",
+              "type": "boolean",
+              "optional": true,
+              "defaultValue": "true",
+              "description": "If true, treats whitespace-only strings as empty (default: true)"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the string is empty, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isEmptyString('');        // true\nisEmptyString('   ');     // true\nisEmptyString('   ', false); // false\nisEmptyString('hello');   // false"
+      ],
+      "keywords": ["blank", "whitespace only", "is blank"],
+      "notes": [],
+      "source": "packages/string/src/validation.ts"
+    },
+    {
+      "name": "isEmptyStringOrNil",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Like isEmptyString, but also returns true for null or undefined.\nUse this when working with optional fields, API responses, or environment variables.",
+      "signatures": [
+        {
+          "text": "isEmptyStringOrNil(str: string | null | undefined, trimWhitespace: boolean = true): boolean",
+          "parameters": [
+            { "name": "str", "type": "string | null | undefined", "optional": false },
+            {
+              "name": "trimWhitespace",
+              "type": "boolean",
+              "optional": true,
+              "defaultValue": "true"
+            }
+          ],
+          "returns": { "type": "boolean" }
+        }
+      ],
+      "examples": [
+        "isEmptyStringOrNil(null);      // true\nisEmptyStringOrNil(undefined); // true\nisEmptyStringOrNil('   ');     // true\nisEmptyStringOrNil('hello');   // false"
+      ],
+      "keywords": ["blank", "null or empty", "nullish"],
+      "notes": [],
+      "source": "packages/string/src/validation.ts"
+    },
+    {
+      "name": "isString",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Type guard to check if a value is a string.",
+      "signatures": [
+        {
+          "text": "isString(value: unknown): value is string",
+          "parameters": [
+            {
+              "name": "value",
+              "type": "unknown",
+              "optional": false,
+              "description": "The value to check"
+            }
+          ],
+          "returns": {
+            "type": "value is string",
+            "description": "True if the value is a string, false otherwise"
+          }
+        }
+      ],
+      "examples": [
+        "isString('hello'); // true\nisString(123); // false\nisString(null); // false"
+      ],
+      "keywords": ["type guard"],
+      "notes": [],
+      "source": "packages/string/src/type-guards.ts"
+    },
+    {
+      "name": "isUrl",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Check if a string is a valid URL.",
+      "signatures": [
+        {
+          "text": "isUrl(str: string): boolean",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to check"
+            }
+          ],
+          "returns": {
+            "type": "boolean",
+            "description": "True if the string is a valid URL, false otherwise"
+          }
+        }
+      ],
+      "examples": ["isUrl('https://example.com'); // true\nisUrl('not a url'); // false"],
+      "keywords": ["validate url", "link"],
+      "notes": [],
+      "source": "packages/string/src/validation.ts"
+    },
+    {
+      "name": "normalizeSpaces",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Replace multiple consecutive spaces with a single space.",
+      "signatures": [
+        {
+          "text": "normalizeSpaces(str: string): string",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to process"
+            }
+          ],
+          "returns": {
+            "type": "string",
+            "description": "The string with normalized spaces"
+          }
+        }
+      ],
+      "examples": [
+        "normalizeSpaces('hello    world'); // 'hello world'\nnormalizeSpaces('a  b  c'); // 'a b c'"
+      ],
+      "keywords": ["collapse whitespace", "squish"],
+      "notes": [],
+      "source": "packages/string/src/manipulation.ts"
+    },
+    {
+      "name": "padEnd",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Pad a string to a specified length from the end.",
+      "signatures": [
+        {
+          "text": "padEnd(str: string, targetLength: number, padString: string = ' '): string",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to pad"
+            },
+            {
+              "name": "targetLength",
+              "type": "number",
+              "optional": false,
+              "description": "The target length"
+            },
+            {
+              "name": "padString",
+              "type": "string",
+              "optional": true,
+              "defaultValue": "' '",
+              "description": "The string to pad with (default: ' ')"
+            }
+          ],
+          "returns": { "type": "string", "description": "The padded string" }
+        }
+      ],
+      "examples": ["padEnd('5', 3, '0'); // '500'\npadEnd('hello', 10); // 'hello     '"],
+      "keywords": ["pad right"],
+      "notes": [],
+      "source": "packages/string/src/manipulation.ts"
+    },
+    {
+      "name": "padStart",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Pad a string to a specified length from the start.",
+      "signatures": [
+        {
+          "text": "padStart(str: string, targetLength: number, padString: string = ' '): string",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to pad"
+            },
+            {
+              "name": "targetLength",
+              "type": "number",
+              "optional": false,
+              "description": "The target length"
+            },
+            {
+              "name": "padString",
+              "type": "string",
+              "optional": true,
+              "defaultValue": "' '",
+              "description": "The string to pad with (default: ' ')"
+            }
+          ],
+          "returns": { "type": "string", "description": "The padded string" }
+        }
+      ],
+      "examples": [
+        "padStart('5', 3, '0'); // '005'\npadStart('hello', 10); // '     hello'"
+      ],
+      "keywords": ["leading zeros", "pad left"],
+      "notes": [],
+      "source": "packages/string/src/manipulation.ts"
+    },
+    {
+      "name": "removeWhitespace",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Remove all whitespace from a string.",
+      "signatures": [
+        {
+          "text": "removeWhitespace(str: string): string",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to process"
+            }
+          ],
+          "returns": { "type": "string", "description": "The string without whitespace" }
+        }
+      ],
+      "examples": [
+        "removeWhitespace('hello world'); // 'helloworld'\nremoveWhitespace('  a  b  c  '); // 'abc'"
+      ],
+      "keywords": ["strip spaces"],
+      "notes": [],
+      "source": "packages/string/src/manipulation.ts"
+    },
+    {
+      "name": "repeat",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Repeat a string a specified number of times.",
+      "signatures": [
+        {
+          "text": "repeat(str: string, count: number): string",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to repeat"
+            },
+            {
+              "name": "count",
+              "type": "number",
+              "optional": false,
+              "description": "The number of times to repeat"
+            }
+          ],
+          "returns": { "type": "string", "description": "The repeated string" }
+        }
+      ],
+      "examples": ["repeat('ha', 3); // 'hahaha'\nrepeat('*', 5); // '*****'"],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/string/src/manipulation.ts"
+    },
+    {
+      "name": "reverse",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Reverse a string.",
+      "signatures": [
+        {
+          "text": "reverse(str: string): string",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to reverse"
+            }
+          ],
+          "returns": { "type": "string", "description": "The reversed string" }
+        }
+      ],
+      "examples": ["reverse('hello'); // 'olleh'\nreverse('abc123'); // '321cba'"],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/string/src/manipulation.ts"
+    },
+    {
+      "name": "toCamelCase",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Convert a string to camel case (`fooBar`).",
+      "signatures": [
+        {
+          "text": "toCamelCase(str: string): string",
+          "parameters": [{ "name": "str", "type": "string", "optional": false }],
+          "returns": { "type": "string" }
+        }
+      ],
+      "examples": [
+        "toCamelCase('hello world'); // 'helloWorld'\ntoCamelCase('user_id'); // 'userId'"
+      ],
+      "keywords": ["case conversion", "change case"],
+      "notes": [],
+      "source": "packages/string/src/case.ts"
+    },
+    {
+      "name": "toCapitalCase",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Convert a string to capital case (`Foo Bar`).",
+      "signatures": [
+        {
+          "text": "toCapitalCase(str: string): string",
+          "parameters": [{ "name": "str", "type": "string", "optional": false }],
+          "returns": { "type": "string" }
+        }
+      ],
+      "examples": [
+        "toCapitalCase('hello world'); // 'Hello World'\ntoCapitalCase('userId'); // 'User Id'"
+      ],
+      "keywords": ["case conversion", "change case", "title case"],
+      "notes": [],
+      "source": "packages/string/src/case.ts"
+    },
+    {
+      "name": "toConstantCase",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Convert a string to constant case (`CONSTANT_CASE`).",
+      "signatures": [
+        {
+          "text": "toConstantCase(str: string): string",
+          "parameters": [{ "name": "str", "type": "string", "optional": false }],
+          "returns": { "type": "string" }
+        }
+      ],
+      "examples": [
+        "toConstantCase('hello world'); // 'HELLO_WORLD'\ntoConstantCase('userId'); // 'USER_ID'"
+      ],
+      "keywords": [
+        "case conversion",
+        "change case",
+        "screaming snake case",
+        "upper snake case"
+      ],
+      "notes": [],
+      "source": "packages/string/src/case.ts"
+    },
+    {
+      "name": "toDotCase",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Convert a string to dot case (`dot.case`).",
+      "signatures": [
+        {
+          "text": "toDotCase(str: string): string",
+          "parameters": [{ "name": "str", "type": "string", "optional": false }],
+          "returns": { "type": "string" }
+        }
+      ],
+      "examples": [
+        "toDotCase('hello world'); // 'hello.world'\ntoDotCase('userId'); // 'user.id'"
+      ],
+      "keywords": ["case conversion", "change case"],
+      "notes": [],
+      "source": "packages/string/src/case.ts"
+    },
+    {
+      "name": "toKebabCase",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Convert a string to kebab case (`kebab-case`).",
+      "signatures": [
+        {
+          "text": "toKebabCase(str: string): string",
+          "parameters": [{ "name": "str", "type": "string", "optional": false }],
+          "returns": { "type": "string" }
+        }
+      ],
+      "examples": [
+        "toKebabCase('hello world'); // 'hello-world'\ntoKebabCase('userId'); // 'user-id'"
+      ],
+      "keywords": ["case conversion", "change case", "slug", "dash case"],
+      "notes": [],
+      "source": "packages/string/src/case.ts"
+    },
+    {
+      "name": "toNoCase",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Convert a string to no case (`no case`).",
+      "signatures": [
+        {
+          "text": "toNoCase(str: string): string",
+          "parameters": [{ "name": "str", "type": "string", "optional": false }],
+          "returns": { "type": "string" }
+        }
+      ],
+      "examples": [
+        "toNoCase('hello world'); // 'hello world'\ntoNoCase('userId'); // 'user id'"
+      ],
+      "keywords": ["case conversion", "change case", "humanize", "words"],
+      "notes": [],
+      "source": "packages/string/src/case.ts"
+    },
+    {
+      "name": "toPascalCase",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Convert a string to pascal case (`PascalCase`).",
+      "signatures": [
+        {
+          "text": "toPascalCase(str: string): string",
+          "parameters": [{ "name": "str", "type": "string", "optional": false }],
+          "returns": { "type": "string" }
+        }
+      ],
+      "examples": [
+        "toPascalCase('hello world'); // 'HelloWorld'\ntoPascalCase('user_id'); // 'UserId'"
+      ],
+      "keywords": ["case conversion", "change case", "upper camel case", "class name"],
+      "notes": [],
+      "source": "packages/string/src/case.ts"
+    },
+    {
+      "name": "toPascalSnakeCase",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Convert a string to pascal snake case (`Pascal_Snake_Case`).",
+      "signatures": [
+        {
+          "text": "toPascalSnakeCase(str: string): string",
+          "parameters": [{ "name": "str", "type": "string", "optional": false }],
+          "returns": { "type": "string" }
+        }
+      ],
+      "examples": [
+        "toPascalSnakeCase('hello world'); // 'Hello_World'\ntoPascalSnakeCase('userId'); // 'User_Id'"
+      ],
+      "keywords": ["case conversion", "change case"],
+      "notes": [],
+      "source": "packages/string/src/case.ts"
+    },
+    {
+      "name": "toPathCase",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Convert a string to path case (`path/case`).",
+      "signatures": [
+        {
+          "text": "toPathCase(str: string): string",
+          "parameters": [{ "name": "str", "type": "string", "optional": false }],
+          "returns": { "type": "string" }
+        }
+      ],
+      "examples": [
+        "toPathCase('hello world'); // 'hello/world'\ntoPathCase('userId'); // 'user/id'"
+      ],
+      "keywords": ["case conversion", "change case", "slash"],
+      "notes": [],
+      "source": "packages/string/src/case.ts"
+    },
+    {
+      "name": "toSentenceCase",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Convert a string to sentence case (`Sentence case`).",
+      "signatures": [
+        {
+          "text": "toSentenceCase(str: string): string",
+          "parameters": [{ "name": "str", "type": "string", "optional": false }],
+          "returns": { "type": "string" }
+        }
+      ],
+      "examples": [
+        "toSentenceCase('hello world'); // 'Hello world'\ntoSentenceCase('userId'); // 'User id'"
+      ],
+      "keywords": ["case conversion", "change case", "humanize"],
+      "notes": [],
+      "source": "packages/string/src/case.ts"
+    },
+    {
+      "name": "toSnakeCase",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Convert a string to snake case (`snake_case`).",
+      "signatures": [
+        {
+          "text": "toSnakeCase(str: string): string",
+          "parameters": [{ "name": "str", "type": "string", "optional": false }],
+          "returns": { "type": "string" }
+        }
+      ],
+      "examples": [
+        "toSnakeCase('hello world'); // 'hello_world'\ntoSnakeCase('userId'); // 'user_id'"
+      ],
+      "keywords": ["case conversion", "change case", "underscore"],
+      "notes": [],
+      "source": "packages/string/src/case.ts"
+    },
+    {
+      "name": "toTrainCase",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Convert a string to train case (`Train-Case`).",
+      "signatures": [
+        {
+          "text": "toTrainCase(str: string): string",
+          "parameters": [{ "name": "str", "type": "string", "optional": false }],
+          "returns": { "type": "string" }
+        }
+      ],
+      "examples": [
+        "toTrainCase('hello world'); // 'Hello-World'\ntoTrainCase('userId'); // 'User-Id'"
+      ],
+      "keywords": ["case conversion", "change case", "header case"],
+      "notes": [],
+      "source": "packages/string/src/case.ts"
+    },
+    {
+      "name": "truncate",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Truncate a string to a specified length, adding an ellipsis if truncated.",
+      "signatures": [
+        {
+          "text": "truncate(str: string, maxLength: number, ellipsis: string = '...'): string",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to truncate"
+            },
+            {
+              "name": "maxLength",
+              "type": "number",
+              "optional": false,
+              "description": "The maximum length of the string"
+            },
+            {
+              "name": "ellipsis",
+              "type": "string",
+              "optional": true,
+              "defaultValue": "'...'",
+              "description": "The ellipsis to append (default: '...')"
+            }
+          ],
+          "returns": { "type": "string", "description": "The truncated string" }
+        }
+      ],
+      "examples": [
+        "truncate('Hello World', 5); // 'Hello...'\ntruncate('Hello', 10); // 'Hello'\ntruncate('Hello World', 5, '…'); // 'Hello…'"
+      ],
+      "keywords": ["ellipsis", "shorten", "clip", "excerpt"],
+      "notes": [],
+      "source": "packages/string/src/manipulation.ts"
+    },
+    {
+      "name": "words",
+      "kind": "function",
+      "package": "@pixpilot/string",
+      "importPath": "@pixpilot/string",
+      "runtime": "universal",
+      "category": "String",
+      "description": "Extract words from a string.",
+      "signatures": [
+        {
+          "text": "words(str: string): string[]",
+          "parameters": [
+            {
+              "name": "str",
+              "type": "string",
+              "optional": false,
+              "description": "The string to extract words from"
+            }
+          ],
+          "returns": { "type": "string[]", "description": "An array of words" }
+        }
+      ],
+      "examples": [
+        "words('hello world'); // ['hello', 'world']\nwords('one-two_three'); // ['one', 'two', 'three']"
+      ],
+      "keywords": ["split words", "tokenize"],
+      "notes": [],
+      "source": "packages/string/src/manipulation.ts"
+    }
+  ]
+}

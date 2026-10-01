@@ -20,6 +20,12 @@ function hasPackageJson(dir: string): boolean {
  * @param check - Predicate run on each directory. Defaults to "contains a package.json".
  * @returns The absolute path of the first matching directory.
  * @throws If no matching directory is found before reaching the filesystem root.
+ *
+ * @example
+ * ```typescript
+ * findRoot(); // nearest directory with a package.json, from process.cwd()
+ * findRoot(import.meta.dirname, (dir) => existsSync(join(dir, 'pnpm-workspace.yaml')));
+ * ```
  */
 export function findRoot(
   start: string = process.cwd(),

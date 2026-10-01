@@ -5,15 +5,25 @@
 import { isEmptyObject, isPlainObject } from './type-guards';
 
 export interface CleanOptions {
+  /** Keys (array indices as strings) that are always removed. */
   cleanKeys?: readonly string[];
+  /** Values that are always removed. */
   cleanValues?: readonly unknown[];
+  /** Remove empty arrays (default: true). */
   emptyArrays?: boolean;
+  /** Remove empty plain objects (default: true). */
   emptyObjects?: boolean;
+  /** Remove empty strings (default: true). */
   emptyStrings?: boolean;
+  /** Remove `NaN` values (default: false). */
   NaNValues?: boolean;
+  /** Remove `null` values (default: true). */
   nullValues?: boolean;
+  /** Remove `undefined` values (default: true). */
   undefinedValues?: boolean;
+  /** Custom predicate run after a value is cleaned; return true to remove it. */
   shouldRemove?: (key: string, value: unknown, base?: unknown) => boolean;
+  /** Transforms each value before it is cleaned. */
   transform?: (key: string, value: unknown, base?: unknown) => unknown;
 }
 
@@ -138,6 +148,23 @@ function cleanDeep(value: Cleanable, options: ResolvedCleanOptions): Cleanable {
   return result;
 }
 
+/**
+ * Recursively remove empty values from an object or array, returning a new value.
+ *
+ * By default removes `null`, `undefined`, empty strings, empty arrays, and empty plain
+ * objects, including objects that become empty once cleaned. Other input is returned as is.
+ *
+ * @param value - The object or array to clean
+ * @param options - Which values and keys to remove
+ * @returns A cleaned copy of `value`
+ *
+ * @example
+ * ```typescript
+ * cleanObject({ a: 1, b: null, c: '', d: { e: undefined }, f: [] }); // { a: 1 }
+ * cleanObject({ a: '', b: null }, { emptyStrings: false }); // { a: '' }
+ * cleanObject({ id: 1, secret: 'x' }, { cleanKeys: ['secret'] }); // { id: 1 }
+ * ```
+ */
 function cleanObject<T>(value: T, options?: CleanOptions): T {
   const resolvedOptions = resolveOptions(options);
 

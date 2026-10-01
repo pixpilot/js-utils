@@ -3,6 +3,14 @@
  *
  * @param value - The value to parse as a date. Can be a string, number, or Date object.
  * @returns A Date object if the value is a valid date, otherwise null.
+ *
+ * @example
+ * ```typescript
+ * parseDateOrNull('2023-01-15'); // Date for 2023-01-15
+ * parseDateOrNull(1673740800000); // Date from a timestamp
+ * parseDateOrNull('not a date'); // null
+ * parseDateOrNull(undefined); // null
+ * ```
  */
 export function parseDateOrNull(value: unknown): Date | null {
   if (value == null) {

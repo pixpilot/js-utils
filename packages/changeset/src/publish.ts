@@ -9,6 +9,22 @@ import { loadEnvFiles } from '@pixpilot/env/node';
 
 const SECRETS_FILE = '.env.local';
 
+/**
+ * Run `pnpm changeset publish`, authenticating with the `NPM_TOKEN` from `.env.local`
+ * through a temporary `.npmrc` that is deleted afterwards.
+ *
+ * Exits the process with code 1 when `NPM_TOKEN` is missing. Also available as the
+ * `changeset-publish` CLI (`--dry-run`, `--next`).
+ *
+ * @param options - Publish options
+ * @param options.isDryRun - Pass `--dry-run` to `changeset publish`
+ * @param options.isNext - Publish under the `next` dist-tag
+ *
+ * @example
+ * ```typescript
+ * publish({ isDryRun: true, isNext: false });
+ * ```
+ */
 export function publish(options: { isDryRun: boolean; isNext: boolean }): void {
   const { isDryRun, isNext } = options;
 

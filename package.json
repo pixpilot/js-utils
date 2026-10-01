@@ -41,6 +41,8 @@
     "deps:update:major": "npx taze major -r -w && pnpm install",
     "changeset": "changeset",
     "generate-packages-section": "node scripts/generate-packages-section.js",
+    "mcp:generate": "pnpm --filter @pixpilot/js-utils-mcp mcp:generate",
+    "mcp:check": "pnpm --filter @pixpilot/js-utils-mcp mcp:check",
     "gen:package": "npx @pixpilot/scaffoldfy@latest --config ./generators/package/scaffoldfy.json"
   },
   "devDependencies": {

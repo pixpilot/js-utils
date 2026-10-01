@@ -41,9 +41,9 @@ export function isInteger(value: unknown): value is number {
  *
  * @example
  * ```typescript
- * isFinite(42); // true
- * isFinite(Infinity); // false
- * isFinite(NaN); // false
+ * isFiniteNumber(42); // true
+ * isFiniteNumber(Infinity); // false
+ * isFiniteNumber(NaN); // false
  * ```
  */
 export function isFiniteNumber(value: unknown): value is number {

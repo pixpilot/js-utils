@@ -1,0 +1,32 @@
+import { defineCatalogPackage } from '../scripts/catalog';
+
+export default defineCatalogPackage({
+  category: 'Date',
+  runtime: 'universal',
+  keywords: ['date', 'time', 'calendar'],
+  utilities: {
+    addDays: { keywords: ['subtract days', 'tomorrow', 'yesterday', 'date math'] },
+    addHours: { keywords: ['subtract hours', 'date math'] },
+    addMinutes: { keywords: ['subtract minutes', 'date math'] },
+    addMonths: { keywords: ['subtract months', 'next month', 'date math'] },
+    addYears: { keywords: ['subtract years', 'date math'] },
+    diffDays: { keywords: ['difference', 'days between', 'elapsed', 'duration'] },
+    diffHours: { keywords: ['difference', 'hours between', 'elapsed', 'duration'] },
+    diffMinutes: { keywords: ['difference', 'minutes between', 'elapsed', 'duration'] },
+    endOfDay: { keywords: ['last moment of day', '23:59:59'] },
+    endOfMonth: { keywords: ['last day of month'] },
+    formatISODate: { keywords: ['yyyy-mm-dd', 'format date', 'iso 8601', 'date string'] },
+    formatISODateTime: { keywords: ['iso 8601', 'format datetime', 'timestamp string'] },
+    getDaysInMonth: { keywords: ['month length', 'number of days'] },
+    isDate: { keywords: ['type guard', 'instanceof date'] },
+    isFuture: { keywords: ['upcoming', 'after now'] },
+    isLeapYear: { keywords: ['february 29'] },
+    isPast: { keywords: ['expired', 'before now'] },
+    isSameDay: { keywords: ['compare dates', 'same date'] },
+    isToday: { keywords: ['current day'] },
+    isValidDate: { keywords: ['type guard', 'invalid date', 'validate date'] },
+    parseDateOrNull: { keywords: ['parse date', 'safe date', 'invalid date', 'to date'] },
+    startOfDay: { keywords: ['midnight', 'beginning of day', 'strip time'] },
+    startOfMonth: { keywords: ['first day of month'] },
+  },
+});

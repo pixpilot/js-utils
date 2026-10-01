@@ -2,6 +2,7 @@ import { isGuidString } from '@pixpilot/guid';
 import { toCamelCase as toCamelCaseString } from '@pixpilot/string';
 
 export interface KeysToCamelCaseOptions {
+  /** Return false to keep a key unchanged. GUID keys are never converted. */
   shouldConvert?: (key: string) => boolean;
 }
 
@@ -65,6 +66,23 @@ function shouldConvertKey(key: string, options?: KeysToCamelCaseOptions): boolea
   return options?.shouldConvert?.(key) !== false;
 }
 
+/**
+ * Converts object keys from snake_case to camelCase recursively, including keys
+ * inside nested objects and arrays. GUID keys are left unchanged.
+ *
+ * @param obj - The value whose keys to convert
+ * @param options - Conversion options
+ * @returns A new value with camelCase keys, typed accordingly
+ *
+ * @example
+ * ```typescript
+ * keysToCamelCase({ user_id: 1, profile: { first_name: 'Ada' } });
+ * // { userId: 1, profile: { firstName: 'Ada' } }
+ *
+ * keysToCamelCase({ keep_me: 1, convert_me: 2 }, { shouldConvert: (key) => key !== 'keep_me' });
+ * // { keep_me: 1, convertMe: 2 }
+ * ```
+ */
 export function keysToCamelCase<T>(
   obj: T,
   options?: KeysToCamelCaseOptions,

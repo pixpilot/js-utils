@@ -6,9 +6,10 @@
  * @returns True if the string is empty, false otherwise
  *
  * @example
- * isEmpty('');        // true
- * isEmpty('   ');     // true
- * isEmpty('hello');   // false
+ * isEmptyString('');        // true
+ * isEmptyString('   ');     // true
+ * isEmptyString('   ', false); // false
+ * isEmptyString('hello');   // false
  */
 export function isEmptyString(str: string, trimWhitespace = true): boolean {
   return trimWhitespace ? str.trim().length === 0 : str.length === 0;

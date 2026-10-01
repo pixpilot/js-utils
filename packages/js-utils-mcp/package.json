@@ -1,0 +1,88 @@
+{
+  "name": "@pixpilot/js-utils-mcp",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.17.0",
+  "description": "MCP server that lets AI coding assistants search, install, and use the @pixpilot JavaScript & TypeScript utility packages.",
+  "author": "Mo Doaie <m.doaie@hotmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/pixpilot/js-utils/tree/main/packages/js-utils-mcp#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pixpilot/js-utils.git",
+    "directory": "packages/js-utils-mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/pixpilot/js-utils/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model context protocol",
+    "ai",
+    "llm",
+    "pixpilot",
+    "utilities"
+  ],
+  "sideEffects": false,
+  "exports": "./src/index.ts",
+  "bin": {
+    "js-utils-mcp": "./dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js"
+      }
+    },
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "prepublishOnly": "pnpm run clean && pnpm run build",
+    "clean": "git clean -xdf .cache .turbo dist",
+    "clean:all": "pnpm clean && git clean -xdf node_modules",
+    "build": "tsdown",
+    "build:watch": "tsdown --watch",
+    "dev": "tsx src/cli.ts",
+    "mcp:generate": "tsx scripts/generate-registry.ts",
+    "mcp:check": "tsx scripts/generate-registry.ts --check",
+    "test": "vitest --run --passWithNoTests",
+    "test:watch": "vitest --watch",
+    "test:ui": "vitest --ui --watch",
+    "test:ui:coverage": "vitest --ui --coverage --watch --hookTimeout=30000 --coverage.thresholds.lines=0 --coverage.thresholds.functions=0 --coverage.thresholds.branches=0 --coverage.thresholds.statements=0",
+    "test:coverage": "vitest --coverage",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint",
+    "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "catalog:runtime",
+    "zod": "catalog:runtime"
+  },
+  "devDependencies": {
+    "@internal/eslint-config": "workspace:*",
+    "@internal/prettier-config": "workspace:*",
+    "@internal/tsconfig": "workspace:*",
+    "@internal/tsdown-config": "workspace:*",
+    "@internal/vitest-config": "workspace:*",
+    "@types/node": "catalog:tooling",
+    "@vitest/coverage-v8": "catalog:testing",
+    "@vitest/ui": "catalog:testing",
+    "eslint": "catalog:tooling",
+    "prettier": "catalog:tooling",
+    "tsdown": "catalog:build",
+    "tsx": "catalog:tooling",
+    "typescript": "catalog:tooling",
+    "vitest": "catalog:testing"
+  },
+  "prettier": "@internal/prettier-config"
+}
