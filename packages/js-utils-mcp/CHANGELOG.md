@@ -1,5 +1,12 @@
 # @pixpilot/js-utils-mcp
 
+## 0.2.0
+
+### Minor Changes
+
+- add reusable MCP server generator
+- add searchable MCP server for workspace utilities
+
 ## 0.1.0
 
 ### Minor Changes

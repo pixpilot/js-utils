@@ -1,5 +1,11 @@
 # @pixpilot/string
 
+## 3.3.0
+
+### Minor Changes
+
+- add searchable MCP server for workspace utilities
+
 ## 3.2.0
 
 ### Minor Changes

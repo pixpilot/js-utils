@@ -1,5 +1,11 @@
 # @pixpilot/hash
 
+## 0.5.0
+
+### Minor Changes
+
+- add searchable MCP server for workspace utilities
+
 ## 0.4.0
 
 ### Minor Changes
