@@ -95,9 +95,24 @@ describe('createMcpServer', () => {
     });
 
     expect(found.structuredContent).toMatchObject({ results: [{ name: 'toKebabCase' }] });
+    expect(found.structuredContent).not.toHaveProperty('unmatchedTerms');
     expect(empty.structuredContent).toMatchObject({
       results: [],
       hint: expect.any(String),
+    });
+  });
+
+  it('flags query words that no result covers', async () => {
+    const mcp = await connect();
+    const partial = await mcp.callTool({
+      name: 'search_utilities',
+      arguments: { query: 'truncate with kubernetes', limit: 1 },
+    });
+
+    expect(partial.structuredContent).toMatchObject({
+      results: [{ name: 'truncate', matchedTerms: ['truncate'] }],
+      unmatchedTerms: ['kubernetes'],
+      hint: expect.stringContaining('"kubernetes"'),
     });
   });
 

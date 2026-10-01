@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_SEARCH_LIMIT, searchUtilities } from '../src/search';
+import { DEFAULT_SEARCH_LIMIT, queryTerms, searchUtilities } from '../src/search';
 import { fixtureRegistry, utility } from './helpers';
 
 const { utilities } = fixtureRegistry();
@@ -93,5 +93,51 @@ describe('searchUtilities', () => {
 
   it('returns nothing for unrelated queries', () => {
     expect(names('kubernetes')).toEqual([]);
+  });
+
+  it('matches terms at word starts only', () => {
+    const catalog = [
+      utility({ name: 'arrayMove', description: 'Move an item to another index.' }),
+      utility({ name: 'removeWhitespace', description: 'Remove all whitespace.' }),
+      utility({ name: 'formatDate', description: 'Format dates.' }),
+      utility({ name: 'updateUser', description: 'Update a user.' }),
+    ];
+    const search = (query: string): string[] =>
+      searchUtilities(catalog, query).map((result) => result.name);
+
+    expect(search('move')).toEqual(['arrayMove']);
+    expect(search('date')).toEqual(['formatDate']);
+    expect(search('whitespace')).toEqual(['removeWhitespace']);
+  });
+
+  it('reports the query terms each result matched', () => {
+    const [result] = searchUtilities(utilities, 'truncate kubernetes');
+
+    expect(result).toMatchObject({ name: 'truncate', matchedTerms: ['truncate'] });
+    expect(searchUtilities(utilities, '', { limit: 1 })[0]).not.toHaveProperty(
+      'matchedTerms',
+    );
+  });
+
+  it('counts a typo match as matching the query', () => {
+    expect(searchUtilities(utilities, 'trunacte')[0]?.matchedTerms).toEqual(['trunacte']);
+  });
+
+  it('drops matches far weaker than the best one', () => {
+    const catalog = [
+      utility({ name: 'endOfMonth', keywords: ['end of month'] }),
+      utility({ name: 'padText', description: 'Pad text at the end.' }),
+    ];
+
+    expect(searchUtilities(catalog, 'end of month').map((result) => result.name)).toEqual(
+      ['endOfMonth'],
+    );
+  });
+});
+
+describe('queryTerms', () => {
+  it('lower-cases the query and drops filler words', () => {
+    expect(queryTerms('  Group the Items BY key ')).toEqual(['group', 'items', 'key']);
+    expect(queryTerms('')).toEqual([]);
   });
 });

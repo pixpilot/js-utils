@@ -16,7 +16,7 @@ import { createTempWorkspace, fixtureWorkspaceFiles } from './helpers';
 // Each build type-checks the fixture workspace.
 const TIMEOUT_MS = 60_000;
 
-let cleanup: (() => void) | undefined;
+let cleanup: (() => Promise<void>) | undefined;
 
 function workspace(overrides: Record<string, string> = {}) {
   const created = createTempWorkspace({ ...fixtureWorkspaceFiles(), ...overrides });
@@ -38,8 +38,8 @@ function find(utilities: readonly UtilityDoc[], name: string): UtilityDoc | unde
   return utilities.find((item) => item.name === name);
 }
 
-afterEach(() => {
-  cleanup?.();
+afterEach(async () => {
+  await cleanup?.();
   cleanup = undefined;
 });
 

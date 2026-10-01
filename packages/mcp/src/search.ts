@@ -14,6 +14,8 @@ export interface UtilitySearchResult {
   deprecated?: true;
   /** Relevance score; higher is a stronger match. `0` in query-less list mode. */
   score: number;
+  /** Query terms (see {@link queryTerms}) this utility matched. Absent in list mode. */
+  matchedTerms?: string[];
 }
 
 /** Filters and limits for {@link searchUtilities}. */
@@ -40,6 +42,11 @@ const MIN_STEM_LENGTH = 4;
 
 /** Types rank below the functions that use them. */
 const TYPE_WEIGHT = 0.6;
+
+/** Matches scoring below this share of the best match are dropped as noise. */
+const MIN_RELATIVE_SCORE = 0.2;
+
+const WORD_CHAR = /[a-z\d]/u;
 
 /** Points awarded for each kind of match, tuned so stronger signals win. */
 const SCORE = {
@@ -88,8 +95,8 @@ const STOP_WORDS = new Set([
 interface SearchableUtility {
   utility: UtilityDoc;
   name: string;
-  /** camelCase name split into words, e.g. `keys to camel case`. */
-  nameWords: string;
+  /** The name from each camelCase word onwards: `keystocamelcase`, `tocamelcase`, `camelcase`, `case`. */
+  nameTails: string[];
   category: string;
   description: string;
   keywords: string[];
@@ -112,34 +119,63 @@ function tokenVariants(token: string): string[] {
   return [token];
 }
 
+/**
+ * True when `text` contains `term` at the start of a word, so `move` matches
+ * `move an item` but not `remove`, and `date` matches `dates` but not `update`.
+ */
+function includesAtWordStart(text: string, term: string): boolean {
+  const anywhere = !WORD_CHAR.test(term.charAt(0)); // `.env` matches `process.env`
+  let index = text.indexOf(term);
+
+  while (index !== -1) {
+    if (anywhere || index === 0 || !WORD_CHAR.test(text.charAt(index - 1))) return true;
+    index = text.indexOf(term, index + 1);
+  }
+
+  return false;
+}
+
 function includesAny(haystack: string, variants: readonly string[]): boolean {
-  return variants.some((variant) => haystack.includes(variant));
+  return variants.some((variant) => includesAtWordStart(haystack, variant));
+}
+
+/** True when `text` (spaces ignored) starts at one of the name's words: `camelcase` matches `keysToCamelCase`. */
+function matchesName(item: SearchableUtility, text: string): boolean {
+  const compact = text.replace(/\s+/gu, '');
+  return item.nameTails.some((tail) => tail.startsWith(compact));
 }
 
 function toSearchable(utility: UtilityDoc): SearchableUtility {
+  const words = splitCamelCase(utility.name)
+    .split(' ')
+    .filter((word) => word.length > 0);
+
   return {
     utility,
     name: utility.name.toLowerCase(),
-    nameWords: splitCamelCase(utility.name),
+    nameTails: words.map((_, index) => words.slice(index).join('')),
     category: utility.category.toLowerCase(),
     description: utility.description.toLowerCase(),
     keywords: utility.keywords.map((keyword) => keyword.toLowerCase()),
   };
 }
 
+interface UtilityMatch {
+  score: number;
+  matchedTerms: string[];
+}
+
 function scoreUtility(
   item: SearchableUtility,
   query: string,
   tokens: readonly string[],
-): number {
+): UtilityMatch {
   let score = 0;
 
   // 1. Whole-query name match, graded by how tight it is.
   if (item.name === query) score += SCORE.nameExact;
   else if (item.name.startsWith(query)) score += SCORE.namePrefix;
-  else if (item.name.includes(query) || item.nameWords.includes(query)) {
-    score += SCORE.nameIncludes;
-  }
+  else if (matchesName(item, query)) score += SCORE.nameIncludes;
 
   // 2. Whole-query keyword / category match.
   if (item.keywords.includes(query)) score += SCORE.keywordExact;
@@ -147,12 +183,12 @@ function scoreUtility(
 
   // 3. Per-token matching so natural-language queries ("end of month",
   //    "camel case keys") still score against every field.
-  let matchedTokens = 0;
+  const matchedTerms: string[] = [];
   for (const token of tokens) {
     const variants = tokenVariants(token);
     let matched = false;
 
-    if (includesAny(item.name, variants)) {
+    if (variants.some((variant) => matchesName(item, variant))) {
       score += SCORE.tokenName;
       matched = true;
     }
@@ -168,24 +204,27 @@ function scoreUtility(
       score += SCORE.tokenDescription;
       matched = true;
     }
-    if (matched) matchedTokens += 1;
+    if (matched) matchedTerms.push(token);
   }
 
   // 4. Reward utilities that cover the whole request over ones matching one word.
-  if (tokens.length > 1 && matchedTokens === tokens.length) score += SCORE.allTokens;
+  if (tokens.length > 1 && matchedTerms.length === tokens.length) {
+    score += SCORE.allTokens;
+  }
 
   // 5. Light typo tolerance on the name ("trunacte" -> "truncate").
   if (score === 0 && levenshtein(query, item.name) <= MAX_TYPO_DISTANCE) {
     score += SCORE.fuzzyName;
+    matchedTerms.push(...tokens);
   }
 
-  if (score === 0) return 0;
+  if (score === 0) return { score, matchedTerms };
   if (item.utility.kind === 'type') score = Math.round(score * TYPE_WEIGHT);
   if (item.utility.deprecated !== undefined) {
     score = Math.max(1, score - SCORE.deprecatedPenalty);
   }
 
-  return score;
+  return { score, matchedTerms };
 }
 
 function shorten(text: string, maxLength: number): string {
@@ -216,7 +255,11 @@ function signatureOf(utility: UtilityDoc): string | undefined {
   return undefined;
 }
 
-function toResult(utility: UtilityDoc, score: number): UtilitySearchResult {
+function toResult(
+  utility: UtilityDoc,
+  score: number,
+  matchedTerms?: string[],
+): UtilitySearchResult {
   const signature = signatureOf(utility);
 
   return {
@@ -229,6 +272,7 @@ function toResult(utility: UtilityDoc, score: number): UtilitySearchResult {
     summary: firstSentence(utility.description),
     ...(utility.deprecated === undefined ? {} : { deprecated: true as const }),
     score,
+    ...(matchedTerms === undefined ? {} : { matchedTerms }),
   };
 }
 
@@ -248,12 +292,22 @@ function matchesRuntime(utility: UtilityDoc, runtime: UtilityRuntime): boolean {
   return utility.runtime === runtime || utility.runtime === 'universal';
 }
 
+/** The words of `query` that search matches individually: lower-cased, without filler words. */
+export function queryTerms(query: string): string[] {
+  return query
+    .trim()
+    .toLowerCase()
+    .split(/[\s,;:!?()]+/u)
+    .filter((token) => token.length > 0 && !STOP_WORDS.has(token));
+}
+
 /**
  * Smart, dependency-free search over the utility registry.
  *
  * With an empty query it lists (filtered) utilities alphabetically; otherwise it
- * ranks them by name, keywords, category, and description, with light typo
- * tolerance on the name. Results are capped at `limit`.
+ * ranks them by name, keywords, category, and description, matching terms at
+ * word starts, with light typo tolerance on the name. Matches far weaker than
+ * the best one are dropped. Results are capped at `limit`.
  */
 export function searchUtilities(
   utilities: readonly UtilityDoc[],
@@ -280,19 +334,19 @@ export function searchUtilities(
       .map((utility) => toResult(utility, 0));
   }
 
-  const tokens = normalizedQuery
-    .split(/[\s,;:!?()]+/u)
-    .filter((token) => token.length > 0 && !STOP_WORDS.has(token));
+  const tokens = queryTerms(normalizedQuery);
+  const ranked = candidates
+    .map(toSearchable)
+    .map((item) => {
+      const { score, matchedTerms } = scoreUtility(item, normalizedQuery, tokens);
+      return toResult(item.utility, score, matchedTerms);
+    })
+    .filter((result) => result.score > 0)
+    // Rank by score, then break ties alphabetically for stable output.
+    .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+  const minScore = (ranked[0]?.score ?? 0) * MIN_RELATIVE_SCORE;
 
-  return (
-    candidates
-      .map(toSearchable)
-      .map((item) => toResult(item.utility, scoreUtility(item, normalizedQuery, tokens)))
-      .filter((result) => result.score > 0)
-      // Rank by score, then break ties alphabetically for stable output.
-      .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name))
-      .slice(0, max)
-  );
+  return ranked.filter((result) => result.score >= minScore).slice(0, max);
 }
 
 /** Small, dependency-free Levenshtein distance for typo tolerance. */

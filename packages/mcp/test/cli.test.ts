@@ -13,7 +13,7 @@ const CLI = fileURLToPath(new URL('../src/cli.ts', import.meta.url));
 const TSX_CLI = createRequire(import.meta.url).resolve('tsx/cli');
 const PRETTIER_PARENT_DIR = fileURLToPath(new URL('../.cache/fixtures', import.meta.url));
 
-let cleanup: (() => void) | undefined;
+let cleanup: (() => Promise<void>) | undefined;
 
 async function run(args: readonly string[], cwd: string) {
   try {
@@ -29,8 +29,8 @@ async function run(args: readonly string[], cwd: string) {
   }
 }
 
-afterEach(() => {
-  cleanup?.();
+afterEach(async () => {
+  await cleanup?.();
   cleanup = undefined;
 });
 
@@ -94,7 +94,10 @@ describe('pixpilot-mcp CLI', () => {
       cleanup = workspace.cleanup;
       const configDir = path.join(workspace.root, 'packages/mcp-server');
 
-      const { code, stderr } = await run(['generate'], configDir);
+      const { code, stderr } = await run(
+        ['generate', '--config', configDir],
+        process.cwd(),
+      );
 
       expect(stderr).toBe('');
       expect(code).toBe(0);

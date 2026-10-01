@@ -1,5 +1,6 @@
 import type { PackageDoc, UtilityDoc, UtilityRegistry } from '../src/types';
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
+import { rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 
@@ -112,7 +113,7 @@ export function createTempWorkspace(
 ): {
   root: string;
   write: (file: string, content: string) => void;
-  cleanup: () => void;
+  cleanup: () => Promise<void>;
 } {
   mkdirSync(parentDir, { recursive: true });
   const root = mkdtempSync(path.join(parentDir, 'pixpilot-mcp-'));
@@ -126,7 +127,12 @@ export function createTempWorkspace(
     write(file, content);
   }
 
-  return { root, write, cleanup: () => rmSync(root, { recursive: true, force: true }) };
+  // Windows briefly locks freshly written files (antivirus scans), failing the first
+  // delete with EPERM. `fs.promises.rm` retries that; `rmSync` does not.
+  const cleanup = async (): Promise<void> =>
+    rm(root, { recursive: true, force: true, maxRetries: 10, retryDelay: 100 });
+
+  return { root, write, cleanup };
 }
 
 const TEXT_SOURCE = `export interface ShoutOptions {

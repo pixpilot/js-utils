@@ -4,7 +4,7 @@ Turn a TypeScript package monorepo into a searchable MCP server, so AI coding as
 
 - **Generator:** reads every package's entry points with the TypeScript compiler. It records each export's signature, parameter and return types, option-object properties, and JSDoc description, `@example` blocks, and `@deprecated` notes. The result is one committed `registry.json`.
 - **Drift check:** fails when the sources change and the registry was not regenerated: a utility added or removed, a parameter or return type changed, or a doc edited.
-- **Server:** serves the registry through three tools: `list_packages`, `search_utilities`, and `get_utility_details`. It uses three tools, not one per utility, because every tool's schema is loaded into the assistant's context.
+- **Server:** serves the registry through three tools: `list_packages`, `search_utilities`, and `get_utility_details`. It uses three tools, not one per utility, because every tool's schema is loaded into the assistant's context. Search matches query words at word starts, drops matches far weaker than the best one, lists the `matchedTerms` of each result, and returns `unmatchedTerms` for words no result covers, so the assistant can tell when the catalog lacks a helper.
 
 `pixpilot-js-utils-mcp` in this repository is a complete example.
 
@@ -195,7 +195,7 @@ pixpilot-mcp generate [--check] [--config <file-or-dir>]
 
 ## API
 
-`@pixpilot/mcp` (runtime): `createMcpServer`, `startMcpServer`, `buildInstructions`, `searchUtilities`, `asRegistry`, `findUtilities`, `importStatement`, `installCommand`, `listPackages`, `readPackageVersion`, and the registry types.
+`@pixpilot/mcp` (runtime): `createMcpServer`, `startMcpServer`, `buildInstructions`, `searchUtilities`, `queryTerms`, `asRegistry`, `findUtilities`, `importStatement`, `installCommand`, `listPackages`, `readPackageVersion`, and the registry types.
 
 `createMcpServer` options: `name`, `version`, `registry`, plus `summary` (the first paragraph of the instructions sent to clients; defaults to the registry's categories) or `instructions` (replaces the whole text).
 

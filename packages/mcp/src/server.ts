@@ -10,7 +10,7 @@ import {
   listPackages,
   sharedScope,
 } from './registry';
-import { searchUtilities } from './search';
+import { queryTerms, searchUtilities } from './search';
 
 const MAX_SEARCH_LIMIT = 50;
 const SUGGESTION_LIMIT = 3;
@@ -106,7 +106,7 @@ export function createMcpServer(options: McpServerOptions): McpServer {
     'search_utilities',
     {
       title: 'Search utilities',
-      description: `Find utilities in the ${label} by what they do, in a few words, or by name. Returns compact matches ranked by relevance: name, package, import path, runtime, signature, and a one-line summary. An empty query with \`package\` lists that package.`,
+      description: `Find utilities in the ${label} by what they do, in a few words, or by name. Returns compact matches ranked by relevance: name, package, import path, runtime, signature, one-line summary, and the query terms each matched. \`unmatchedTerms\` lists query words no result covers. An empty query with \`package\` lists that package.`,
       inputSchema: {
         query: z
           .string()
@@ -130,10 +130,25 @@ export function createMcpServer(options: McpServerOptions): McpServer {
     async ({ query, ...searchOptions }) => {
       const results = searchUtilities(registry.utilities, query, searchOptions);
 
+      if (results.length === 0) {
+        return jsonResult({
+          results,
+          hint: 'No matches. Try fewer or different words, or call list_packages.',
+        });
+      }
+
+      // Words no result covers: tells the client the catalog lacks that part of the task.
+      const unmatchedTerms = queryTerms(query).filter(
+        (term) => !results.some((result) => result.matchedTerms?.includes(term)),
+      );
+
       return jsonResult({
         results,
-        ...(results.length === 0
-          ? { hint: 'No matches. Try fewer or different words, or call list_packages.' }
+        ...(unmatchedTerms.length > 0
+          ? {
+              unmatchedTerms,
+              hint: `No result matches ${unmatchedTerms.map((term) => `"${term}"`).join(', ')}: these are partial matches, so check that one fits before using it.`,
+            }
           : {}),
       });
     },

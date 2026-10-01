@@ -6,7 +6,7 @@ export {
   installCommand,
   listPackages,
 } from './registry';
-export { DEFAULT_SEARCH_LIMIT, searchUtilities } from './search';
+export { DEFAULT_SEARCH_LIMIT, queryTerms, searchUtilities } from './search';
 export type { SearchUtilitiesOptions, UtilitySearchResult } from './search';
 export { buildInstructions, createMcpServer, startMcpServer } from './server';
 export type { McpServerOptions } from './server';
