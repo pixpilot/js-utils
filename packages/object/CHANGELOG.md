@@ -1,5 +1,16 @@
 # @pixpilot/object
 
+## 2.7.0
+
+### Minor Changes
+
+- add searchable MCP server for workspace utilities
+
+### Patch Changes
+
+- Updated dependencies
+  - @pixpilot/string@3.3.0
+
 ## 2.6.0
 
 ### Minor Changes

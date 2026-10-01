@@ -1,5 +1,11 @@
 # @pixpilot/date
 
+## 1.5.0
+
+### Minor Changes
+
+- add searchable MCP server for workspace utilities
+
 ## 1.4.0
 
 ### Minor Changes
