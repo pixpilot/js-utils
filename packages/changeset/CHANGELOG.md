@@ -1,5 +1,11 @@
 # @pixpilot/changeset
 
+## 0.2.0
+
+### Minor Changes
+
+- add root-aware environment file utilities
+
 ## 0.1.4
 
 ### Patch Changes

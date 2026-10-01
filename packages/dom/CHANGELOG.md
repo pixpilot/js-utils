@@ -1,5 +1,16 @@
 # @pixpilot/dom
 
+## 0.1.0
+
+### Minor Changes
+
+- add root-aware environment file utilities
+
+### Patch Changes
+
+- Updated dependencies
+  - @pixpilot/math@0.2.0
+
 ## 0.0.2
 
 ### Patch Changes

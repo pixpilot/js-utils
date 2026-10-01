@@ -1,5 +1,11 @@
 # @pixpilot/hash
 
+## 0.3.0
+
+### Minor Changes
+
+- add root-aware environment file utilities
+
 ## 0.2.1
 
 ### Patch Changes
