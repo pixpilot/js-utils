@@ -112,7 +112,7 @@ function cleanDeep(value: Cleanable, options: ResolvedCleanOptions): Cleanable {
     return result;
   }
 
-  const prototype = Object.getPrototypeOf(value as object) as object | null;
+  const prototype = Object.getPrototypeOf(value) as object | null;
   const result = Object.create(prototype) as Record<string, unknown>;
 
   for (const [key, originalValue] of Object.entries(value)) {

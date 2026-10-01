@@ -34,7 +34,7 @@
   },
   "scripts": {
     "@internal/tsdown-config": "workspace:*",
-    "tsdown": "catalog:dev",
+    "tsdown": "catalog:build",
     "prepublishOnly": "pnpm run clean && pnpm run build",
     "clean": "git clean -xdf .cache .turbo dist",
     "clean:all": "git clean -xdf .cache .turbo dist node_modules",
@@ -49,7 +49,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
-    "change-case": "^5.4.4"
+    "change-case": "catalog:runtime"
   },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",
@@ -57,10 +57,10 @@
     "@internal/tsconfig": "workspace:*",
     "@internal/tsdown-config": "workspace:*",
     "@internal/vitest-config": "workspace:*",
-    "@types/node": "catalog:dev",
-    "eslint": "catalog:dev",
-    "tsdown": "catalog:dev",
-    "typescript": "catalog:dev"
+    "@types/node": "catalog:tooling",
+    "eslint": "catalog:tooling",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:tooling"
   },
   "prettier": "@internal/prettier-config"
 }

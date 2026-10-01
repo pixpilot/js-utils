@@ -56,11 +56,11 @@
     "@internal/tsdown-config": "workspace:*",
     "@internal/vitest-config": "workspace:*",
     "@pixpilot/env": "workspace:*",
-    "@types/node": "catalog:dev",
-    "eslint": "catalog:dev",
-    "tsdown": "catalog:dev",
-    "typescript": "catalog:dev",
-    "vitest": "catalog:dev"
+    "@types/node": "catalog:tooling",
+    "eslint": "catalog:tooling",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:tooling",
+    "vitest": "catalog:testing"
   },
   "prettier": "@internal/prettier-config"
 }

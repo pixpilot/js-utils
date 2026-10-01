@@ -1,12 +1,12 @@
 import makeConfig from '@pixpilot/eslint-config';
 
-/**
- * @type {ReturnType<typeof makeConfig>}
- */
 const baseConfig = makeConfig({
-  pnpm: false,
+  pnpm: true,
   turbo: true,
 });
 
+/** @type {import('eslint').Linter.Config[]} */
 // eslint-disable-next-line antfu/no-top-level-await
-export default await baseConfig;
+const resolvedConfig = await baseConfig;
+
+export default resolvedConfig;

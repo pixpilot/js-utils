@@ -61,7 +61,7 @@ export function omit<T extends Record<string, unknown>, K extends keyof T>(
     delete result[key];
   }
 
-  return result as Omit<T, K>;
+  return result;
 }
 
 /**
@@ -179,7 +179,7 @@ export function mapValues<T extends Record<string, unknown>, U>(
   const result = {} as Record<keyof T, U>;
 
   for (const [key, value] of Object.entries(obj)) {
-    result[key as keyof T] = fn(value as T[keyof T], key as keyof T);
+    result[key as keyof T] = fn(value as T[keyof T], key);
   }
 
   return result;
@@ -205,7 +205,7 @@ export function mapKeys<T extends Record<string, unknown>>(
   const result = {} as Record<string, T[keyof T]>;
 
   for (const [key, value] of Object.entries(obj)) {
-    const newKey = fn(key as keyof T);
+    const newKey = fn(key);
     result[newKey] = value as T[keyof T];
   }
 

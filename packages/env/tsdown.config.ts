@@ -5,7 +5,7 @@ const MAX_BUNDLE_SIZE_KB = 5;
 
 export default defineConfig({
   bundleSize: MAX_BUNDLE_SIZE_KB * KB,
-  entry: 'src/index.ts',
+  entry: ['src/index.ts', 'src/node.ts'],
   dts: true,
   minify: false,
   clean: true,

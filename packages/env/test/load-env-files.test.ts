@@ -157,4 +157,15 @@ describe('loadEnvFiles', () => {
 
     expect(process.env['SHARED_KEY']).toBe('local_value'); // .env.local loaded first, .env doesn't override
   });
+
+  it('should resolve files against the cwd option instead of process.cwd()', () => {
+    vi.mocked(existsSync).mockImplementation((path) => path === '/custom/dir/.env');
+    vi.mocked(readFileSync).mockReturnValue('CUSTOM_KEY=custom_value\n');
+    vi.mocked(join).mockImplementation((...args) => args.join('/').replace('//', '/'));
+
+    loadEnvFiles({ cwd: '/custom/dir', files: ['.env'] });
+
+    expect(process.env['CUSTOM_KEY']).toBe('custom_value');
+    expect(mockCwd).not.toHaveBeenCalled();
+  });
 });

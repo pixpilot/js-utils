@@ -53,10 +53,10 @@
     "@internal/tsconfig": "workspace:*",
     "@internal/tsdown-config": "workspace:*",
     "@internal/vitest-config": "workspace:*",
-    "@types/node": "catalog:dev",
-    "eslint": "catalog:dev",
-    "tsdown": "catalog:dev",
-    "typescript": "catalog:dev"
+    "@types/node": "catalog:tooling",
+    "eslint": "catalog:tooling",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:tooling"
   },
   "prettier": "@internal/prettier-config"
 }

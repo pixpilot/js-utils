@@ -1,44 +1,33 @@
 {
-  "name": "@pixpilot/env",
+  "name": "@pixpilot/fs",
   "type": "module",
-  "version": "1.0.2",
+  "version": "0.0.0",
   "packageManager": "pnpm@10.17.0",
-  "description": "A collection of utility functions for environment detection.",
-  "author": "m.doaie <m.doaie@hotmail.com>",
+  "author": "Mo Doaie <m.doaie@hotmail.com>",
   "license": "MIT",
+  "homepage": "https://github.com/pixpilot/js-utils",
   "repository": {
     "type": "git",
     "url": "https://github.com/pixpilot/js-utils.git",
-    "directory": "packages/env"
+    "directory": "packages/fs"
   },
   "bugs": {
     "url": "https://github.com/pixpilot/js-utils/issues"
   },
   "keywords": [],
-  "exports": {
-    ".": "./src/index.ts",
-    "./node": "./src/node.ts"
-  },
+  "sideEffects": false,
+  "exports": "./src/index.ts",
   "files": [
     "dist"
   ],
   "publishConfig": {
     "access": "public",
+    "registry": "https://registry.npmjs.org",
     "exports": {
       ".": {
         "types": "./dist/index.d.ts",
         "import": "./dist/index.js",
         "require": "./dist/index.cjs"
-      },
-      "./node": {
-        "types": "./dist/node.d.ts",
-        "import": "./dist/node.js",
-        "require": "./dist/node.cjs"
-      },
-      "./*": {
-        "types": "./dist/*.d.ts",
-        "import": "./dist/*.js",
-        "require": "./dist/*.cjs"
       }
     },
     "main": "./dist/index.cjs",
@@ -48,19 +37,17 @@
   "scripts": {
     "prepublishOnly": "pnpm run clean && pnpm run build",
     "clean": "git clean -xdf .cache .turbo dist",
-    "clean:all": "git clean -xdf .cache .turbo dist node_modules",
+    "clean:all": "pnpm clean && git clean -xdf node_modules",
     "build": "tsdown",
     "build:watch": "tsdown --watch",
     "test": "vitest --run --passWithNoTests",
     "test:watch": "vitest --watch",
-    "test:ui": "vitest --ui",
+    "test:ui": "vitest --ui --watch",
+    "test:ui:coverage": "vitest --ui --coverage --watch --hookTimeout=30000 --coverage.thresholds.lines=0 --coverage.thresholds.functions=0 --coverage.thresholds.branches=0 --coverage.thresholds.statements=0",
     "test:coverage": "vitest --coverage",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
-  },
-  "dependencies": {
-    "@pixpilot/fs": "workspace:*"
   },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",
@@ -69,10 +56,12 @@
     "@internal/tsdown-config": "workspace:*",
     "@internal/vitest-config": "workspace:*",
     "@types/node": "catalog:tooling",
-    "esbuild": "catalog:build",
+    "@vitest/coverage-v8": "catalog:testing",
+    "@vitest/ui": "catalog:testing",
     "eslint": "catalog:tooling",
     "tsdown": "catalog:build",
-    "typescript": "catalog:tooling"
+    "typescript": "catalog:tooling",
+    "vitest": "catalog:testing"
   },
   "prettier": "@internal/prettier-config"
 }

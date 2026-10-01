@@ -15,16 +15,15 @@
     "format:fix": "prettier --write ."
   },
   "dependencies": {
-    "@pixpilot/dev-config": "catalog:dev",
-    "@pixpilot/eslint-config": "^2.8.0",
-    "typescript-eslint": "^8.46.0"
+    "@pixpilot/dev-config": "catalog:pixpilot",
+    "@pixpilot/eslint-config": "catalog:pixpilot"
   },
   "devDependencies": {
     "@internal/prettier-config": "workspace:*",
     "@internal/tsconfig": "workspace:*",
-    "eslint": "catalog:dev",
-    "prettier": "catalog:dev",
-    "typescript": "catalog:dev"
+    "eslint": "catalog:tooling",
+    "prettier": "catalog:tooling",
+    "typescript": "catalog:tooling"
   },
   "prettier": "@internal/prettier-config"
 }

@@ -7,4 +7,8 @@
  * @example
  * import { loadEnvFiles } from '@pixpilot/env/node';
  */
+export * from './find-repo-root';
 export * from './load-env-files';
+export * from './load-root-env-files';
+export * from './root-env-files';
+export * from './watch-root-env-files';

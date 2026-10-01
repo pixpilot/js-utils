@@ -47,10 +47,10 @@
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
-    "@fastify/deepmerge": "^3.1.0",
+    "@fastify/deepmerge": "catalog:runtime",
     "@pixpilot/guid": "workspace:*",
     "@pixpilot/string": "workspace:*",
-    "dot-prop": "^10.1.0"
+    "dot-prop": "catalog:runtime"
   },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",
@@ -58,11 +58,11 @@
     "@internal/tsconfig": "workspace:*",
     "@internal/tsdown-config": "workspace:*",
     "@internal/vitest-config": "workspace:*",
-    "@manypkg/get-packages": "^3.1.0",
-    "@types/node": "catalog:dev",
-    "eslint": "catalog:dev",
-    "tsdown": "catalog:dev",
-    "typescript": "catalog:dev"
+    "@manypkg/get-packages": "catalog:tooling",
+    "@types/node": "catalog:tooling",
+    "eslint": "catalog:tooling",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:tooling"
   },
   "prettier": "@internal/prettier-config"
 }

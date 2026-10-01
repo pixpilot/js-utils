@@ -10,12 +10,18 @@ import { join } from 'node:path';
  * @param options - Configuration options
  * @param options.files - Array of file paths to load (defaults to ['.env.local', '.env'])
  * @param options.keys - Array of specific keys to load (loads all if not specified)
+ * @param options.cwd - Directory the files are resolved against (defaults to process.cwd())
  */
-export function loadEnvFiles(options?: { keys?: string[]; files?: string[] }): void {
+export function loadEnvFiles(options?: {
+  keys?: string[];
+  files?: string[];
+  cwd?: string;
+}): void {
   const envFiles = options?.files ?? ['.env.local', '.env', '.env.secret'];
+  const cwd = options?.cwd ?? process.cwd();
 
   for (const file of envFiles) {
-    const filePath = join(process.cwd(), file);
+    const filePath = join(cwd, file);
     if (existsSync(filePath)) {
       const content = readFileSync(filePath, 'utf8');
       const lines = content.split('\n');
@@ -29,9 +35,7 @@ export function loadEnvFiles(options?: { keys?: string[]; files?: string[] }): v
             const value = valueParts.join('=').trim();
             // If keys are specified, only load those keys
             if (!options?.keys || options.keys.includes(trimmedKey)) {
-              if (process.env[trimmedKey] == null) {
-                process.env[trimmedKey] = value;
-              }
+              process.env[trimmedKey] ??= value;
             }
           }
         }
