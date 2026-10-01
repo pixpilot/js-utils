@@ -1,5 +1,11 @@
 # @pixpilot/fs
 
+## 0.2.0
+
+### Minor Changes
+
+- add searchable MCP server for workspace utilities
+
 ## 0.1.0
 
 ### Minor Changes

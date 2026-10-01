@@ -1,5 +1,16 @@
 # @pixpilot/dom
 
+## 0.2.0
+
+### Minor Changes
+
+- add searchable MCP server for workspace utilities
+
+### Patch Changes
+
+- Updated dependencies
+  - @pixpilot/math@0.3.0
+
 ## 0.1.0
 
 ### Minor Changes
