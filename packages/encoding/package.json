@@ -1,26 +1,28 @@
 {
-  "name": "@pixpilot/hash",
+  "name": "@pixpilot/encoding",
   "type": "module",
-  "version": "0.5.0",
-  "packageManager": "pnpm@10.17.0",
-  "description": "Hashing utilities",
-  "author": "m.doaie <m.doaie@hotmail.com>",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.34.5",
+  "author": "Mo Doaie <m.doaie@hotmail.com>",
   "license": "MIT",
+  "homepage": "https://github.com/pixpilot/js-utils",
   "repository": {
     "type": "git",
     "url": "https://github.com/pixpilot/js-utils.git",
-    "directory": "packages/hash"
+    "directory": "packages/encoding"
   },
   "bugs": {
     "url": "https://github.com/pixpilot/js-utils/issues"
   },
   "keywords": [],
+  "sideEffects": false,
   "exports": "./src/index.ts",
   "files": [
     "dist"
   ],
   "publishConfig": {
     "access": "public",
+    "registry": "https://registry.npmjs.org",
     "exports": {
       ".": {
         "types": "./dist/index.d.ts",
@@ -35,19 +37,17 @@
   "scripts": {
     "prepublishOnly": "pnpm run clean && pnpm run build",
     "clean": "git clean -xdf .cache .turbo dist",
-    "clean:all": "git clean -xdf .cache .turbo dist node_modules",
+    "clean:all": "pnpm clean && git clean -xdf node_modules",
     "build": "tsdown",
     "build:watch": "tsdown --watch",
     "test": "vitest --run --passWithNoTests",
     "test:watch": "vitest --watch",
-    "test:ui": "vitest --ui",
+    "test:ui": "vitest --ui --watch",
+    "test:ui:coverage": "vitest --ui --coverage --watch --hookTimeout=30000 --coverage.thresholds.lines=0 --coverage.thresholds.functions=0 --coverage.thresholds.branches=0 --coverage.thresholds.statements=0",
     "test:coverage": "vitest --coverage",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
-  },
-  "dependencies": {
-    "@pixpilot/encoding": "workspace:*"
   },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",
@@ -56,9 +56,12 @@
     "@internal/tsdown-config": "workspace:*",
     "@internal/vitest-config": "workspace:*",
     "@types/node": "catalog:tooling",
+    "@vitest/coverage-v8": "catalog:testing",
+    "@vitest/ui": "catalog:testing",
     "eslint": "catalog:tooling",
-    "tsdown": "catalog:build",
-    "typescript": "catalog:tooling"
+    "tsdown": "catalog:tooling",
+    "typescript": "catalog:tooling",
+    "vitest": "catalog:testing"
   },
   "prettier": "@internal/prettier-config"
 }
