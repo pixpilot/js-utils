@@ -1,7 +1,7 @@
 {
   "name": "@pixpilot/mcp",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "packageManager": "pnpm@10.17.0",
   "description": "Generate a searchable MCP server for a TypeScript package monorepo from its sources and JSDoc, with drift detection.",
   "author": "Mo Doaie <m.doaie@hotmail.com>",
