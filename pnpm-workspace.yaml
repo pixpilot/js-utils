@@ -37,6 +37,7 @@ catalogs:
     tsdown: ^0.15.8
 
   runtime:
+    dotenv: ^17.2.3
     '@fastify/deepmerge': ^3.1.0
     '@modelcontextprotocol/sdk': ^1.31.0
     change-case: ^5.4.4

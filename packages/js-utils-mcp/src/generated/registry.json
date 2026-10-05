@@ -33,6 +33,14 @@
       "utilityCount": 3
     },
     {
+      "name": "@pixpilot/encoding",
+      "description": "Utilities for encoding raw bytes as strings.",
+      "category": "Encoding",
+      "keywords": ["encoding", "bytes", "hex"],
+      "entryPoints": [{ "importPath": "@pixpilot/encoding", "runtime": "universal" }],
+      "utilityCount": 1
+    },
+    {
       "name": "@pixpilot/env",
       "description": "A collection of utility functions for environment detection.",
       "category": "Environment",
@@ -79,7 +87,7 @@
       "category": "Hashing",
       "keywords": ["hash", "checksum"],
       "entryPoints": [{ "importPath": "@pixpilot/hash", "runtime": "universal" }],
-      "utilityCount": 1
+      "utilityCount": 2
     },
     {
       "name": "@pixpilot/math",
@@ -1122,6 +1130,26 @@
       "source": "packages/dom/src/z-index.ts"
     },
     {
+      "name": "toHex",
+      "kind": "function",
+      "package": "@pixpilot/encoding",
+      "importPath": "@pixpilot/encoding",
+      "runtime": "universal",
+      "category": "Encoding",
+      "description": "Hex-encodes raw bytes as a lowercase hexadecimal string.",
+      "signatures": [
+        {
+          "text": "toHex(buffer: ArrayBuffer): string",
+          "parameters": [{ "name": "buffer", "type": "ArrayBuffer", "optional": false }],
+          "returns": { "type": "string" }
+        }
+      ],
+      "examples": ["toHex(new Uint8Array([0, 15, 255]).buffer); // '000fff'"],
+      "keywords": ["hexadecimal", "binary", "ArrayBuffer"],
+      "notes": [],
+      "source": "packages/encoding/src/to-hex.ts"
+    },
+    {
       "name": "getEnv",
       "kind": "function",
       "package": "@pixpilot/env",
@@ -1609,6 +1637,30 @@
       "keywords": ["uuid", "validate uuid", "is uuid", "identifier"],
       "notes": [],
       "source": "packages/guid/src/is-guid.ts"
+    },
+    {
+      "name": "sha256Hex",
+      "kind": "function",
+      "package": "@pixpilot/hash",
+      "importPath": "@pixpilot/hash",
+      "runtime": "universal",
+      "category": "Hashing",
+      "description": "Computes a lowercase hex SHA-256 digest using Web Crypto.\nStrings are UTF-8 encoded; ArrayBuffers are hashed as-is.",
+      "signatures": [
+        {
+          "text": "sha256Hex(input: string | ArrayBuffer): Promise<string>",
+          "parameters": [
+            { "name": "input", "type": "string | ArrayBuffer", "optional": false }
+          ],
+          "returns": { "type": "Promise<string>" }
+        }
+      ],
+      "examples": [
+        "await sha256Hex('abc'); // 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'"
+      ],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/hash/src/sha256-hex.ts"
     },
     {
       "name": "simpleHash",

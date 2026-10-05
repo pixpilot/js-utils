@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { isAbsolute, join } from 'node:path';
+import { parse } from 'dotenv';
 
 /* eslint-disable node/prefer-global/process */
 /**
@@ -27,23 +28,12 @@ export function loadEnvFiles(options?: {
   const cwd = options?.cwd ?? process.cwd();
 
   for (const file of envFiles) {
-    const filePath = join(cwd, file);
+    const filePath = isAbsolute(file) ? file : join(cwd, file);
     if (existsSync(filePath)) {
       const content = readFileSync(filePath, 'utf8');
-      const lines = content.split('\n');
-
-      for (const line of lines) {
-        const trimmedLine = line.trim();
-        if (trimmedLine && !trimmedLine.startsWith('#')) {
-          const [key, ...valueParts] = trimmedLine.split('=');
-          const trimmedKey = key?.trim();
-          if (trimmedKey != null && trimmedKey.length > 0 && valueParts.length > 0) {
-            const value = valueParts.join('=').trim();
-            // If keys are specified, only load those keys
-            if (!options?.keys || options.keys.includes(trimmedKey)) {
-              process.env[trimmedKey] ??= value;
-            }
-          }
+      for (const [key, value] of Object.entries(parse(content))) {
+        if (options?.keys === undefined || options.keys.includes(key)) {
+          process.env[key] ??= value;
         }
       }
     }
