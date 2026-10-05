@@ -1,5 +1,11 @@
 # @pixpilot/changeset
 
+## 0.4.1
+
+### Patch Changes
+
+- increase MAX_BUNDLE_SIZE_KB to allow for dotenv
+
 ## 0.4.0
 
 ### Minor Changes
