@@ -1,5 +1,11 @@
 # @pixpilot/js-utils-mcp
 
+## 0.4.0
+
+### Minor Changes
+
+- add Node.js utilities for TCP port management
+
 ## 0.3.0
 
 ### Minor Changes
