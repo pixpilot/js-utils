@@ -1,5 +1,18 @@
 # @pixpilot/hash
 
+## 0.6.0
+
+### Minor Changes
+
+- enhance loadEnvFiles to support dotenv syntax and absolute paths
+- add SHA-256 hex hashing and encoding utility
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies
+  - @pixpilot/encoding@0.1.0
+
 ## 0.5.0
 
 ### Minor Changes

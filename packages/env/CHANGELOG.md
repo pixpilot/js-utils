@@ -1,5 +1,16 @@
 # @pixpilot/env
 
+## 1.4.0
+
+### Minor Changes
+
+- enhance loadEnvFiles to support dotenv syntax and absolute paths
+
+### Patch Changes
+
+- remove bundle size configuration from tsdown.config.ts
+- bbbeafb: Parse env files with dotenv-compatible quotes, comments, export prefixes, and multiline values; accept absolute paths while preserving existing key filtering and precedence.
+
 ## 1.3.0
 
 ### Minor Changes

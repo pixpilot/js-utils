@@ -1,5 +1,11 @@
 # @pixpilot/js-utils-mcp
 
+## 0.3.0
+
+### Minor Changes
+
+- enhance loadEnvFiles to support dotenv syntax and absolute paths
+
 ## 0.2.0
 
 ### Minor Changes
