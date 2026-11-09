@@ -83,6 +83,10 @@ Generate a searchable MCP server for a TypeScript package monorepo from its sour
 
 A utility for formatting and manipulating money values in JavaScript.
 
+### [net](./packages/net/README.md)
+
+Node.js utilities for finding and checking available TCP ports.
+
 ### [number](./packages/number/README.md)
 
 A collection of utility functions for number manipulation and validation.

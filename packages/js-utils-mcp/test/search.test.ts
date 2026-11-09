@@ -17,6 +17,8 @@ describe('search over the @pixpilot registry', () => {
     ['get nested value by path', 'getObjectValueByPath'],
     ['thousands separator', 'formatWithSeparator'],
     ['trunacte', 'truncate'],
+    ['find free tcp port', 'findAvailablePort'],
+    ['check port in use', 'isPortAvailable'],
   ])('ranks the right utility first for "%s"', (query, expected) => {
     expect(searchUtilities(registry.utilities, query)[0]?.name).toBe(expected);
   });

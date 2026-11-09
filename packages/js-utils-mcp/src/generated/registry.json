@@ -106,6 +106,14 @@
       "utilityCount": 1
     },
     {
+      "name": "@pixpilot/net",
+      "description": "Node.js utilities for finding and checking available TCP ports.",
+      "category": "Network",
+      "keywords": ["network", "tcp", "port", "localhost", "server"],
+      "entryPoints": [{ "importPath": "@pixpilot/net", "runtime": "node" }],
+      "utilityCount": 3
+    },
+    {
       "name": "@pixpilot/number",
       "description": "A collection of utility functions for number manipulation and validation.",
       "category": "Number",
@@ -1768,6 +1776,116 @@
       "keywords": ["currency", "price", "cents", "format price", "intl", "stripe amount"],
       "notes": [],
       "source": "packages/money/src/format.ts"
+    },
+    {
+      "name": "findAvailablePort",
+      "kind": "function",
+      "package": "@pixpilot/net",
+      "importPath": "@pixpilot/net",
+      "runtime": "node",
+      "category": "Network",
+      "description": "Find the first available TCP port at or above the preferred port, or throw on exhaustion.",
+      "signatures": [
+        {
+          "text": "findAvailablePort(preferredPort: number, options: FindAvailablePortOptions = {}): Promise<number>",
+          "parameters": [
+            { "name": "preferredPort", "type": "number", "optional": false },
+            {
+              "name": "options",
+              "type": "FindAvailablePortOptions",
+              "optional": true,
+              "defaultValue": "{}",
+              "properties": [
+                {
+                  "name": "host",
+                  "type": "string",
+                  "optional": true,
+                  "description": "Interface to probe. Defaults to IPv4 loopback."
+                },
+                {
+                  "name": "exclude",
+                  "type": "ReadonlySet<number>",
+                  "optional": true,
+                  "description": "Ports to skip, for example ports reserved for another service."
+                },
+                {
+                  "name": "maxAttempts",
+                  "type": "number",
+                  "optional": true,
+                  "description": "Number of consecutive ports to consider, including excluded ports. Defaults to 100."
+                }
+              ]
+            }
+          ],
+          "returns": { "type": "Promise<number>" }
+        }
+      ],
+      "examples": ["const port = await findAvailablePort(3000, { maxAttempts: 20 });"],
+      "keywords": ["find free port", "unused port", "automatic port", "port conflict"],
+      "notes": [],
+      "source": "packages/net/src/index.ts"
+    },
+    {
+      "name": "FindAvailablePortOptions",
+      "kind": "type",
+      "package": "@pixpilot/net",
+      "importPath": "@pixpilot/net",
+      "runtime": "node",
+      "category": "Network",
+      "description": "TypeScript type exported by @pixpilot/net.",
+      "type": "interface FindAvailablePortOptions {\n    host?: string;\n    exclude?: ReadonlySet<number>;\n    maxAttempts?: number;\n}",
+      "properties": [
+        {
+          "name": "host",
+          "type": "string",
+          "optional": true,
+          "description": "Interface to probe. Defaults to IPv4 loopback."
+        },
+        {
+          "name": "exclude",
+          "type": "ReadonlySet<number>",
+          "optional": true,
+          "description": "Ports to skip, for example ports reserved for another service."
+        },
+        {
+          "name": "maxAttempts",
+          "type": "number",
+          "optional": true,
+          "description": "Number of consecutive ports to consider, including excluded ports. Defaults to 100."
+        }
+      ],
+      "examples": [],
+      "keywords": [],
+      "notes": [],
+      "source": "packages/net/src/index.ts"
+    },
+    {
+      "name": "isPortAvailable",
+      "kind": "function",
+      "package": "@pixpilot/net",
+      "importPath": "@pixpilot/net",
+      "runtime": "node",
+      "category": "Network",
+      "description": "Check whether a TCP port can be bound on the given host; the port is not reserved.",
+      "signatures": [
+        {
+          "text": "isPortAvailable(port: number, host: string = '127.0.0.1'): Promise<boolean>",
+          "parameters": [
+            { "name": "port", "type": "number", "optional": false },
+            {
+              "name": "host",
+              "type": "string",
+              "optional": true,
+              "defaultValue": "'127.0.0.1'"
+            }
+          ],
+          "returns": { "type": "Promise<boolean>" }
+        }
+      ],
+      "examples": ["const available = await isPortAvailable(3000, '127.0.0.1');"],
+      "keywords": ["check port", "port in use", "port taken", "listening"],
+      "notes": [],
+      "source": "packages/net/src/index.ts"
     },
     {
       "name": "average",
